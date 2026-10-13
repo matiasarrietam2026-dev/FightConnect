@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustentación Oficial | FightConnect (UPB 2026)</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Presentation CSS -->
+    <link rel="stylesheet" href="presentacion.css">
+</head>
+<body>
+    <!-- Background Interactive Octagon Canvas -->
+    <canvas id="presentation-canvas"></canvas>
+    <div class="octa-grid-bg"></div>
+
+    <!-- Virtual Laser Pointer ('L') -->
+    <div id="laser-pointer"></div>
+
+    <!-- Top HUD Navigation Bar -->
+    <header class="pres-header">
+        <div class="pres-brand">
+            <div class="pres-logo">FIGHT <span>CONNECT</span></div>
+            <span class="pres-tag">UPB · ANTEPROYECTO 2026</span>
+        </div>
+
+        <!-- 10-Minute Countdown HUD Timer -->
+        <div class="pres-timer-container">
+            <div class="timer-box">
+                <i class="fas fa-stopwatch timer-icon" id="timer-icon"></i>
+                <span class="timer-digits" id="timer-digits">10:00</span>
+            </div>
+            
+            <div class="timer-controls">
+                <button class="btn-hud" id="btn-timer-toggle" title="Iniciar / Pausar Cronómetro (T)">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="btn-hud" id="btn-timer-reset" title="Reiniciar Cronómetro a 10:00 (R)">
+                    <i class="fas fa-redo-alt"></i>
+                </button>
+                <button class="btn-hud" id="btn-timer-plus" title="+1 Minuto">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="btn-hud" id="btn-timer-minus" title="-1 Minuto">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+
+            <div class="pacing-status on-track" id="pacing-status">Ritmo: 10 Minutos</div>
+        </div>
+
+        <!-- Right Quick Tools -->
+        <div class="pres-actions">
+            <button class="btn-action-tool" id="btn-audio-toggle" title="Silenciar / Activar Sonido Campana (M)">
+                <i class="fas fa-volume-up"></i>
+            </button>
+            <button class="btn-action-tool" id="btn-notes-toggle" title="Notas del Orador / Guion (N)">
+                <i class="fas fa-clipboard-list"></i> <span>Notas (N)</span>
+            </button>
+            <button class="btn-action-tool" id="btn-overview-toggle" title="Mosaico de Diapositivas (O)">
+                <i class="fas fa-th-large"></i> <span>Mosaico (O)</span>
+            </button>
+            <button class="btn-action-tool" id="btn-laser-toggle" title="Puntero Láser (L)">
+                <i class="fas fa-crosshairs"></i> <span>Láser (L)</span>
+            </button>
+            <button class="btn-action-tool primary-action" id="btn-fullscreen-toggle" title="Pantalla Completa (F)">
+                <i class="fas fa-expand"></i> <span>Pantalla Completa</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Linear Slide Progress Bar -->
+    <div class="presentation-progress-bar">
+        <div class="progress-fill" id="pres-progress-fill"></div>
+    </div>
+
+    <!-- MAIN SLIDE VIEWPORT -->
+    <main class="slides-viewport">
+
+        <!-- =========================================================================
+             SLIDE 1: PORTADA OFICIAL (0:00 - 0:35)
+             ========================================================================= -->
+        <section class="slide active" id="slide-1">
+            <div class="cover-hero">
+                <div class="cover-badge-row">
+                    <span class="cover-badge upb-badge"><i class="fas fa-university"></i> Universidad Pontificia Bolivariana</span>
+                    <span class="cover-badge"><i class="fas fa-code"></i> Técnico Laboral en Programación de Software</span>
+                    <span class="cover-badge"><i class="fas fa-clock"></i> Sustentación Oficial (10 Min)</span>
+                </div>
+
+                <h1 class="cover-title">FIGHT <span>CONNECT</span></h1>
+                
+                <p class="cover-subtitle">
+                    Desarrollo de un Ecosistema Híbrido (Android y Web) para la Profesionalización y el Posicionamiento Estratégico del Talento en las Artes Marciales Mixtas en Medellín y el Área Metropolitana
+                </p>
+
+                <div class="cover-meta-grid">
+                    <div class="cover-meta-card">
+                        <div class="cover-meta-label"><i class="fas fa-user"></i> Autor (Estudiante)</div>
+                        <div class="cover-meta-val">Matías Arrieta Montoya</div>
+                        <div class="cover-meta-sub">Desarrollador & Investigador</div>
+                    </div>
+                    <div class="cover-meta-card">
+                        <div class="cover-meta-label"><i class="fas fa-chalkboard-teacher"></i> Asesor / Tutor</div>
+                        <div class="cover-meta-val">Santiago Zapata Vélez</div>
+                        <div class="cover-meta-sub">Asesor Metodológico y Técnico</div>
+                    </div>
+                    <div class="cover-meta-card">
+                        <div class="cover-meta-label"><i class="fas fa-map-marker-alt"></i> Delimitación & Fecha</div>
+                        <div class="cover-meta-val">Valle de Aburrá, Colombia</div>
+                        <div class="cover-meta-sub">Ciclo Intensivo 2026 (11 Semanas)</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; display: flex; gap: 1rem; align-items: center;">
+                    <button class="btn-action-tool primary-action" style="padding: 0.8rem 2rem; font-size: 1rem;" onclick="window.fightConnectPres.startTimer(); window.fightConnectPres.nextSlide();">
+                        <i class="fas fa-play"></i> INICIAR SUSTENTACIÓN (ROUND 1)
+                    </button>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fas fa-keyboard"></i> O usa las flechas del teclado / Barra espaciadora</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 2: CONTEXTO & EPICENTRO MEDELLÍN (0:35 - 1:15)
+             ========================================================================= -->
+        <section class="slide" id="slide-2">
+            <div class="slide-header">
+                <div class="slide-category">Marco Contextual & Realidad Regional</div>
+                <h2 class="slide-title">Medellín: Epicentro Nacional del <span>MMA</span></h2>
+                <p class="slide-subtitle">Una disciplina en crecimiento exponencial que ha desbordado la capacidad de las estructuras institucionales locales.</p>
+            </div>
+
+            <div class="slide-grid-3">
+                <div class="glass-card highlight-card">
+                    <div class="card-icon"><i class="fas fa-fire-alt"></i></div>
+                    <h3 class="card-title">Auge del Deporte de Combate</h3>
+                    <p class="card-text">Medellín ha sido documentada como el epicentro nacional de las MMA, albergando eventos con más de <strong>2.000 asistentes</strong> por velada (El Colombiano, 2021).</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Proliferación de gimnasios de BJJ y Muay Thai.</li>
+                        <li><i class="fas fa-check"></i> Figuras nacionales en ligas mundiales (Infobae, 2024).</li>
+                    </ul>
+                    <span class="card-badge">Expansión Sostenida</span>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-icon" style="color: var(--accent-gold); background: var(--accent-gold-dim); border-color: rgba(245,158,11,0.3);"><i class="fas fa-chart-pie"></i></div>
+                    <h3 class="card-title">Déficit Estadístico Deportivo</h3>
+                    <p class="card-text">Según el reporte conjunto <strong>MinDeporte & DANE (2022)</strong>, solo el <strong>11.5%</strong> de la población practica deporte formal y diario.</p>
+                    <div class="metric-row">
+                        <div class="metric-item">
+                            <div class="metric-value">11.5%</div>
+                            <div class="metric-label">Práctica Diaria</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">0</div>
+                            <div class="metric-label">Federación Oficial Plena</div>
+                        </div>
+                    </div>
+                    <p class="card-text" style="font-size: 0.8rem; font-style: italic;">"El sector deportivo presenta una falencia severa en estadísticas y mediciones" (MinDeporte).</p>
+                    <span class="card-badge">Vacío Institucional</span>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-icon" style="color: var(--accent-cyan); background: var(--accent-cyan-dim); border-color: rgba(0,210,255,0.3);"><i class="fas fa-mobile-alt"></i></div>
+                    <h3 class="card-title">Viabilidad Digital Comprobada</h3>
+                    <p class="card-text">La barrera de entrada no es de infraestructura tecnológica o acceso móvil, sino de <strong>oferta de software especializado</strong>.</p>
+                    <div class="metric-row">
+                        <div class="metric-item">
+                            <div class="metric-value" style="color: var(--accent-cyan);">79%</div>
+                            <div class="metric-label">Smartphones (DANE)</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" style="color: var(--accent-cyan);">#2</div>
+                            <div class="metric-label">Antioquia en Conectividad</div>
+                        </div>
+                    </div>
+                    <p class="card-text" style="font-size: 0.82rem;">24 accesos móviles por cada 100 habitantes (MinTIC, 2025). Entorno idóneo para una solución híbrida.</p>
+                    <span class="card-badge">Alta Factibilidad</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 3: PROBLEMÁTICA CENTRAL (1:15 - 2:05)
+             ========================================================================= -->
+        <section class="slide" id="slide-3">
+            <div class="slide-header">
+                <div class="slide-category">Planteamiento del Problema & Justificación</div>
+                <h2 class="slide-title">La Brecha de <span>Profesionalización & Salud</span></h2>
+                <p class="slide-subtitle">Una comunidad deportiva activa que carece de infraestructura tecnológica para su gestión, verificación y preservación física.</p>
+            </div>
+
+            <div class="slide-grid-2">
+                <div class="glass-card">
+                    <h3 class="card-title" style="color: var(--accent-red);"><i class="fas fa-exclamation-triangle"></i> La Triple Problemática en el Valle de Aburrá</h3>
+                    <ul class="feature-list" style="margin-top: 1rem; gap: 1rem;">
+                        <li>
+                            <i class="fas fa-times-circle"></i>
+                            <div>
+                                <strong>Informalidad en Matchmaking:</strong>
+                                <p style="color: var(--text-secondary); font-size: 0.88rem;">Pactación de combates por mensajes informales de mensajería (WhatsApp), carteleras en papel y registros de récord desorganizados.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-times-circle"></i>
+                            <div>
+                                <strong>Invisibilidad & Ausencia de Patrocinio:</strong>
+                                <p style="color: var(--text-secondary); font-size: 0.88rem;">Atletas que no logran dedicación de tiempo completo al deporte al carecer de una hoja de vida deportiva auditable ante patrocinadores privados.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-times-circle"></i>
+                            <div>
+                                <strong>Corte de Peso Desregulado y Peligroso:</strong>
+                                <p style="color: var(--text-secondary); font-size: 0.88rem;">Prácticas empíricas de deshidratación aguda ("weight cutting") sin monitoreo sistemático, asociadas con daño renal agudo (Lakicevic et al., 2021).</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card highlight-card" style="justify-content: center;">
+                    <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+                    <h3 class="card-title">Pregunta de Investigación</h3>
+                    <div class="callout-box" style="margin: 1.2rem 0; background: rgba(0,0,0,0.4); border-left-width: 4px;">
+                        <p style="font-size: 1.05rem; color: #fff; font-style: italic; line-height: 1.6;">
+                            "¿De qué manera el desarrollo de un ecosistema híbrido (Android y Web) basado en servicios en la nube permite optimizar la gestión de datos deportivos, el seguimiento de corte de peso y la visibilidad de los atletas de MMA en Medellín y el Área Metropolitana?"
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                        <span class="cover-badge"><i class="fas fa-database"></i> Gestión Centralizada</span>
+                        <span class="cover-badge"><i class="fas fa-heartbeat"></i> Variable de Salud (Peso)</span>
+                        <span class="cover-badge"><i class="fas fa-bullhorn"></i> Visibilidad de Talento</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 4: ESTADO DEL ARTE & COMPETENCIA (2:05 - 2:55)
+             ========================================================================= -->
+        <section class="slide" id="slide-4">
+            <div class="slide-header">
+                <div class="slide-category">Análisis de la Competencia & Vacío Identificado</div>
+                <h2 class="slide-title">Estado del Arte: <span>El Vacío Tecnológico Local</span></h2>
+                <p class="slide-subtitle">Las plataformas globales son directorios de salida internacional, pero no resuelven la operatividad del ecosistema regional.</p>
+            </div>
+
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 1.2rem;">
+                <table class="comp-table">
+                    <thead>
+                        <tr>
+                            <th>Plataforma</th>
+                            <th>Alcance Geográfico</th>
+                            <th>Función Principal</th>
+                            <th>Gestión Promotoras Locales</th>
+                            <th>Monitoreo Corte de Peso</th>
+                            <th>Comunidad & Red Social</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: #fff;">Sherdog</strong></td>
+                            <td>Global</td>
+                            <td>Base de datos colaborativa de récords pro</td>
+                            <td><span class="badge-no"><i class="fas fa-times"></i> No</span></td>
+                            <td><span class="badge-no"><i class="fas fa-times"></i> No</span></td>
+                            <td><span class="badge-no"><i class="fas fa-times"></i> No</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #fff;">Tapology</strong></td>
+                            <td>Global</td>
+                            <td>Base de datos de récords y pronósticos</td>
+                            <td><span class="badge-no"><i class="fas fa-times"></i> No</span></td>
+                            <td><span class="badge-no"><i class="fas fa-times"></i> No</span></td>
+                            <td><span class="badge-no"><i class="fas fa-times"></i> No</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #fff;">Smoothcomp</strong></td>
+                            <td>Global</td>
+                            <td>Inscripción y llaves en torneos de agarre</td>
+                            <td><span class="badge-no"><i class="fas fa-times"></i> No</span></td>
+                            <td><span class="badge-no"><i class="fas fa-times"></i> No</span></td>
+                            <td><span class="badge-no"><i class="fas fa-times"></i> No</span></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong style="color: var(--accent-red); font-size: 1.05rem;"><i class="fas fa-shield-alt"></i> FIGHTCONNECT</strong></td>
+                            <td><strong style="color: #fff;">Medellín y Valle de Aburrá</strong></td>
+                            <td><strong>Ecosistema integral formativo y profesional</strong></td>
+                            <td><span class="badge-yes"><i class="fas fa-check"></i> Sí (Nativo)</span></td>
+                            <td><span class="badge-yes"><i class="fas fa-check"></i> Sí (Performance Hub)</span></td>
+                            <td><span class="badge-yes"><i class="fas fa-check"></i> Sí (Fight Feed)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="callout-box">
+                    <div class="callout-title"><i class="fas fa-bullseye"></i> Aporte Diferencial de FightConnect</div>
+                    <p class="callout-desc">
+                        La OCAMM (2024) exige a los atletas registrarse en plataformas globales para aval internacional, pero estas no ofrecen publicación de carteleras locales, matchmaking filtrado regionalmente ni monitoreo preventivo de salud. <strong>FightConnect actúa como solución complementaria y estratégica para la fase formativa y semiprofesional.</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 5: LA SOLUCIÓN: ECOSISTEMA HÍBRIDO (2:55 - 3:40)
+             ========================================================================= -->
+        <section class="slide" id="slide-5">
+            <div class="slide-header">
+                <div class="slide-category">Propuesta de Valor & Solución Tecnológica</div>
+                <h2 class="slide-title">La Solución: <span>Ecosistema Híbrido Sincronizado</span></h2>
+                <p class="slide-subtitle">Una arquitectura dual convergente sobre la nube: experiencia móvil táctica para el atleta y consola web para promotoras y aficionados.</p>
+            </div>
+
+            <div class="slide-grid-3">
+                <div class="glass-card">
+                    <div class="card-icon" style="color: #3b82f6; background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.3);"><i class="fab fa-android"></i></div>
+                    <h3 class="card-title">App Android Nativa</h3>
+                    <p class="card-text">Diseñada para el atleta en el gimnasio y zona de pesaje.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-bolt"></i> Desarrollada en <strong>Kotlin</strong> sobre Android Studio.</li>
+                        <li><i class="fas fa-layer-group"></i> Patrón arquitectónico <strong>MVVM</strong>.</li>
+                        <li><i class="fas fa-wifi-slash"></i> <strong>Persistencia Offline</strong> en pesajes sin conexión.</li>
+                        <li><i class="fas fa-bell"></i> Notificaciones push de combates y alertas de peso.</li>
+                    </ul>
+                    <span class="card-badge" style="color: #3b82f6; border-color: rgba(59,130,246,0.3);">Perfil Atleta</span>
+                </div>
+
+                <div class="glass-card highlight-card">
+                    <div class="card-icon"><i class="fas fa-cloud"></i></div>
+                    <h3 class="card-title">Núcleo Backend Serverless</h3>
+                    <p class="card-text">Infraestructura reactiva en tiempo real sobre Google Firebase.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-database"></i> <strong>Cloud Firestore:</strong> NoSQL con sincronización en milisegundos.</li>
+                        <li><i class="fas fa-user-lock"></i> <strong>Firebase Auth:</strong> Identidad segura por roles (JWT).</li>
+                        <li><i class="fas fa-server"></i> <strong>Cloud Functions (Node.js):</strong> Lógica de negocio y alertas sin servidor propio.</li>
+                        <li><i class="fas fa-images"></i> <strong>Firebase Storage:</strong> Evidencia de pesajes y afiches.</li>
+                    </ul>
+                    <span class="card-badge">BaaS Unificado</span>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-icon" style="color: var(--accent-cyan); background: var(--accent-cyan-dim); border-color: rgba(0,210,255,0.3);"><i class="fas fa-desktop"></i></div>
+                    <h3 class="card-title">Plataforma Web MPA</h3>
+                    <p class="card-text">Consola de gestión masiva y vitrina social para la comunidad.</p>
+                    <ul class="feature-list">
+                        <li><i class="fab fa-react"></i> Desarrollada en <strong>React sobre Vite</strong>.</li>
+                        <li><i class="fas fa-paint-brush"></i> Estilización moderna con <strong>Tailwind CSS</strong>.</li>
+                        <li><i class="fas fa-filter"></i> Motor de <strong>Matchmaking y Carteleras</strong> para promotoras.</li>
+                        <li><i class="fas fa-rss"></i> <strong>Fight Feed</strong> y consumo de APIs de noticias.</li>
+                    </ul>
+                    <span class="card-badge" style="color: var(--accent-cyan); border-color: rgba(0,210,255,0.3);">Promotor & Fan</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 6: PERFILES DE USUARIO (3:40 - 4:30)
+             ========================================================================= -->
+        <section class="slide" id="slide-6">
+            <div class="slide-header">
+                <div class="slide-category">Especificaciones Funcionales</div>
+                <h2 class="slide-title">Los Tres Perfiles del <span>Ecosistema</span></h2>
+                <p class="slide-subtitle">Una arquitectura centrada en tres actores con necesidades operativas altamente diferenciadas.</p>
+            </div>
+
+            <div class="slide-grid-3">
+                <div class="glass-card">
+                    <div class="card-icon"><i class="fas fa-hand-rock"></i></div>
+                    <h3 class="card-title">1. Peleador (Atleta)</h3>
+                    <p class="card-text">Empoderamiento deportivo y salvaguarda física.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-id-card"></i> <strong>Hoja de vida deportiva verificada:</strong> Récord, disciplina, academia.</li>
+                        <li><i class="fas fa-heartbeat"></i> <strong>Performance Hub:</strong> Registro diario de peso con alertas tempranas.</li>
+                        <li><i class="fas fa-fist-raised"></i> <strong>Postulación a combates:</strong> Filtro por categoría y peso.</li>
+                        <li><i class="fas fa-handshake"></i> <strong>Vitrina de patrocinio:</strong> Exposición formal a marcas.</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-icon" style="color: var(--accent-gold); background: var(--accent-gold-dim); border-color: rgba(245,158,11,0.3);"><i class="fas fa-building"></i></div>
+                    <h3 class="card-title">2. Promotora (Organizador)</h3>
+                    <p class="card-text">Eficiencia logística y emparejamientos competitivos justos.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-calendar-plus"></i> <strong>Publicación de carteleras:</strong> Fechas, sedes, pesos convocados.</li>
+                        <li><i class="fas fa-users-cog"></i> <strong>Matchmaking inteligente:</strong> Filtro de postulantes por récord y peso.</li>
+                        <li><i class="fas fa-clipboard-check"></i> <strong>Panel de confirmación:</strong> Control de peleas pactadas.</li>
+                    </ul>
+                    <!-- Mini Filter Widget -->
+                    <div style="margin-top: 1rem; padding: 0.8rem; background: rgba(0,0,0,0.4); border-radius: 8px;">
+                        <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--accent-gold); font-weight: 700;">Simulador Matchmaking:</span>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem;">
+                            <select id="sim-match-division" style="background:#151515; color:#fff; border:1px solid #333; padding:0.3rem; border-radius:4px; font-size:0.75rem;">
+                                <option value="all">Todas las divisiones</option>
+                                <option value="ligero">Peso Ligero (70.3 kg)</option>
+                                <option value="welter">Peso Wélter (77.1 kg)</option>
+                            </select>
+                            <select id="sim-match-record" style="background:#151515; color:#fff; border:1px solid #333; padding:0.3rem; border-radius:4px; font-size:0.75rem;">
+                                <option value="all">Todos los récords</option>
+                                <option value="positive">Récord Positivo (>50%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-icon" style="color: var(--accent-cyan); background: var(--accent-cyan-dim); border-color: rgba(0,210,255,0.3);"><i class="fas fa-users"></i></div>
+                    <h3 class="card-title">3. Fan (Comunidad)</h3>
+                    <p class="card-text">Fidelización y visibilidad del circuito de combate local.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-stream"></i> <strong>Fight Feed Social:</strong> Publicaciones e interacciones de atletas y gimnasios.</li>
+                        <li><i class="fas fa-thumbs-up"></i> <strong>Reacciones temáticas de combate:</strong> "Respect", "Oss!", "K.O.".</li>
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Calendario sincronizado:</strong> Veladas oficiales en Medellín.</li>
+                        <li><i class="fas fa-newspaper"></i> <strong>News Hub:</strong> Noticias curadas vía APIs RESTful externas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 7: INNOVACIÓN PERFORMANCE HUB (4:30 - 5:30)
+             ========================================================================= -->
+        <section class="slide" id="slide-7">
+            <div class="slide-header">
+                <div class="slide-category">Innovación Central & Salud Deportiva</div>
+                <h2 class="slide-title">Módulo Estrella: <span>Performance Hub</span></h2>
+                <p class="slide-subtitle">Prevención del riesgo fisiológico en el corte de peso con fundamento científico en medicina deportiva.</p>
+            </div>
+
+            <div class="slide-grid-2">
+                <div class="glass-card">
+                    <h3 class="card-title" style="color: var(--accent-red);"><i class="fas fa-stethoscope"></i> Fundamentación Médica & Científica</h3>
+                    <p class="card-text">El "weight cutting" extremo implica deshidratación y depleción de glucógeno. La literatura científica evidencia:</p>
+                    <ul class="feature-list">
+                        <li>
+                            <i class="fas fa-flask"></i>
+                            <div>
+                                <strong>Daño Renal Agudo (Lakicevic et al., 2021):</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Elevación drástica de creatinina sérica y nitrógeno ureico en sangre por pérdida de peso descontrolada.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-brain"></i>
+                            <div>
+                                <strong>Impacto Fisiológico y Psíquico (Roklicer et al., 2025):</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Deterioro de la capacidad termorreguladora, reflejos y aumento de vulnerabilidad a traumatismos.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <strong>Normalización en Amateurs (Wilbraham et al., 2024):</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Prácticas de deshidratación adoptadas sin acompañamiento médico profesional en gimnasios locales.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <span class="card-badge" style="margin-top: 1rem;">Alertas Preventivas, No Diagnósticas</span>
+                </div>
+
+                <div class="glass-card highlight-card">
+                    <h3 class="card-title"><i class="fas fa-sliders-h"></i> Simulador Interactivo de Alerta de Corte de Peso</h3>
+                    <p class="card-text" style="font-size: 0.88rem;">Prueba en tiempo real el algoritmo que calcula la tasa de pérdida relativa sobre el peso base:</p>
+
+                    <div class="sim-container">
+                        <div class="sim-slider-row">
+                            <div class="sim-slider-label">
+                                <span>Peso Base Habitual del Atleta:</span>
+                                <strong id="sim-base-val" style="color: #fff;">70.0 kg</strong>
+                            </div>
+                            <input type="range" class="sim-range" id="sim-base-weight" min="50" max="100" step="0.5" value="70">
+                        </div>
+
+                        <div class="sim-slider-row">
+                            <div class="sim-slider-label">
+                                <span>Peso Actual en Semana de Pelea:</span>
+                                <strong id="sim-current-val" style="color: var(--accent-red);">64.0 kg</strong>
+                            </div>
+                            <input type="range" class="sim-range" id="sim-current-weight" min="45" max="100" step="0.5" value="64">
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                            <span style="font-size: 0.85rem; color: var(--text-secondary);">Porcentaje de Reducción:</span>
+                            <span id="sim-loss-pct" style="font-family: var(--font-mono); font-weight: 700; color: #fff; font-size: 1.1rem;">-8.6% (6.0 kg)</span>
+                        </div>
+
+                        <div class="sim-alert-banner state-danger" id="sim-alert-banner">
+                            <i class="fas fa-skull-crossbones" id="sim-alert-icon" style="font-size: 1.4rem;"></i>
+                            <div id="sim-alert-desc" style="font-size: 0.82rem; line-height: 1.4;">
+                                <strong>¡ALERTA CRÍTICA (>8%):</strong> Riesgo inminente de daño renal agudo y deshidratación severa (Lakicevic et al., 2021).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 0.8rem; font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-database"></i> Registrado con persistencia local offline en Android; sincroniza automáticamente al reconectar a Firestore.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 8: ARQUITECTURA DE SOFTWARE (5:30 - 6:25)
+             ========================================================================= -->
+        <section class="slide" id="slide-8">
+            <div class="slide-header">
+                <div class="slide-category">Fundamentos Tecnológicos & Patrones</div>
+                <h2 class="slide-title">Arquitectura de Software: <span>MVVM & Clean Architecture</span></h2>
+                <p class="slide-subtitle">Independencia de reglas de negocio, alta mantenibilidad y testeabilidad desacoplada (Google Developers, 2024; Martin, 2017).</p>
+            </div>
+
+            <div class="arch-diagram">
+                <!-- Node 1: Mobile -->
+                <div class="arch-node" id="arch-node-android">
+                    <i class="fab fa-android" style="font-size: 2rem; color: #3b82f6; margin-bottom: 0.5rem;"></i>
+                    <h4 style="font-size: 1rem; color: #fff;">Android App</h4>
+                    <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.3rem;">Kotlin · MVVM · LiveData</p>
+                    <span class="card-badge" style="margin-top: 0.5rem;">Perfil Atleta</span>
+                </div>
+
+                <div class="arch-arrow"><i class="fas fa-exchange-alt"></i></div>
+
+                <!-- Node 2: Firebase Backend -->
+                <div class="arch-node" id="arch-node-cloud" style="border-color: var(--accent-red); background: rgba(230,36,41,0.06);">
+                    <i class="fas fa-fire" style="font-size: 2.2rem; color: #f59e0b; margin-bottom: 0.5rem;"></i>
+                    <h4 style="font-size: 1.1rem; color: #fff;">Firebase BaaS</h4>
+                    <p style="font-size: 0.8rem; color: #d1d5db; margin-top: 0.3rem;">Cloud Firestore (NoSQL Tiempo Real)</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Cloud Functions (Node.js) · Auth · Storage</p>
+                    <span class="card-badge upb-badge" style="margin-top: 0.5rem;">Núcleo Centralizado</span>
+                </div>
+
+                <div class="arch-arrow"><i class="fas fa-exchange-alt"></i></div>
+
+                <!-- Node 3: Web Platform -->
+                <div class="arch-node" id="arch-node-web">
+                    <i class="fab fa-react" style="font-size: 2rem; color: var(--accent-cyan); margin-bottom: 0.5rem;"></i>
+                    <h4 style="font-size: 1rem; color: #fff;">Plataforma Web</h4>
+                    <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.3rem;">React · Vite · Tailwind</p>
+                    <span class="card-badge" style="margin-top: 0.5rem;">Promotoras & Fans</span>
+                </div>
+            </div>
+
+            <div class="slide-grid-3" style="margin-top: 1rem;">
+                <div class="glass-card">
+                    <h4 class="card-title" style="font-size: 1.1rem;"><i class="fas fa-layer-group"></i> Patrón MVVM</h4>
+                    <p class="card-text" style="font-size: 0.85rem;">Separa la interfaz visual de la lógica de presentación y el repositorio de datos, facilitando pruebas unitarias aisladas.</p>
+                </div>
+                <div class="glass-card">
+                    <h4 class="card-title" style="font-size: 1.1rem;"><i class="fas fa-bolt"></i> Cloud Functions</h4>
+                    <p class="card-text" style="font-size: 0.85rem;">Ejecución de validaciones de reglas de negocio y cálculo de alertas de salud en backend serverless seguro sobre Node.js.</p>
+                </div>
+                <div class="glass-card">
+                    <h4 class="card-title" style="font-size: 1.1rem;"><i class="fas fa-network-wired"></i> APIs RESTful Externas</h4>
+                    <p class="card-text" style="font-size: 0.85rem;">Consumo desacoplado en formato JSON para alimentar noticias y estadísticas internacionales en el News Hub (Fielding, 2000).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 9: MODELO DE DATOS CLOUD FIRESTORE (6:25 - 7:10)
+             ========================================================================= -->
+        <section class="slide" id="slide-9">
+            <div class="slide-header">
+                <div class="slide-category">Diseño Preliminar del Sistema</div>
+                <h2 class="slide-title">Modelo de Datos en <span>Cloud Firestore</span></h2>
+                <p class="slide-subtitle">Arquitectura NoSQL orientada a documentos y subcolecciones optimizadas para latencia mínima y persistencia offline.</p>
+            </div>
+
+            <div class="slide-grid-2">
+                <table class="comp-table" style="font-size: 0.82rem;">
+                    <thead>
+                        <tr>
+                            <th>Colección</th>
+                            <th>Campos Principales</th>
+                            <th>Perfil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>usuarios</code></td>
+                            <td>uid, rol, nombreCompleto, correo, fechaRegistro</td>
+                            <td>Los tres perfiles</td>
+                        </tr>
+                        <tr>
+                            <td><code>peleadores</code></td>
+                            <td>uid, disciplina, categoriaPeso, record, gimnasio</td>
+                            <td>Peleador</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><code>performanceHub</code></td>
+                            <td>uid, historialPeso (subcolección), pesoBase, nivelAlerta</td>
+                            <td>Peleador (Privado)</td>
+                        </tr>
+                        <tr>
+                            <td><code>promotoras</code></td>
+                            <td>uid, nombreOrganizacion, ciudad, eventos</td>
+                            <td>Promotora</td>
+                        </tr>
+                        <tr>
+                            <td><code>eventos</code></td>
+                            <td>idEvento, fecha, sede, categoriasConvocadas, estado</td>
+                            <td>Promotora, Fan</td>
+                        </tr>
+                        <tr>
+                            <td><code>publicacionesFeed</code></td>
+                            <td>idPublicacion, autorUid, contenido, reacciones, fecha</td>
+                            <td>Comunidad</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="glass-card highlight-card">
+                    <h3 class="card-title"><i class="fas fa-sync-alt"></i> Reactividad & Sincronización en Tiempo Real</h3>
+                    <p class="card-text">
+                        A diferencia de arquitecturas tradicionales que requieren polling continuo:
+                    </p>
+                    <ul class="feature-list" style="margin-top: 0.8rem;">
+                        <li><i class="fas fa-check"></i> <strong>Listeners Activos (<code>onSnapshot</code>):</strong> Cualquier cambio en la cartelera o registro de peso se propaga en milisegundos a todos los clientes conectados.</li>
+                        <li><i class="fas fa-check"></i> <strong>Cache Indexado Local:</strong> Capacidad nativa de persistencia offline que garantiza operatividad en coliseos o saunas con señal intermitente.</li>
+                        <li><i class="fas fa-check"></i> <strong>Subcolecciones Eficientes:</strong> Historial de pesajes encapsulado para evitar transferencias pesadas y optimizar cuotas de lectura.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 10: MARCO LEGAL & PRIVACY BY DESIGN (7:10 - 7:55)
+             ========================================================================= -->
+        <section class="slide" id="slide-10">
+            <div class="slide-header">
+                <div class="slide-category">Marco Legal, Normativo & Seguridad</div>
+                <h2 class="slide-title">Blindaje Normativo & <span>Privacy by Design</span></h2>
+                <p class="slide-subtitle">Tratamiento ético y riguroso de información personal y datos biométricos de salud conforme a la legislación colombiana.</p>
+            </div>
+
+            <div class="slide-grid-3">
+                <div class="glass-card">
+                    <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3 class="card-title">Ley 181 de 1995 (Deporte)</h3>
+                    <p class="card-text">
+                        Marco legal colombiano del deporte. El Estado asigna expresamente el mandato de patrocinar, masificar e investigar científicamente para el mejoramiento de la actividad física y deportiva.
+                    </p>
+                    <span class="card-badge">Fomento Deportivo</span>
+                </div>
+
+                <div class="glass-card highlight-card">
+                    <div class="card-icon"><i class="fas fa-user-shield"></i></div>
+                    <h3 class="card-title">Ley Estatutaria 1581 de 2012</h3>
+                    <p class="card-text">
+                        Régimen de Protección de Datos Personales (Habeas Data). Los datos relativos a la <strong>salud y biometría corporal</strong> se clasifican como <strong>datos sensibles</strong> bajo protección reforzada.
+                    </p>
+                    <span class="card-badge upb-badge">Datos Sensibles</span>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-icon" style="color: var(--accent-green); background: var(--accent-green-dim); border-color: rgba(16,185,129,0.3);"><i class="fas fa-lock"></i></div>
+                    <h3 class="card-title">Privacy by Design (Cavoukian)</h3>
+                    <p class="card-text">
+                        La privacidad se integra proactivamente en la arquitectura del software desde el diseño inicial:
+                    </p>
+                    <ul class="feature-list" style="font-size: 0.82rem;">
+                        <li><i class="fas fa-check"></i> Reglas estrictas en <code>firestore.rules</code>.</li>
+                        <li><i class="fas fa-check"></i> Datos de peso visibles <em>únicamente</em> por el atleta y su promotora inscrita.</li>
+                    </ul>
+                    <span class="card-badge" style="color: var(--accent-green); border-color: rgba(16,185,129,0.3);">Seguridad Nativa</span>
+                </div>
+            </div>
+
+            <div class="callout-box" style="margin-top: 1.2rem;">
+                <div class="callout-title"><i class="fas fa-shield-alt"></i> Control de Acceso Basado en Roles (RBAC)</div>
+                <p class="callout-desc">
+                    Cada solicitud a la base de datos se valida contra el identificador criptográfico (JWT) de Firebase Auth, impidiendo que terceros no autorizados accedan al historial médico o datos de corte de peso.
+                </p>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 11: METODOLOGÍA ÁGIL & CRONOGRAMA (7:55 - 8:35)
+             ========================================================================= -->
+        <section class="slide" id="slide-11">
+            <div class="slide-header">
+                <div class="slide-category">Marco Metodológico de Ejecución</div>
+                <h2 class="slide-title">Metodología Ágil: <span>Scrum & Kanban en 11 Semanas</span></h2>
+                <p class="slide-subtitle">Entregas incrementales verificables y gestión visual adaptadas al ciclo intensivo de formación técnica UPB.</p>
+            </div>
+
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem;">
+                <table class="comp-table" style="font-size: 0.88rem;">
+                    <thead>
+                        <tr>
+                            <th>Semanas</th>
+                            <th>Sprint / Fase</th>
+                            <th>Entregable Técnico Verificable</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>S 1 - 2</strong></td>
+                            <td>Arquitectura & Requerimientos</td>
+                            <td>Modelo NoSQL en Firestore, wireframes Figma y setup de repositorios</td>
+                            <td><span class="badge-yes"><i class="fas fa-check"></i> Completado</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>S 3 - 5</strong></td>
+                            <td>Core Android (Kotlin/MVVM)</td>
+                            <td>Módulo de perfil del peleador, bio deportiva y autenticación</td>
+                            <td><span class="badge-yes"><i class="fas fa-check"></i> Completado</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>S 6 - 7</strong></td>
+                            <td>Plataforma Web (React/Vite)</td>
+                            <td>Consola de Promotora (matchmaking) y Fight Feed para aficionados</td>
+                            <td><span class="badge-yes"><i class="fas fa-check"></i> Completado</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>S 8 - 9</strong></td>
+                            <td>Performance Hub & Cloud Functions</td>
+                            <td>Algoritmo de alertas de salud, persistencia offline y seguridad</td>
+                            <td><span class="badge-yes"><i class="fas fa-check"></i> Completado</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>S 10</strong></td>
+                            <td>Pruebas de Integración & Optimización</td>
+                            <td>Verificación de listeners tiempo real y auditoría de costos serverless</td>
+                            <td><span class="badge-yes"><i class="fas fa-check"></i> Completado</span></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>S 11</strong></td>
+                            <td>Pruebas Beta de Usabilidad & Cierre</td>
+                            <td>Validación con muestra de la comunidad de MMA de Medellín y entrega</td>
+                            <td><span class="badge-yes" style="background:var(--accent-red); color:#fff;"><i class="fas fa-flag-checkered"></i> Fase Final</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="display: flex; gap: 1rem; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.03); padding: 0.8rem 1.4rem; border-radius: 8px;">
+                    <span style="font-size: 0.85rem;"><i class="fas fa-tasks" style="color: var(--accent-red); margin-right: 6px;"></i> Tablero Kanban para gestión de backlog</span>
+                    <span style="font-size: 0.85rem;"><i class="fas fa-code-branch" style="color: var(--accent-cyan); margin-right: 6px;"></i> Git & GitHub para control de versiones</span>
+                    <span style="font-size: 0.85rem;"><i class="fas fa-user-check" style="color: var(--accent-green); margin-right: 6px;"></i> Supervisión periódica del asesor metodológico</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 12: PLAN DE PRUEBAS & RIESGOS (8:35 - 9:10)
+             ========================================================================= -->
+        <section class="slide" id="slide-12">
+            <div class="slide-header">
+                <div class="slide-category">Aseguramiento de Calidad & Mitigación</div>
+                <h2 class="slide-title">Plan de Pruebas & <span>Matriz de Riesgos</span></h2>
+                <p class="slide-subtitle">Validación multinivel del sistema y contingencias planificadas para garantizar la viabilidad del anteproyecto.</p>
+            </div>
+
+            <div class="slide-grid-2">
+                <div class="glass-card">
+                    <h3 class="card-title" style="color: var(--accent-cyan);"><i class="fas fa-vial"></i> Niveles de Validación del Software</h3>
+                    <ul class="feature-list" style="margin-top: 0.8rem;">
+                        <li>
+                            <i class="fas fa-cube"></i>
+                            <div>
+                                <strong>Pruebas Unitarias (Continua):</strong>
+                                <p style="font-size: 0.82rem; color: var(--text-secondary);">Validación aislada de los ViewModels en Android y del algoritmo de porcentaje de corte de peso en Cloud Functions.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-link"></i>
+                            <div>
+                                <strong>Pruebas de Integración (Semanas 8 a 10):</strong>
+                                <p style="font-size: 0.82rem; color: var(--text-secondary);">Sincronización bidireccional en tiempo real app-web mediante Cloud Firestore y test de reglas de seguridad.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-users-cog"></i>
+                            <div>
+                                <strong>Pruebas Beta de Usabilidad (Semana 11):</strong>
+                                <p style="font-size: 0.82rem; color: var(--text-secondary);">Retroalimentación cualitativa con atletas y organizadores reales del Valle de Aburrá sobre claridad de interfaz y alertas.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card highlight-card">
+                    <h3 class="card-title"><i class="fas fa-shield-virus"></i> Matriz de Mitigación de Riesgos</h3>
+                    <ul class="feature-list" style="margin-top: 0.8rem; font-size: 0.85rem;">
+                        <li>
+                            <i class="fas fa-exclamation-circle" style="color: var(--accent-gold);"></i>
+                            <div>
+                                <strong>Límites en cuotas gratuitas de Firebase:</strong>
+                                <p style="color: var(--text-secondary);"><em>Mitigación:</em> Optimización estricta de consultas y listeners para operar dentro del plan Spark.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-circle" style="color: var(--accent-gold);"></i>
+                            <div>
+                                <strong>Duración ajustada del ciclo (11 semanas):</strong>
+                                <p style="color: var(--text-secondary);"><em>Mitigación:</em> Priorización estricta del MVP (excluyendo pasarelas de pago y diagnósticos clínicos).</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-circle" style="color: var(--accent-gold);"></i>
+                            <div>
+                                <strong>Disponibilidad de usuarios de prueba:</strong>
+                                <p style="color: var(--text-secondary);"><em>Mitigación:</em> Convocatoria previa con grupo de reserva en gimnasios de Medellín.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 13: VIABILIDAD ECONÓMICA SERVERLESS (9:10 - 9:35)
+             ========================================================================= -->
+        <section class="slide" id="slide-13">
+            <div class="slide-header">
+                <div class="slide-category">Valuación Económica & Proyección</div>
+                <h2 class="slide-title">Viabilidad Económica & <span>Modelo Serverless</span></h2>
+                <p class="slide-subtitle">Optimización de costos en la nube: cero inversión en servidores dedicados ociosos durante la fase de desarrollo.</p>
+            </div>
+
+            <div class="slide-grid-3">
+                <div class="glass-card">
+                    <div class="card-icon" style="color: var(--accent-green); background: var(--accent-green-dim); border-color: rgba(16,185,129,0.3);"><i class="fas fa-dollar-sign"></i></div>
+                    <h3 class="card-title">Cero Costo de Desarrollo</h3>
+                    <p class="card-text">
+                        En su carácter de anteproyecto académico, las horas de dedicación no implican costo financiero directo, y la asesoría es cubierta por la UPB.
+                    </p>
+                    <span class="card-badge" style="color: var(--accent-green); border-color: rgba(16,185,129,0.3);">Fase Académica</span>
+                </div>
+
+                <div class="glass-card highlight-card">
+                    <div class="card-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="card-title">Infraestructura Elástica (BaaS)</h3>
+                    <p class="card-text">
+                        La arquitectura serverless escala con base en consumo real (lecturas/escrituras en Firestore e invocaciones de Functions).
+                    </p>
+                    <ul class="feature-list" style="font-size: 0.82rem;">
+                        <li><i class="fas fa-check"></i> Plan Spark (Gratuito) durante desarrollo y pruebas.</li>
+                        <li><i class="fas fa-check"></i> Migración a plan Blaze solo ante volumen masivo.</li>
+                    </ul>
+                    <span class="card-badge">Alta Eficiencia</span>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-icon" style="color: var(--accent-gold); background: var(--accent-gold-dim); border-color: rgba(245,158,11,0.3);"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="card-title">Proyección Conceptual Futura</h3>
+                    <p class="card-text">
+                        Modelo de niveles de servicio: Gratuito para atletas y aficionados; suscripción premium opcional para promotoras y academias con analítica avanzada.
+                    </p>
+                    <span class="card-badge" style="color: var(--accent-gold); border-color: rgba(245,158,11,0.3);">Sostenibilidad</span>
+                </div>
+            </div>
+
+            <div class="callout-box" style="margin-top: 1.2rem;">
+                <div class="callout-title"><i class="fas fa-info-circle"></i> Nota Metodológica</div>
+                <p class="callout-desc">
+                    El objetivo inicial de "modelo de monetización comercial" fue reformulado conforme a los lineamientos institucionales hacia la <strong>evaluación técnica de viabilidad y costos operativos en la nube</strong>, acorde al rigor de un anteproyecto de grado técnico.
+                </p>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SLIDE 14: CONCLUSIONES & LIVE DEMO (9:35 - 10:00)
+             ========================================================================= -->
+        <section class="slide" id="slide-14">
+            <div class="cover-hero">
+                <div class="cover-badge-row">
+                    <span class="cover-badge upb-badge"><i class="fas fa-trophy"></i> Conclusiones & Impacto</span>
+                    <span class="cover-badge"><i class="fas fa-check-double"></i> Objetivos Cumplidos</span>
+                </div>
+
+                <h2 class="slide-title" style="font-size: 3rem; margin-bottom: 1rem;">Impacto Estratégico de <span>FightConnect</span></h2>
+
+                <div class="slide-grid-3" style="width: 100%; margin: 1rem 0; text-align: left;">
+                    <div class="glass-card">
+                        <h4 class="card-title" style="font-size: 1.1rem; color: var(--accent-red);"><i class="fas fa-check"></i> Profesionalización Real</h4>
+                        <p class="card-text" style="font-size: 0.88rem;">Estandarización del récord y visibilidad deportiva para que el talento del Valle de Aburrá acceda a patrocinios formales.</p>
+                    </div>
+                    <div class="glass-card highlight-card">
+                        <h4 class="card-title" style="font-size: 1.1rem; color: #fff;"><i class="fas fa-heartbeat"></i> Preservación Física</h4>
+                        <p class="card-text" style="font-size: 0.88rem;">El Performance Hub transforma una práctica desregulada y peligrosa en un proceso monitorizado con alertas preventivas informativas.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h4 class="card-title" style="font-size: 1.1rem; color: var(--accent-cyan);"><i class="fas fa-network-wired"></i> Ecosistema Conectado</h4>
+                        <p class="card-text" style="font-size: 0.88rem;">Sinergia total entre atletas, promotoras locales y fanáticos en una infraestructura híbrida reactiva en tiempo real.</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1.2rem; align-items: center; justify-content: center; margin-top: 1.5rem;">
+                    <a href="index.html" target="_blank" class="btn-action-tool primary-action" style="padding: 0.9rem 2.2rem; font-size: 1.05rem; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> LANZAR DEMOSTRACIÓN EN VIVO (WEB APP)
+                    </a>
+                    <button class="btn-action-tool" style="padding: 0.9rem 1.8rem; font-size: 1.05rem;" onclick="window.fightConnectPres.resetTimer();">
+                        <i class="fas fa-question-circle"></i> RONDA DE PREGUNTAS (Q&A)
+                    </button>
+                </div>
+
+                <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                    ¡Muchas gracias! Quedo a su disposición para resolver las inquietudes del jurado evaluador.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom HUD Navigation Footer -->
+    <footer class="pres-footer">
+        <div class="footer-nav-buttons">
+            <button class="btn-nav-slide" id="btn-prev-slide">
+                <i class="fas fa-chevron-left"></i> <span>Anterior</span>
+            </button>
+            <button class="btn-nav-slide" id="btn-next-slide">
+                <span>Siguiente</span> <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Slide Dots -->
+        <div class="slide-dots-container" id="slide-dots"></div>
+
+        <!-- Slide Number Counter -->
+        <div class="pres-counter">
+            Diapositiva <span id="slide-counter-num">1 / 14</span>
+        </div>
+    </footer>
+
+    <!-- Speaker Notes Sidebar ('N') -->
+    <aside class="speaker-notes-panel" id="speaker-notes-panel">
+        <div class="notes-header">
+            <div class="notes-title"><i class="fas fa-microphone-alt" style="color: var(--accent-red);"></i> Notas del Orador</div>
+            <button class="btn-hud" id="notes-close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="notes-content" id="notes-content-area">
+            <!-- Dynamic content loaded via JS -->
+        </div>
+    </aside>
+
+    <!-- Slide Overview Grid Modal ('O') -->
+    <div class="overview-modal" id="overview-modal">
+        <div class="overview-header">
+            <h2 style="font-family: var(--font-heading); font-size: 1.8rem; color: #fff; text-transform: uppercase;">
+                <i class="fas fa-th-large" style="color: var(--accent-red); margin-right: 0.6rem;"></i> Mosaico de Diapositivas
+            </h2>
+            <button class="btn-hud" id="overview-close-btn" style="width: 36px; height: 36px; font-size: 1rem;"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="overview-grid" id="overview-grid">
+            <!-- Dynamic thumbs loaded via JS -->
+        </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Floating Helper -->
+    <div class="keyboard-toast">
+        <span><kbd>Espacio</kbd> / <kbd>→</kbd> Siguiente</span>
+        <span><kbd>←</kbd> Anterior</span>
+        <span><kbd>T</kbd> Cronómetro</span>
+        <span><kbd>N</kbd> Notas</span>
+        <span><kbd>O</kbd> Mosaico</span>
+        <span><kbd>L</kbd> Láser</span>
+        <span><kbd>F</kbd> Pantalla Completa</span>
+    </div>
+
+    <!-- Presentation Engine Script -->
+    <script src="presentacion.js"></script>
+</body>
+</html>

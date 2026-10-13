@@ -1,0 +1,151 @@
+/* Específico para la vista de autenticación */
+.auth-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    width: 100%;
+    min-height: calc(100vh - 180px);
+}
+
+.auth-step {
+    width: 100%;
+    display: none;
+    opacity: 0;
+}
+
+.auth-step.active {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.step {
+    width: 100%;
+    display: none;
+    opacity: 0;
+}
+
+.step.active {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Panel cristalino para formularios */
+.glass-panel {
+    background: rgba(10, 10, 10, 0.8);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-top: 2px solid var(--accent-red);
+    padding: 4rem;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+#registration-form .glass-panel {
+    max-width: 900px; /* Ancho mayor para formularios a 2 columnas */
+}
+
+/* Enlaces de transición */
+.auth-switch {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    letter-spacing: 1px;
+}
+
+.auth-switch a {
+    color: var(--accent-red);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.auth-switch a:hover {
+    color: var(--text-white);
+}
+
+/* Ajustes a Role Cards para el layout de Auth */
+.role-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    perspective: 1200px;
+}
+
+/* Selección de Artes Marciales en Registro de Peleador */
+.discipline-selection-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)) !important;
+    gap: 0.6rem !important;
+    margin-top: 0.6rem !important;
+    width: 100% !important;
+}
+
+.discipline-chip-item {
+    position: relative !important;
+    display: flex !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.discipline-chip-item input[type="checkbox"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
+}
+
+.discipline-chip-item label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    min-height: 42px !important;
+    padding: 0.5rem 0.6rem !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #9999a2 !important;
+    font-family: var(--font-heading) !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    margin-bottom: 0 !important;
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+}
+
+.discipline-chip-item label:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+}
+
+.discipline-chip-item input[type="checkbox"]:checked + label {
+    background: rgba(230, 36, 41, 0.22) !important;
+    border-color: var(--accent-red) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(230, 36, 41, 0.45) !important;
+    font-weight: 700 !important;
+}
+
+.discipline-chip-item input[type="checkbox"]:focus-visible + label {
+    outline: 2px solid var(--accent-red) !important;
+    outline-offset: 2px !important;
+}
+

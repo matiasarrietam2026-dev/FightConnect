@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Atleta | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fighter.css">
+    <link rel="stylesheet" href="css/extensions.css">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar Fijo -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo sidebar-logo">FIGHT <span>CONNECT</span></div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active"><a href="fighter-dashboard.html"><i class="fas fa-user-circle"></i> Mi Perfil</a></li>
+                <li><a href="fighter-buscar.html"><i class="fas fa-fist-raised"></i> Buscar Peleas</a></li>
+                <li><a href="fighter-postulaciones.html"><i class="fas fa-file-contract"></i> Mis Postulaciones</a></li>
+                <li><a href="fighter-historial.html"><i class="fas fa-weight"></i> Historial Médico/Peso</a></li>
+                <li class="sidebar-category">ECOSISTEMA</li>
+                <li><a href="local.html"><i class="fas fa-map-marked-alt"></i> Cartelera Local</a></li>
+                <li><a href="internacional.html"><i class="fas fa-globe"></i> Cartelera Int. & Odds</a></li>
+                <li><a href="noticias.html"><i class="fas fa-newspaper"></i> Noticias MMA</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+        <!-- Cabecera de Perfil (Hero Section) -->
+        <header class="fighter-hero">
+            <div class="fighter-profile-wrapper">
+                <div class="profile-avatar avatar-loading" id="fighter-avatar-box" title="Haz clic para subir foto de perfil" aria-label="Avatar del Atleta" style="cursor: pointer;">
+                    <i class="fas fa-user-ninja avatar-placeholder-icon" id="fighter-avatar-placeholder-icon"></i>
+                    <img id="fighter-avatar-preview" class="avatar-preview-img" alt="Foto del atleta" onerror="this.style.display='none'; const ph = document.getElementById('fighter-avatar-placeholder-icon'); if(ph) ph.style.display='block';" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+                    <div class="avatar-overlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <input type="file" id="fighter-avatar-input" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                <div class="profile-details">
+                    <p class="alias-text" id="dash-alias">"..."</p>
+                    <h1 class="fighter-name" id="dash-name">CARGANDO...</h1>
+                    <div class="fighter-record-badge" id="dash-record">RÉCORD: 0-0-0</div>
+                    <div id="dash-records-breakdown" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem;"></div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 0.8rem; align-items: center; z-index: 2;">
+                <button id="btn-hero-change-avatar" type="button" class="btn-upload-avatar hero-avatar-btn" title="Cambiar Foto de Perfil">
+                    <i class="fas fa-camera"></i> CAMBIAR FOTO
+                </button>
+                <button class="edit-profile-btn" type="button" title="Editar Perfil del Atleta" aria-label="Editar Perfil"><i class="fas fa-pen"></i> EDITAR PERFIL</button>
+            </div>
+        </header>
+
+        <!-- Panel de Métricas Vitales -->
+        <section class="stats-grid stats-grid-mb">
+            <div class="stat-card vital-card">
+                <div class="stat-icon"><i class="fas fa-dumbbell"></i></div>
+                <div class="stat-info">
+                    <h3>Disciplina Base</h3>
+                    <p class="vital-value" id="dash-discipline">-</p>
+                    <div id="dash-target-disciplines" class="target-disciplines-wrap" style="margin-top: 0.5rem;"></div>
+                </div>
+            </div>
+            
+            <div class="stat-card vital-card">
+                <div class="stat-icon"><i class="fas fa-balance-scale-right"></i></div>
+                <div class="stat-info">
+                    <h3>Control de Peso</h3>
+                    <p class="vital-value" id="dash-weight-text">Actual: 0 KG</p>
+                    <span class="sub-text" id="dash-target-weight-text">Categoría meta: -- KG</span>
+                </div>
+            </div>
+            
+            <div class="stat-card vital-card">
+                <div class="stat-icon"><i class="fas fa-khanda"></i></div>
+                <div class="stat-info">
+                    <h3>Afiliación</h3>
+                    <p class="vital-value" id="dash-gym">SIN AFILIACIÓN</p>
+                    <span class="sub-text" id="dash-location">Ciudad, País</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Modal de Edición de Perfil -->
+        <div id="edit-profile-modal" class="modal-overlay hidden fighter-modal-overlay">
+            <div class="modal-content fighter-modal-content">
+                <div class="modal-header fighter-modal-header">
+                    <h2 class="fighter-modal-title">EDITAR EXPEDIENTE DE COMBATE</h2>
+                    <button id="close-edit-modal" class="close-modal fighter-modal-close" type="button" title="Cerrar ventana" aria-label="Cerrar modal">&times;</button>
+                </div>
+                <form id="edit-profile-form" class="fighter-form">
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px dashed rgba(255,255,255,0.15);">
+                        <div class="profile-avatar" id="modal-fighter-avatar-box" style="position: relative; cursor: pointer; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: #1a1a1a; display: flex; align-items: center; justify-content: center; border: 2px solid var(--accent-red);" title="Clic para subir foto de perfil">
+                            <i class="fas fa-user-ninja" id="modal-fighter-avatar-icon" style="font-size: 1.8rem; color: var(--accent-red);"></i>
+                            <img id="modal-fighter-avatar-preview" class="avatar-preview-img" alt="Foto del atleta" onerror="this.style.display='none'; const ph = document.getElementById('modal-fighter-avatar-icon'); if(ph) ph.style.display='block';" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+                            <div class="avatar-overlay"><i class="fas fa-camera" style="font-size: 1rem;"></i></div>
+                        </div>
+                        <div>
+                            <label class="fighter-form-label" style="margin-bottom: 0.3rem;">FOTO DE PERFIL / AVATAR</label>
+                            <button type="button" class="btn-upload-avatar" id="btn-trigger-fighter-avatar">
+                                <i class="fas fa-camera"></i> CAMBIAR FOTO
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-name" class="fighter-form-label">NOMBRE LEGAL</label>
+                        <input type="text" id="edit-name" name="name" class="fighter-form-input" placeholder="Ej. Juan Pérez" title="Nombre Legal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-alias" class="fighter-form-label">ALIAS DE COMBATE</label>
+                        <input type="text" id="edit-alias" name="alias" class="fighter-form-input" placeholder="Ej. El Matador" title="Alias de combate">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-discipline" class="fighter-form-label">DISCIPLINA BASE PRINCIPAL</label>
+                        <select id="edit-discipline" name="discipline" class="fighter-form-input" title="Disciplina Base" aria-label="Disciplina Base" required>
+                            <option value="mma" selected>MMA</option>
+                            <option value="boxeo">BOXEO</option>
+                            <option value="lucha">LUCHA / WRESTLING</option>
+                            <option value="bjj">JIU-JITSU</option>
+                            <option value="kickboxing">KICKBOXING</option>
+                            <option value="muaythai">MUAY THAI</option>
+                            <option value="judo">JUDO</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="fighter-form-label" style="display: flex; align-items: center; justify-content: space-between;">
+                            <span>ARTES MARCIALES PARA COMPETIR / SER SELECCIONADO</span>
+                            <small style="color: var(--accent-red); font-size: 0.72rem; text-transform: uppercase;">(Scouting de Promotoras)</small>
+                        </label>
+                        <p style="color: var(--text-gray); font-size: 0.75rem; margin: 0.2rem 0 0.5rem 0;">Selecciona todas las disciplinas en las que aceptas peleas y deseas aparecer en el radar de scouting:</p>
+                        <div class="discipline-selection-grid" id="modal-discipline-chips">
+                            <div class="discipline-chip-item">
+                                <input type="checkbox" id="disc-mma" class="fighter-target-disc-checkbox" value="mma">
+                                <label for="disc-mma"><i class="fas fa-fist-raised"></i> MMA</label>
+                            </div>
+                            <div class="discipline-chip-item">
+                                <input type="checkbox" id="disc-boxeo" class="fighter-target-disc-checkbox" value="boxeo">
+                                <label for="disc-boxeo"><i class="fas fa-mitten"></i> Boxeo</label>
+                            </div>
+                            <div class="discipline-chip-item">
+                                <input type="checkbox" id="disc-bjj" class="fighter-target-disc-checkbox" value="bjj">
+                                <label for="disc-bjj"><i class="fas fa-shield-alt"></i> Jiu-Jitsu (BJJ)</label>
+                            </div>
+                            <div class="discipline-chip-item">
+                                <input type="checkbox" id="disc-muaythai" class="fighter-target-disc-checkbox" value="muaythai">
+                                <label for="disc-muaythai"><i class="fas fa-fire"></i> Muay Thai</label>
+                            </div>
+                            <div class="discipline-chip-item">
+                                <input type="checkbox" id="disc-kickboxing" class="fighter-target-disc-checkbox" value="kickboxing">
+                                <label for="disc-kickboxing"><i class="fas fa-bolt"></i> Kickboxing</label>
+                            </div>
+                            <div class="discipline-chip-item">
+                                <input type="checkbox" id="disc-lucha" class="fighter-target-disc-checkbox" value="lucha">
+                                <label for="disc-lucha"><i class="fas fa-compress-arrows-alt"></i> Lucha</label>
+                            </div>
+                            <div class="discipline-chip-item">
+                                <input type="checkbox" id="disc-judo" class="fighter-target-disc-checkbox" value="judo">
+                                <label for="disc-judo"><i class="fas fa-award"></i> Judo</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label class="fighter-form-label">RÉCORDS POR DISCIPLINA</label>
+                        <p style="color: var(--text-gray); font-size: 0.72rem; margin: 0.2rem 0 0.5rem 0;">Edita tus marcas de combate (Victorias - Derrotas - Empates) para cada arte marcial seleccionada:</p>
+                        <div id="modal-fighter-records-builder" class="discipline-records-builder" style="max-height: 220px;">
+                            <!-- Inyectado dinámicamente con los récords por disciplina -->
+                        </div>
+                    </div>
+                    <div class="form-row fighter-form-row-3" style="display: none;">
+                        <div class="form-group">
+                            <label for="edit-wins" class="fighter-form-label">VICTORIAS</label>
+                            <input type="number" id="edit-wins" name="wins" class="fighter-form-input" min="0" max="150" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-losses" class="fighter-form-label">DERROTAS</label>
+                            <input type="number" id="edit-losses" name="losses" class="fighter-form-input" min="0" max="150" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-draws" class="fighter-form-label">EMPATES</label>
+                            <input type="number" id="edit-draws" name="draws" class="fighter-form-input" min="0" max="50" value="0">
+                        </div>
+                    </div>
+                    <div class="form-row fighter-form-row-3">
+                        <div class="form-group">
+                            <label for="edit-target-weight" class="fighter-form-label">PESO META (KG)</label>
+                            <input type="number" id="edit-target-weight" name="targetWeight" class="fighter-form-input" step="0.1" min="45" max="160" placeholder="Ej. 70.0" title="Peso meta en kilogramos (45 - 160 kg)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-weight" class="fighter-form-label">PESO (KG)</label>
+                            <input type="number" id="edit-weight" name="weight" class="fighter-form-input" step="0.1" min="45" max="160" value="70.0" placeholder="Ej. 70.0" title="Peso actual en kilogramos (45 - 160 kg)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-height" class="fighter-form-label">ALTURA (CM)</label>
+                            <input type="number" id="edit-height" name="height" class="fighter-form-input" min="120" max="230" value="175" placeholder="Ej. 175" title="Altura en centímetros (120 - 230 cm)" required>
+                        </div>
+                    </div>
+                    <div class="form-row fighter-form-row-2">
+                        <div class="form-group">
+                            <label for="edit-gym" class="fighter-form-label">GIMNASIO</label>
+                            <input type="text" id="edit-gym" name="gym" class="fighter-form-input" placeholder="Ej. American Top Team" title="Gimnasio o Academia" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-location" class="fighter-form-label">CIUDAD, PAÍS</label>
+                            <input type="text" id="edit-location" name="location" class="fighter-form-input" placeholder="EJ. BOGOTÁ, COL" title="Ciudad y País" required>
+                        </div>
+                    </div>
+
+                    <!-- Canales de Contacto Directo para Promotoras -->
+                    <div style="margin: 1.2rem 0 1rem 0; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
+                        <label class="fighter-form-label" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.3rem;">
+                            <span>CANALES DE CONTACTO DIRECTO</span>
+                            <small style="color: #25D366; font-size: 0.72rem; text-transform: uppercase;"><i class="fab fa-whatsapp"></i> Reclutamiento de Promotoras</small>
+                        </label>
+                        <p style="color: var(--text-gray); font-size: 0.75rem; margin: 0 0 0.8rem 0;">Configura tu WhatsApp y redes para que las promotoras puedan contactarte al ver tu expediente en scouting:</p>
+                        
+                        <div class="form-row fighter-form-row-2">
+                            <div class="form-group">
+                                <label for="edit-phone" class="fighter-form-label"><i class="fab fa-whatsapp" style="color: #25D366; margin-right: 4px;"></i> TELÉFONO / WHATSAPP</label>
+                                <input type="tel" id="edit-phone" name="phone" class="fighter-form-input" placeholder="Ej. +57 300 123 4567" title="Número con código de país para WhatsApp">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-instagram" class="fighter-form-label"><i class="fab fa-instagram" style="color: #E1306C; margin-right: 4px;"></i> INSTAGRAM</label>
+                                <input type="text" id="edit-instagram" name="instagram" class="fighter-form-input" placeholder="Ej. @peleador_pro" title="Usuario o perfil de Instagram">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit-form fighter-form-btn-submit" title="Guardar Cambios del Perfil">GUARDAR CAMBIOS</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer Limpio -->
+        <footer class="panel-clean-footer">
+            <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+        </footer>
+    </main>
+<script type="module" src="/js/firebase-config.js"></script>
+<script type="module" src="/js/dashboard.js"></script>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

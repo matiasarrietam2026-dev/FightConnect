@@ -1,0 +1,283 @@
+/* Styles for the detail view of an event */
+.detalle-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 6rem;
+}
+
+.event-hero {
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-red);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle, rgba(10,10,10,0.4) 0%, rgba(5,5,5,0.95) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    color: var(--text-white);
+    letter-spacing: 4px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    text-shadow: 0 5px 20px rgba(0,0,0,0.8);
+}
+
+.hero-meta {
+    font-size: 1rem;
+    color: var(--text-white);
+    letter-spacing: 2px;
+    background: rgba(0,0,0,0.5);
+    padding: 0.8rem 2rem;
+    display: inline-block;
+    border: 1px solid var(--border-light);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.card-section {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 5rem;
+    padding: 0 2rem;
+    z-index: 5;
+}
+
+.section-header-small {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+.section-header-small .main-title {
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: var(--text-white);
+    font-family: var(--font-heading);
+}
+.title-underline-small {
+    width: 50px;
+    height: 3px;
+    background: var(--accent-red);
+    margin: 1rem auto 0;
+}
+
+.matchup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.matchup-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem 3rem;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    min-height: 140px; /* Layout Shift Prevention */
+}
+
+.matchup-row.prelim-row {
+    padding: 1.5rem 3rem;
+    min-height: 100px;
+}
+
+.matchup-row:hover {
+    border-color: rgba(230, 36, 41, 0.4);
+    transform: scale(1.01);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.matchup-row.main-event {
+    border-top: 2px solid var(--accent-red);
+    background: rgba(230, 36, 41, 0.03);
+}
+
+.fighter-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.left-side {
+    align-items: flex-end;
+    text-align: right;
+    padding-right: 4rem;
+}
+.right-side {
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 4rem;
+}
+
+.fighter-name {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--text-white);
+    letter-spacing: 1.5px;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+.fighter-record {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--text-dark-gray);
+    font-weight: 400;
+}
+
+.vs-circle {
+    width: 50px;
+    height: 50px;
+    background: var(--bg-surface-light);
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-heading);
+    color: var(--accent-red);
+    font-size: 1.2rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.odds-badge {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: 1px solid transparent;
+}
+.odds-badge.favorite {
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    border-color: rgba(40, 167, 69, 0.3);
+}
+.odds-badge.underdog {
+    color: #e62429; /* Using the accent red instead of plain red */
+    background: rgba(230, 36, 41, 0.1);
+    border-color: rgba(230, 36, 41, 0.3);
+}
+
+.odds-disclaimer {
+    margin-top: 5rem;
+    background: transparent;
+    border: 1px dashed var(--border-light);
+    padding: 2rem;
+    font-size: 0.75rem;
+    color: var(--text-dark-gray);
+    letter-spacing: 1px;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    line-height: 1.6;
+}
+.odds-disclaimer i {
+    color: var(--text-gray);
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .matchup-row {
+        flex-direction: column;
+        padding: 2rem 1rem;
+        gap: 3rem;
+    }
+    .left-side, .right-side {
+        align-items: center;
+        text-align: center;
+        padding: 0;
+    }
+    .vs-circle {
+        top: 50%;
+    }
+}
+
+/* ==========================================================
+   Utilidades y Componentes de Evento Detalle
+   ========================================================== */
+.nav-logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-chevron-icon {
+    font-size: 0.7rem;
+    margin-left: 5px;
+}
+
+.nav-fire-icon {
+    color: var(--accent-red);
+    margin-right: 4px;
+}
+
+.event-hero-banner {
+    background-image: url('https://images.unsplash.com/photo-1599552375245-24c56858e980?auto=format&fit=crop&q=80&w=1600');
+}
+
+.hero-league-badge {
+    background: var(--accent-red);
+    position: relative;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-family: var(--font-heading);
+    letter-spacing: 2px;
+}
+
+.hero-title-vs {
+    color: var(--text-gray);
+    font-size: 2.5rem;
+}
+
+.comain-title {
+    color: #eee;
+}
+
+.comain-underline {
+    background: #eee;
+    width: 30px;
+}
+
+.maincard-title {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+}
+
+.prelims-title {
+    font-size: 1rem;
+    color: var(--text-dark-gray);
+}
+
+.early-prelims-title {
+    font-size: 0.9rem;
+    color: var(--text-dark-gray);
+    opacity: 0.6;
+}
+

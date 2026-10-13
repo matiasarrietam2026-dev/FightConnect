@@ -1,0 +1,171 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ========================================================================
+    // FUNCIONES AUXILIARES DE AUTORIZACIÓN Y SEGURIDAD (RBAC)
+    // ========================================================================
+    
+    // Verifica si la solicitud proviene de un usuario debidamente autenticado
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Verifica si el usuario autenticado es el propietario del registro por UID
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // ========================================================================
+    // COLECCIÓN: users (Perfiles de Peleadores, Promotoras y Aficionados)
+    // ========================================================================
+    match /users/{userId} {
+      // Lectura pública para perfiles deportivos, carteleras y búsqueda
+      allow read: if true;
+      
+      // Creación permitida únicamente durante el registro autenticado (sin auto-verificación)
+      allow create: if isOwner(userId) && (
+        !('isVerified' in request.resource.data) || request.resource.data.isVerified == false
+      ) && (
+        !('kybStatus' in request.resource.data) || request.resource.data.kybStatus in ['unverified', 'pending']
+      );
+      
+      // Edición: el usuario solo puede actualizar su propio perfil.
+      // Se protege la integridad del rol asignado y se previene escalamiento a Nivel 2 (Verificado).
+      allow update: if isOwner(userId) && (
+        !('role' in resource.data) || 
+        !('role' in request.resource.data) || 
+        request.resource.data.role == resource.data.role
+      ) && (
+        // Un usuario no puede auto-otorgarse la verificación técnica oficial (Nivel 2)
+        !('isVerified' in request.resource.data) || 
+        request.resource.data.isVerified == resource.data.isVerified || 
+        request.resource.data.isVerified == false
+      ) && (
+        // La promotora puede solicitar revisión ('pending') o permanecer 'unverified', pero no auto-aprobarse
+        !('kybStatus' in request.resource.data) || 
+        request.resource.data.kybStatus in ['unverified', 'pending'] || 
+        request.resource.data.kybStatus == resource.data.kybStatus
+      );
+      
+      // La eliminación de cuentas está restringida a solicitudes auditadas
+      allow delete: if isOwner(userId);
+    }
+    
+    // ========================================================================
+    // COLECCIÓN: events (Carteleras Locales e Internacionales)
+    // ========================================================================
+    match /events/{eventId} {
+      // Lectura pública para que cualquier usuario o fan consulte las carteleras
+      allow read: if true;
+      
+      // Creación: usuarios autenticados que se identifican como promotores
+      allow create: if isAuthenticated() && (
+        !('promoterId' in request.resource.data) || 
+        request.resource.data.promoterId == request.auth.uid
+      );
+      
+      // Modificación y borrado: únicamente la promotora titular del evento
+      allow update, delete: if isAuthenticated() && (
+        !('promoterId' in resource.data) || 
+        resource.data.promoterId == request.auth.uid
+      );
+    }
+    
+    // ========================================================================
+    // COLECCIÓN: fightfeed_posts (Publicaciones Sociales, Callouts y Pick'ems)
+    // ========================================================================
+    match /fightfeed_posts/{postId} {
+      // Lectura pública del feed
+      allow read: if true;
+      
+      // Creación: requiere autenticación y valida que el texto no exceda longitud razonable
+      allow create: if isAuthenticated() && (
+        !('texto' in request.resource.data) || 
+        request.resource.data.texto.size() <= 2000
+      );
+      
+      // Edición: el autor puede editar su post completo. Otros usuarios autenticados
+      // pueden interactuar exclusivamente actualizando reacciones, comentarios o votos Pick'em.
+      allow update: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid || 
+        resource.data.autorId == request.auth.uid ||
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'kos', 'techs', 'iqs', 'hypes', 'refights', 'comentarios', 
+          'pickemData', 'likedKo', 'likedTech', 'likedIq', 'likedHype'
+        ])
+      );
+      
+      // Eliminación: únicamente el autor de la publicación
+      allow delete: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid || 
+        resource.data.autorId == request.auth.uid
+      );
+    }
+
+    // Compatibilidad para colecciones históricas de posts
+    match /posts/{postId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid || 
+        resource.data.autorId == request.auth.uid
+      );
+    }
+
+    // ========================================================================
+    // COLECCIÓN: stories (Historias efímeras de combate)
+    // ========================================================================
+    match /stories/{storyId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated();
+      allow delete: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid || 
+        resource.data.autorId == request.auth.uid
+      );
+    }
+    
+    // ========================================================================
+    // COLECCIÓN: applications (Postulaciones Deportivas a Combates)
+    // ========================================================================
+    match /applications/{appId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && (
+        resource.data.fighterId == request.auth.uid || 
+        resource.data.promoterId == request.auth.uid
+      );
+    }
+
+    // ========================================================================
+    // COLECCIÓN: promoter_kyb_docs (Documentos Privados de Verificación)
+    // ========================================================================
+    match /promoter_kyb_docs/{docId} {
+      // Confidencialidad total: Solo la promotora dueña puede leer y radicar sus documentos legales
+      allow read: if isAuthenticated() && (resource == null || resource.data.promoterId == request.auth.uid);
+      allow create: if isAuthenticated() && request.resource.data.promoterId == request.auth.uid;
+      allow update, delete: if isAuthenticated() && resource.data.promoterId == request.auth.uid;
+    }
+
+    // ========================================================================
+    // COLECCIÓN: notifications (Notificaciones de Combates y Estado)
+    // ========================================================================
+    match /notifications/{notifId} {
+      allow read: if isAuthenticated() && (
+        !('recipientId' in resource.data) || resource.data.recipientId == request.auth.uid
+      );
+      allow create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && (
+        !('recipientId' in resource.data) || resource.data.recipientId == request.auth.uid
+      );
+    }
+
+    // ========================================================================
+    // CIERRE PERIMETRAL: Denegación explícita por defecto para cualquier otra ruta
+    // ========================================================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

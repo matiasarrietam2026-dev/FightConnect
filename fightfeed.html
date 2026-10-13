@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FightFeed 2.0 | La Red Social de Combate | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/extensions.css">
+</head>
+<body>
+    <div id="bg-canvas"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navegación Superior Pública -->
+    <nav class="top-nav">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">FIGHT <span>CONNECT</span></a></div>
+        <ul class="nav-links">
+            <li class="dropdown-container">
+                <a href="#" class="dropdown-trigger">EVENTOS <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                <div class="dropdown-menu">
+                    <a href="local.html">EVENTOS LOCALES</a>
+                    <a href="internacional.html">CARTELERAS INTERNACIONALES</a>
+                </div>
+            </li>
+            <li><a href="noticias.html">NOTICIAS</a></li>
+            <li><a href="fightfeed.html" style="color: var(--accent-red); font-weight: 700;"><i class="fas fa-fire" style="margin-right: 4px;"></i>FIGHTFEED</a></li>
+        </ul>
+        <div class="nav-actions">
+            <!-- Botón Silenciador de Web Audio FX del Octágono -->
+            <button class="btn-audio-toggle" id="btn-toggle-audio-fx" title="Efectos de Sonido del Octágono (Web Audio Procedural)">
+                <i class="fas fa-volume-up" id="audio-toggle-icon"></i>
+                <span class="audio-toggle-text">OCTAGON FX</span>
+            </button>
+            <a href="index.html"><button class="btn-join">INICIAR SESIÓN</button></a>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal Tri-Columna Responsive -->
+    <main class="feed-page-wrapper">
+        
+        <!-- Header del Feed -->
+        <header class="feed-hero-header">
+            <div class="feed-hero-badge"><i class="fas fa-globe"></i> ECOSISTEMA GLOBAL DE ARTES MARCIALES & COMBATE</div>
+            <h1 class="feed-hero-title">FIGHT<span>FEED</span></h1>
+            <p class="feed-hero-subtitle">Conectando a fanáticos apasionados, practicantes de tatami, atletas de élite y promotoras oficiales en una sola red.</p>
+        </header>
+
+        <!-- Layout de 3 Columnas -->
+        <div class="feed-tri-layout">
+            
+            <!-- ====================================================================
+                 COLUMNA IZQUIERDA: PASAPORTE DE USUARIO & NAVEGACIÓN TEMÁTICA
+                 ==================================================================== -->
+            <aside class="feed-col-left">
+                
+                <!-- Tarjeta de Identidad / Pasaporte del Usuario Actual -->
+                <div class="user-passport-card" id="user-passport-widget">
+                    <div class="passport-header-banner">
+                        <span class="passport-type-label" id="current-user-role-badge">FANÁTICO OFICIAL</span>
+                        <div class="passport-status-dot" title="En línea en la Red"></div>
+                    </div>
+                    <div class="passport-body">
+                        <div class="passport-avatar-wrap">
+                            <div class="passport-avatar-ring fan" id="passport-avatar-box">
+                                <i class="fas fa-user-ninja" id="passport-avatar-icon"></i>
+                            </div>
+                        </div>
+                        <h3 class="passport-name" id="passport-user-name">Usuario Invitado</h3>
+                        <p class="passport-handle" id="passport-user-handle">@fan_combate</p>
+                        
+                        <!-- Métricas dinámicas adaptativas según rol -->
+                        <div class="passport-metrics-grid" id="passport-metrics-container">
+                            <div class="passport-metric-item">
+                                <span class="metric-val" id="metric-primary-val">0</span>
+                                <span class="metric-lbl" id="metric-primary-lbl">Puntos Fight IQ</span>
+                            </div>
+                            <div class="passport-metric-item">
+                                <span class="metric-val" id="metric-secondary-val">0%</span>
+                                <span class="metric-lbl" id="metric-secondary-lbl">Aciertos Pick'em</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Canales de la Comunidad -->
+                <div class="feed-channels-card">
+                    <h4 class="channels-title"><i class="fas fa-compass"></i> CANALES DE COMBATE</h4>
+                    <ul class="channels-list">
+                        <li class="channel-item active" data-channel="all">
+                            <div class="channel-icon-box"><i class="fas fa-fire"></i></div>
+                            <div class="channel-info">
+                                <span class="channel-name">Todos los Combates</span>
+                                <span class="channel-sub">Muro principal en vivo</span>
+                            </div>
+                        </li>
+                        <li class="channel-item" data-channel="fan">
+                            <div class="channel-icon-box fan"><i class="fas fa-comments"></i></div>
+                            <div class="channel-info">
+                                <span class="channel-name">Zona Fan & Debate</span>
+                                <span class="channel-sub">Pronósticos, hype y UFC</span>
+                            </div>
+                        </li>
+                        <li class="channel-item" data-channel="practitioner">
+                            <div class="channel-icon-box practitioner"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="channel-info">
+                                <span class="channel-name">Dojo & Practicantes</span>
+                                <span class="channel-sub">Técnicas, BJJ & Open Mats</span>
+                            </div>
+                        </li>
+                        <li class="channel-item" data-channel="fighter">
+                            <div class="channel-icon-box fighter"><i class="fas fa-trophy"></i></div>
+                            <div class="channel-info">
+                                <span class="channel-name">Peleadores & Camps</span>
+                                <span class="channel-sub">Sparring pro & cortes</span>
+                            </div>
+                        </li>
+                        <li class="channel-item" data-channel="promoter">
+                            <div class="channel-icon-box promoter"><i class="fas fa-calendar-star"></i></div>
+                            <div class="channel-info">
+                                <span class="channel-name">Carteleras Oficiales</span>
+                                <span class="channel-sub">Anuncios de promotoras</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </aside>
+
+            <!-- ====================================================================
+                 COLUMNA CENTRAL: STORIES, COMPOSER MULTI-ROL Y MURO PRINCIPAL
+                 ==================================================================== -->
+            <section class="feed-col-center">
+
+                <!-- Pestañas de Filtrado Rápido -->
+                <div class="feed-tabs-header">
+                    <button class="feed-tab-btn active" data-tab="all"><i class="fas fa-fire"></i> TODOS</button>
+                    <button class="feed-tab-btn" data-tab="fan"><i class="fas fa-users"></i> ZONA FAN</button>
+                    <button class="feed-tab-btn" data-tab="practitioner"><i class="fas fa-medal"></i> DOJO & TÉCNICA</button>
+                    <button class="feed-tab-btn" data-tab="fighter"><i class="fas fa-fist-raised"></i> PELEADORES</button>
+                    <button class="feed-tab-btn" data-tab="promoter"><i class="fas fa-shield-alt"></i> PROMOTORES</button>
+                </div>
+
+                <!-- Creador de Publicaciones Multi-Rol Adaptativo -->
+                <div class="feed-composer-card" id="feed-composer-container">
+                    
+                    <!-- Barra de Tipo de Publicación -->
+                    <div class="composer-type-bar">
+                        <button class="composer-type-btn active" data-type="text">
+                            <i class="fas fa-comments"></i> <span>DEBATE / POST</span>
+                        </button>
+                        <button class="composer-type-btn" data-type="technique">
+                            <i class="fas fa-graduation-cap"></i> <span>DOJO & TÉCNICA</span>
+                        </button>
+                        <button class="composer-type-btn" data-type="pickem">
+                            <i class="fas fa-poll-h"></i> <span>PICK'EM PRO</span>
+                        </button>
+                        <button class="composer-type-btn" data-type="callout">
+                            <i class="fas fa-bolt"></i> <span>RETO / SPARRING</span>
+                        </button>
+                    </div>
+
+                    <div class="composer-inner">
+                        <div class="composer-header">
+                            <div class="composer-avatar" id="composer-avatar-box">
+                                <i class="fas fa-user-ninja" id="composer-avatar-icon"></i>
+                            </div>
+                            <div class="composer-input-wrap">
+                                <textarea id="composer-text" class="composer-textarea" placeholder="¿Qué está pasando en el octágono, dojo o gimnasio?... Comparte tu opinión, técnica o reto"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 1. Campos Especiales: DOJO & TÉCNICA (Para Practicantes) -->
+                        <div id="composer-technique-fields" class="composer-special-fields" style="display: none;">
+                            <div class="special-fields-title">
+                                <i class="fas fa-graduation-cap" style="color: #10b981;"></i> DETALLES DE PRÁCTICA EN EL DOJO
+                            </div>
+                            <div class="special-fields-grid">
+                                <div class="composer-form-group">
+                                    <label class="composer-form-lbl">DISCIPLINA MARCIAL</label>
+                                    <select id="composer-tech-discipline" class="comment-input">
+                                        <option value="Jiu-Jitsu Brasileño (BJJ)">Jiu-Jitsu Brasileño (BJJ)</option>
+                                        <option value="Muay Thai">Muay Thai</option>
+                                        <option value="Boxeo Recreativo">Boxeo Recreativo</option>
+                                        <option value="Lucha Olímpica / Wrestling">Lucha Olímpica / Wrestling</option>
+                                        <option value="Judo">Judo</option>
+                                        <option value="Kickboxing">Kickboxing</option>
+                                        <option value="MMA Técnico">MMA Técnico</option>
+                                    </select>
+                                </div>
+                                <div class="composer-form-group">
+                                    <label class="composer-form-lbl">TIPO DE CONTENIDO</label>
+                                    <select id="composer-tech-type" class="comment-input">
+                                        <option value="Análisis Técnico">Análisis Técnico / Consulta</option>
+                                        <option value="Graduación de Grado / Cinturón">Graduación de Grado / Cinturón</option>
+                                        <option value="Convocatoria Open Mat">Convocatoria Open Mat (Tatamis Abiertos)</option>
+                                        <option value="Rutina / Acondicionamiento">Rutina / Acondicionamiento Físico</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="margin-top: 0.5rem;">
+                                <input type="text" id="composer-tech-belt" class="comment-input" placeholder="Tu rango o gimnasio (ej. Cinturón Azul en Gracie Barra)">
+                            </div>
+                        </div>
+
+                        <!-- 2. Campos Especiales: PICK'EM (Para Fans y Analistas) -->
+                        <div id="composer-pickem-fields" class="composer-special-fields" style="display: none;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.5rem;">
+                                <div class="special-fields-title" style="margin-bottom: 0;">
+                                    <i class="fas fa-poll-h" style="color: var(--accent-red);"></i> CONFIGURAR ENCUESTA PICK'EM (ESQUINA ROJA VS AZUL)
+                                </div>
+                                <button type="button" id="btn-load-official-card-bout" class="btn-import-official-fight">
+                                    <i class="fas fa-satellite-dish"></i> Cargar de Cartelera Oficial (API MMA / BJJ)
+                                </button>
+                            </div>
+                            <!-- Selector dinámico de eventos y combates oficiales de la API -->
+                            <div id="official-bout-selector-wrap" style="display: none; margin-bottom: 0.6rem; padding: 0.6rem; background: rgba(18, 18, 22, 0.9); border: 1px solid rgba(230, 36, 41, 0.3); border-radius: 8px;">
+                                <div style="font-size: 0.72rem; color: #aaa; margin-bottom: 0.3rem;"><i class="fas fa-calendar-check" style="color: var(--accent-red);"></i> SELECCIONA EL EVENTO Y EL COMBATE DE LA CARTELERA:</div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.4rem;">
+                                    <select id="select-official-event" class="comment-input" style="font-size: 0.78rem;">
+                                        <option value="">-- Seleccionar Evento (MMA / BJJ) --</option>
+                                    </select>
+                                    <select id="select-official-bout" class="comment-input" style="font-size: 0.78rem;">
+                                        <option value="">-- Seleccionar Combate --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="special-fields-grid">
+                                <input type="text" id="composer-fighter-red" class="comment-input corner-red-input" placeholder="🔴 Peleador / Esquina Roja">
+                                <input type="text" id="composer-fighter-blue" class="comment-input corner-blue-input" placeholder="🔵 Peleador / Esquina Azul">
+                            </div>
+                            <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                <span style="font-size: 0.72rem; color: #888; text-transform: uppercase;">Evento / Cartelera:</span>
+                                <input type="text" id="composer-pickem-event" class="comment-input" placeholder="Nombre de la velada o evento" style="flex: 1; min-width: 160px;">
+                            </div>
+                        </div>
+
+                        <!-- 3. Campos Especiales: RETO / CALL-OUT / SPARRING (Para Competidores y Promotores) -->
+                        <div id="composer-callout-fields" class="composer-special-fields" style="display: none;">
+                            <div class="special-fields-title">
+                                <i class="fas fa-bolt" style="color: #ff9800;"></i> ESPECIFICACIONES DE RETO O BÚSQUEDA DE SPARRING
+                            </div>
+                            <div class="special-fields-grid">
+                                <input type="text" id="composer-callout-weight" class="comment-input" placeholder="Categoría (ej. 70 kg / Peso Ligero)">
+                                <input type="text" id="composer-callout-city" class="comment-input" placeholder="Ciudad / Octágono (ej. Bogotá, Gimnasio ATT)">
+                            </div>
+                            <div style="margin-top: 0.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                                <select id="composer-callout-modality" class="comment-input">
+                                    <option value="Sparring Duro (Preparación)">Sparring Duro (Preparación)</option>
+                                    <option value="Combate Oficial (Amateur)">Combate Oficial (Amateur)</option>
+                                    <option value="Combate Profesional (Pro)">Combate Profesional (Pro)</option>
+                                    <option value="Grappling / Sub-Only">Grappling / Sub-Only</option>
+                                </select>
+                                <input type="text" id="composer-callout-date" class="comment-input" placeholder="Fecha deseada (ej. Este Sábado)">
+                            </div>
+                        </div>
+
+                        <!-- Campos Multimedia de Imagen -->
+                        <div id="composer-extra-fields" style="display: none; padding-top: 0.85rem; border-top: 1px dashed rgba(255,255,255,0.1); margin-top: 0.65rem;">
+                            <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                                <button type="button" class="btn-select-file" id="btn-select-composer-file">
+                                    <i class="fas fa-cloud-upload-alt"></i> Subir Imagen / Fotografía
+                                </button>
+                                <span id="composer-file-name" class="file-name-pill" style="display: none;"></span>
+                                <input type="file" id="composer-file-input" accept="image/*" style="display: none;">
+                            </div>
+                            <div id="composer-image-preview-box" class="composer-preview-wrap" style="display: none;">
+                                <img id="composer-image-preview-img" src="" alt="Vista previa de imagen">
+                                <button type="button" id="btn-remove-composer-img" class="btn-remove-preview-img" title="Quitar imagen"><i class="fas fa-times"></i></button>
+                            </div>
+                            <input type="text" id="composer-img-url" class="comment-input" placeholder="O pega un enlace directo de imagen web (https://...) o ruta local" style="width: 100%; margin-bottom: 0.5rem;">
+                        </div>
+
+                        <!-- Barra de Acciones del Composer -->
+                        <div class="composer-actions-bar">
+                            <div class="composer-tools">
+                                <button class="composer-tool-btn" id="btn-tool-image" title="Añadir Imagen"><i class="far fa-image"></i> <span style="font-size: 0.75rem;">Foto</span></button>
+                                <button class="composer-tool-btn" id="btn-tool-tag-ufc" title="Etiqueta Rápida #UFC"><i class="fas fa-hashtag"></i> <span style="font-size: 0.75rem;">UFC</span></button>
+                                <button class="composer-tool-btn" id="btn-tool-tag-bjj" title="Etiqueta Rápida #BJJ"><i class="fas fa-hashtag"></i> <span style="font-size: 0.75rem;">BJJ</span></button>
+                            </div>
+                            <button class="btn-publish-post" id="btn-publish-post">
+                                <i class="fas fa-paper-plane" style="margin-right: 4px;"></i> PUBLICAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor Dinámico de Publicaciones -->
+                <div id="feed-posts-container" class="feed-posts-stream">
+                    <!-- Se inyecta reactivamente por JavaScript -->
+                </div>
+
+            </section>
+
+            <!-- ====================================================================
+                 COLUMNA DERECHA: RADAR DE COMUNIDAD, LEADERBOARD FIGHT IQ & TENDENCIAS
+                 ==================================================================== -->
+            <aside class="feed-col-right">
+                
+                <!-- Radar de la Comunidad (Sparring, Open Mats & Convocatorias) -->
+                <div class="feed-sidebar-card radar-card">
+                    <div class="sidebar-card-header">
+                        <div class="radar-live-indicator">
+                            <div class="pulse-dot"></div>
+                            <span>RADAR DE COMBATE EN VIVO</span>
+                        </div>
+                        <i class="fas fa-satellite-dish" style="color: #10b981;"></i>
+                    </div>
+                    <div class="radar-items-list" id="community-radar-list">
+                        <!-- Items de radar inyectados dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Leaderboard Fight IQ (Ranking de Fanáticos y Analistas) -->
+                <div class="feed-sidebar-card leaderboard-card">
+                    <div class="sidebar-card-header">
+                        <span class="sidebar-title-text"><i class="fas fa-brain" style="color: #00a8ff; margin-right: 6px;"></i> LIGA FIGHT IQ</span>
+                        <span class="rank-season-badge">PRÓXIMO PODIO: DÍA 10</span>
+                    </div>
+                    <p class="sidebar-card-sub">Los pronosticadores con mejor racha en Pick'ems. El podio oficial de las 10 mejores predicciones se premia cada <strong>día 10 del mes</strong>.</p>
+                    <div class="leaderboard-list" id="fight-iq-leaderboard">
+                        <!-- Inyectado por JS -->
+                    </div>
+                </div>
+
+                <!-- Tendencias del Octágono -->
+                <div class="feed-sidebar-card trends-card">
+                    <div class="sidebar-card-header">
+                        <span class="sidebar-title-text"><i class="fas fa-fire" style="color: var(--accent-red); margin-right: 6px;"></i> TENDENCIAS</span>
+                        <i class="fas fa-chart-line" style="color: #888;"></i>
+                    </div>
+                    <div id="trends-list-container">
+                        <!-- Generado dinámicamente según hashtags reales -->
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- ====================================================================
+         MODAL 1: PASAPORTE DE COMBATE ADAPTATIVO (COMBAT ID / TALE OF THE TAPE)
+         ==================================================================== -->
+    <div class="fc-modal-overlay" id="modal-combat-passport">
+        <div class="fc-modal-card passport-modal-card">
+            <button class="fc-modal-close" id="btn-close-passport-modal" title="Cerrar modal" aria-label="Cerrar modal"><i class="fas fa-times"></i></button>
+            <div id="passport-modal-content">
+                <!-- Se inyecta dinámicamente según si es Peleador, Practicante, Fan o Promotor -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         MODAL 4: CAREO VIRTUAL / FACE-OFF CHALLENGE
+         ==================================================================== -->
+    <div class="fc-modal-overlay" id="modal-faceoff-challenge">
+        <div class="fc-modal-card faceoff-modal-card">
+            <button class="fc-modal-close" id="btn-close-faceoff-modal" title="Cerrar modal" aria-label="Cerrar modal"><i class="fas fa-times"></i></button>
+            <div id="faceoff-modal-content">
+                <!-- Se inyecta dinámicamente con careo virtual -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         MODAL 5: EDITAR PUBLICACIÓN (PREMIUM OCTAGON MODAL)
+         ==================================================================== -->
+    <div class="fc-modal-overlay" id="modal-edit-post">
+        <div class="fc-modal-card fc-edit-post-card">
+            <button class="fc-modal-close" id="btn-close-edit-post" title="Cerrar modal"><i class="fas fa-times"></i></button>
+            
+            <div class="modal-card-header-v2">
+                <div class="modal-header-icon-box">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <div>
+                    <h3 class="modal-title-custom">EDITAR PUBLICACIÓN</h3>
+                    <p class="modal-subtitle-custom">Actualiza el texto y contenido multimedia de tu publicación en FightFeed.</p>
+                </div>
+            </div>
+
+            <form id="form-edit-post" class="modal-edit-form">
+                <input type="hidden" id="edit-post-id" value="">
+                
+                <div class="form-group-custom">
+                    <label class="modal-input-lbl"><i class="fas fa-align-left" style="color: var(--accent-red); margin-right: 5px;"></i> TEXTO DE LA PUBLICACIÓN</label>
+                    <textarea id="edit-post-text" class="edit-post-textarea" rows="4" placeholder="Escribe el contenido actualizado de tu publicación..."></textarea>
+                </div>
+
+                <div class="form-group-custom" id="edit-post-image-group">
+                    <label class="modal-input-lbl"><i class="fas fa-image" style="color: #ffc107; margin-right: 5px;"></i> MULTIMEDIA / IMAGEN</label>
+                    
+                    <!-- Caja de previsualización de la imagen -->
+                    <div id="edit-post-preview-box" class="edit-post-preview-box" style="display: none;">
+                        <img id="edit-post-preview-img" src="" alt="Vista previa de imagen">
+                        <button type="button" id="btn-remove-edit-img" class="btn-remove-preview-img" title="Quitar imagen de la publicación">
+                            <i class="fas fa-trash-alt"></i> Quitar Imagen
+                        </button>
+                    </div>
+
+                    <!-- Botón para subir o cambiar foto desde dispositivo -->
+                    <div class="edit-upload-actions-bar">
+                        <button type="button" class="btn-select-file" id="btn-select-edit-file">
+                            <i class="fas fa-cloud-upload-alt"></i> Subir / Cambiar Foto
+                        </button>
+                        <span id="edit-post-file-name" class="file-name-pill"></span>
+                        <input type="file" id="edit-post-file-input" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div style="margin-top: 0.6rem;">
+                        <input type="text" id="edit-post-image" class="comment-input edit-url-input" placeholder="O pega un enlace web (https://...) o ruta de imagen (/uploads/...)">
+                    </div>
+                </div>
+
+                <div class="modal-actions-bar-v2">
+                    <button type="button" class="btn-modal-cancel" id="btn-cancel-edit-post">
+                        <i class="fas fa-times"></i> CANCELAR
+                    </button>
+                    <button type="submit" class="btn-modal-save" id="btn-save-edit-post">
+                        <i class="fas fa-check"></i> GUARDAR CAMBIOS
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Oficial -->
+    <footer class="main-footer">
+        <div class="logo">FIGHT <span>CONNECT</span></div>
+        <ul class="footer-links">
+            <li><a href="privacidad.html">POLÍTICA DE PRIVACIDAD</a></li>
+            <li><a href="terminos.html">TÉRMINOS DE COMBATE</a></li>
+            <li><a href="sanciones.html">SANCIONES</a></li>
+            <li><a href="media-kit.html">MEDIA KIT</a></li>
+            <li><a href="manual-usuario.html">MANUAL DE USUARIO</a></li>
+        </ul>
+        <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+    </footer>
+
+    <!-- Scripts de Configuración y Lógica de Negocio -->
+    <script type="module" src="/js/firebase-config.js"></script>
+    <script type="module" src="/js/internacional.js"></script>
+    <script type="module" src="/js/app.js"></script>
+</body>
+</html>

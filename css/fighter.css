@@ -1,0 +1,377 @@
+/* ==========================================================
+   Estilos Específicos para el Dashboard del Peleador
+   (Hereda la arquitectura general de dashboard.css)
+   ========================================================== */
+
+/* Cabecera de Perfil (Hero Section) */
+.fighter-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-top: 3px solid var(--accent-red);
+    padding: 3rem 4rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Efecto de desvanecimiento oscuro para resaltar la foto */
+.fighter-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0.2) 100%);
+    z-index: 1;
+}
+
+.fighter-profile-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Avatar de Perfil Circular */
+.profile-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: #1a1a1a;
+    border: 2px solid var(--border-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.avatar-placeholder-icon {
+    font-size: 3.5rem;
+    color: var(--text-dark-gray);
+    opacity: 0.5;
+}
+
+/* Avatar Loading Pulse */
+.avatar-loading {
+    animation: pulse-avatar 2s infinite ease-in-out;
+}
+
+@keyframes pulse-avatar {
+    0% { border-color: var(--border-light); box-shadow: 0 0 0 0 rgba(255,255,255,0.05); }
+    50% { border-color: var(--text-dark-gray); box-shadow: 0 0 20px 5px rgba(230, 36, 41, 0.1); }
+    100% { border-color: var(--border-light); box-shadow: 0 0 0 0 rgba(255,255,255,0.05); }
+}
+
+.avatar-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.avatar-overlay i {
+    color: var(--text-white);
+    font-size: 1.8rem;
+    opacity: 0.6;
+}
+
+.profile-avatar:hover .avatar-overlay {
+    opacity: 1;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.alias-text {
+    color: var(--accent-red);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.2rem;
+}
+
+.fighter-name {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--text-white);
+    letter-spacing: 2px;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+}
+
+.fighter-record-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-light);
+    color: var(--text-white);
+    padding: 0.5rem 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    border-radius: 3px;
+    width: fit-content;
+}
+
+.fighter-hero .edit-profile-btn {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    border: 1px solid var(--text-dark-gray);
+    color: var(--text-white);
+    padding: 0.7rem 1.4rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border-radius: 2px;
+    align-self: center;
+}
+
+.fighter-hero .edit-profile-btn:hover {
+    border-color: var(--accent-red);
+    color: var(--text-white);
+    background: rgba(230, 36, 41, 0.1);
+    box-shadow: 0 0 15px rgba(230, 36, 41, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Panel de Métricas Vitales */
+.vital-card .vital-value {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--text-white);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.vital-card .sub-text {
+    font-size: 0.75rem;
+    color: var(--text-dark-gray);
+    margin-top: 5px;
+    display: inline-block;
+}
+
+/* Sección de Matchmaking (Eventos Buscando Talento) */
+.matchmaking-list .events-table td {
+    padding: 1.5rem 1rem;
+}
+
+.matchmaking-list .events-table tr:hover {
+    background: rgba(230, 36, 41, 0.04);
+}
+
+.event-thumb {
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+}
+
+.apply-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================
+   Utilidades y Modales de Fighter Dashboard
+   ========================================================== */
+.sidebar-logo {
+    font-size: 1.2rem;
+}
+
+.stats-grid-mb {
+    margin-bottom: 3rem;
+}
+
+.fighter-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fighter-modal-content {
+    background: #111;
+    padding: 2rem;
+    border-top: 3px solid var(--accent-red);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 4px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.fighter-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.fighter-modal-title {
+    color: var(--text-white);
+    font-family: var(--font-heading);
+    margin: 0;
+}
+
+.fighter-modal-close {
+    background: none;
+    border: none;
+    color: var(--text-gray);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.fighter-modal-close:hover {
+    color: var(--accent-red);
+}
+
+.fighter-form-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.fighter-form-input {
+    width: 100%;
+    padding: 0.8rem;
+    background: #000;
+    border: 1px solid #333;
+    color: white;
+    margin-bottom: 1rem;
+    font-family: var(--font-sans);
+    border-radius: 2px;
+}
+
+.fighter-form-input:focus {
+    border-color: var(--accent-red);
+    outline: none;
+}
+
+.fighter-form-row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.fighter-form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.fighter-form-btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--accent-red);
+    color: white;
+    border: none;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    letter-spacing: 1px;
+    font-family: var(--font-sans);
+}
+
+.fighter-form-btn-submit:hover {
+    background: #c21b20;
+    transform: translateY(-1px);
+}
+
+/* ==========================================================
+   BOTÓN CAMBIAR FOTO DE PERFIL / AVATAR
+   ========================================================== */
+.btn-upload-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0.65rem 1.4rem;
+    background: linear-gradient(135deg, rgba(230, 36, 41, 0.95) 0%, rgba(179, 16, 20, 0.95) 100%);
+    border: 1px solid rgba(255, 77, 77, 0.6);
+    color: #ffffff !important;
+    border-radius: 8px;
+    font-family: var(--font-heading, 'Oswald', sans-serif);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(230, 36, 41, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    outline: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btn-upload-avatar i {
+    font-size: 0.95rem;
+    color: #ffffff !important;
+    transition: transform 0.2s ease;
+}
+
+.btn-upload-avatar:hover {
+    background: linear-gradient(135deg, #ff333a 0%, #cc181d 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 36, 41, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    border-color: #ff6666;
+}
+
+.btn-upload-avatar:hover i {
+    transform: scale(1.15);
+}
+
+.btn-upload-avatar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(230, 36, 41, 0.3);
+}
+
+.hero-avatar-btn {
+    background: rgba(18, 18, 22, 0.85);
+    border: 1px solid rgba(230, 36, 41, 0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.hero-avatar-btn:hover {
+    background: linear-gradient(135deg, rgba(230, 36, 41, 0.3) 0%, rgba(179, 16, 20, 0.5) 100%);
+    border-color: var(--accent-red);
+}
+
+

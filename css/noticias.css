@@ -1,0 +1,569 @@
+/* ==========================================================================
+   FightConnect - Portal de Noticias y Prensa de Deportes de Combate
+   ========================================================================== */
+
+/* Contenedor Principal de Noticias */
+.news-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 2rem 5rem 2rem;
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+/* Ticker de Noticias de Última Hora */
+.breaking-ticker-wrapper {
+    width: 100%;
+    background: rgba(18, 18, 22, 0.85);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.ticker-badge {
+    background: var(--accent-red);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 0.75rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    z-index: 2;
+    box-shadow: 4px 0 15px rgba(230, 36, 41, 0.4);
+}
+
+.ticker-content-track {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    padding: 0.6rem 1rem;
+    mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.ticker-marquee {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: tickerScroll 35s linear infinite;
+    gap: 2.5rem;
+}
+
+.ticker-marquee:hover {
+    animation-play-state: paused;
+}
+
+.ticker-item {
+    color: var(--text-white);
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.ticker-item:hover {
+    color: var(--accent-red);
+}
+
+.ticker-item .ticker-tag {
+    font-size: 0.7rem;
+    font-family: var(--font-heading);
+    color: var(--accent-red);
+    background: rgba(230, 36, 41, 0.15);
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid rgba(230, 36, 41, 0.3);
+}
+
+@keyframes tickerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Noticia Destacada Principal (Hero Article) */
+.featured-hero-card {
+    width: 100%;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 3.5rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    min-height: 440px;
+    cursor: pointer;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.featured-hero-card:hover {
+    border-color: var(--accent-red);
+    box-shadow: 0 16px 45px rgba(230, 36, 41, 0.2);
+    transform: translateY(-4px);
+}
+
+.hero-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+}
+
+.featured-hero-card:hover .hero-image {
+    transform: scale(1.04);
+}
+
+.hero-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 30%, var(--bg-surface) 100%),
+                linear-gradient(to top, rgba(12,12,14,0.7) 0%, transparent 100%);
+}
+
+.hero-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: var(--text-white);
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+.featured-hero-card:hover .hero-title {
+    color: #ff4d4f;
+}
+
+.hero-excerpt {
+    color: #a8a8b3;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hero-meta-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border-light);
+    color: var(--text-gray);
+    font-size: 0.82rem;
+}
+
+.btn-read-hero {
+    background: var(--accent-red);
+    color: #fff;
+    border: none;
+    padding: 0.65rem 1.4rem;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-read-hero:hover {
+    background: #ff2b31;
+    transform: translateX(4px);
+}
+
+/* Grid de Noticias */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2.2rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.news-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-red);
+    box-shadow: 0 12px 35px rgba(230, 36, 41, 0.18);
+}
+
+.news-card-thumb {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    background: #121216;
+}
+
+.news-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-card-img {
+    transform: scale(1.05);
+}
+
+.news-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(12,12,14,0.9) 0%, transparent 60%);
+}
+
+.news-card-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    border-radius: 2px;
+}
+
+.news-card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.news-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.78rem;
+    color: var(--text-gray);
+    margin-bottom: 0.8rem;
+}
+
+.news-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    line-height: 1.25;
+    color: var(--text-white);
+    letter-spacing: 0.8px;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s;
+}
+
+.news-card:hover .news-card-title {
+    color: var(--accent-red);
+}
+
+.news-card-excerpt {
+    color: #9999a5;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+}
+
+.news-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+    font-size: 0.78rem;
+    color: var(--text-gray);
+}
+
+.read-more-link {
+    color: var(--accent-red);
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: transform 0.2s;
+}
+
+.news-card:hover .read-more-link {
+    transform: translateX(4px);
+}
+
+/* Modal de Lectura de Noticia Completa */
+.news-modal-wrapper {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 1.5rem;
+}
+
+.news-modal-wrapper.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.news-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+.news-modal-card {
+    background: #0f0f13;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    max-width: 850px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(230, 36, 41, 0.15);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.news-modal-wrapper.active .news-modal-card {
+    transform: scale(1);
+}
+
+.news-modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border-light);
+    color: #fff;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.news-modal-close-btn:hover {
+    background: var(--accent-red);
+    transform: rotate(90deg);
+}
+
+.news-modal-banner {
+    height: 320px;
+    position: relative;
+    overflow: hidden;
+}
+
+.news-modal-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.news-modal-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #0f0f13 0%, rgba(15,15,19,0.4) 60%, transparent 100%);
+}
+
+.news-modal-body {
+    padding: 2.5rem;
+    position: relative;
+    margin-top: -3rem;
+}
+
+.news-modal-headline {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: var(--text-white);
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+}
+
+.news-modal-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.news-modal-content {
+    color: #c4c4cf;
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.news-modal-content p {
+    margin-bottom: 1.4rem;
+}
+
+.news-quote-block {
+    border-left: 3px solid var(--accent-red);
+    background: rgba(230, 36, 41, 0.06);
+    padding: 1.2rem 1.6rem;
+    margin: 1.8rem 0;
+    font-style: italic;
+    color: #fff;
+    border-radius: 0 4px 4px 0;
+}
+
+.news-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Badges por disciplina y organizaciones de combate */
+.badge-ufc { 
+    background: #d20a11; 
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    box-shadow: 0 2px 10px rgba(210, 10, 17, 0.45);
+}
+.badge-pfl { 
+    background: #004b93; 
+    border: 1px solid rgba(0, 140, 255, 0.35);
+    font-weight: 700;
+}
+.badge-bellator { 
+    background: #15151c; 
+    border: 1px solid #d20a11;
+    font-weight: 700;
+}
+.badge-one { 
+    background: #b71c1c; 
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-weight: 700;
+}
+.badge-mma { background: #b71c1c; }
+.badge-boxing { background: #d97706; }
+.badge-lucha { background: #e11d48; }
+.badge-bjj { background: #005fcc; }
+.badge-muaythai { background: #059669; }
+.badge-kickboxing { background: #7c3aed; }
+
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+    .featured-hero-card {
+        grid-template-columns: 1fr;
+    }
+    .hero-image-wrapper {
+        min-height: 240px;
+    }
+    .hero-title {
+        font-size: 1.7rem;
+    }
+    .hero-content {
+        padding: 1.8rem;
+    }
+    .news-modal-headline {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    .breaking-ticker-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .ticker-badge {
+        justify-content: center;
+    }
+    .news-modal-body {
+        padding: 1.5rem;
+    }
+}

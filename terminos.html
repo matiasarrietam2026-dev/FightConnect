@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos de Combate y Estatuto Legal | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/extensions.css">
+    <style>
+        .legal-page-wrapper {
+            max-width: 1100px;
+            margin: 3.5rem auto 6rem auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .legal-header-box {
+            background: radial-gradient(130% 120% at 0% 0%, rgba(230, 36, 41, 0.12) 0%, rgba(18, 18, 22, 0.96) 65%), #111115;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 2.5rem 3rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .legal-header-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-red), #ff9800, #ffc107);
+        }
+
+        .legal-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(230, 36, 41, 0.15);
+            border: 1px solid rgba(230, 36, 41, 0.4);
+            color: #ff6b6b;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .legal-nav-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+            padding: 1rem 1.4rem;
+            background: rgba(20, 20, 26, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .legal-nav-pill {
+            color: #b5b5be;
+            text-decoration: none;
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legal-nav-pill:hover {
+            color: #ffffff;
+            background: rgba(230, 36, 41, 0.15);
+            border-color: rgba(230, 36, 41, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .legal-card {
+            background: rgba(18, 18, 22, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 14px;
+            padding: 2.2rem 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s ease;
+        }
+
+        .legal-card:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .clause-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            margin-bottom: 1.4rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .clause-num-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--accent-red);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .clause-title-group h2 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            letter-spacing: 1.2px;
+            color: #ffffff;
+            margin: 0 0 0.3rem 0;
+            text-transform: uppercase;
+        }
+
+        .clause-subtitle {
+            font-size: 0.78rem;
+            color: #8e8e93;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .clause-body p {
+            color: #b5b5be;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .clause-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .clause-body ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 1rem 0 1.2rem 0;
+        }
+
+        .clause-body ul li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: #d1d1d8;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .clause-body ul li::before {
+            content: "■";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--accent-red);
+            font-size: 0.8rem;
+        }
+
+        /* Callout Blocks */
+        .legal-callout-box {
+            border-radius: 10px;
+            padding: 1.3rem 1.6rem;
+            margin: 1.4rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .callout-warning {
+            background: rgba(255, 193, 7, 0.08);
+            border: 1px solid rgba(255, 193, 7, 0.35);
+            color: #ffca28;
+        }
+
+        .callout-danger {
+            background: rgba(230, 36, 41, 0.09);
+            border: 1px solid rgba(230, 36, 41, 0.35);
+            color: #ff8589;
+        }
+
+        .callout-info {
+            background: rgba(33, 150, 243, 0.08);
+            border: 1px solid rgba(33, 150, 243, 0.35);
+            color: #90caf9;
+        }
+
+        .legal-action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 3rem;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+        }
+
+        @media (max-width: 800px) {
+            .legal-header-box {
+                padding: 1.8rem 1.5rem;
+            }
+            .legal-card {
+                padding: 1.5rem 1.2rem;
+            }
+            .clause-header {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="bg-canvas"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navegación Superior -->
+    <nav class="top-nav">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">FIGHT <span>CONNECT</span></a></div>
+        <ul class="nav-links">
+            <li class="dropdown-container">
+                <a href="#" class="dropdown-trigger">EVENTOS <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                <div class="dropdown-menu">
+                    <a href="local.html">EVENTOS LOCALES</a>
+                    <a href="internacional.html">CARTELERAS INTERNACIONALES</a>
+                </div>
+            </li>
+            <li><a href="noticias.html">NOTICIAS</a></li>
+            <li><a href="fightfeed.html"><i class="fas fa-fire" style="color: var(--accent-red); margin-right: 4px;"></i>FIGHTFEED</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="index.html"><button class="btn-join">INICIAR SESIÓN</button></a>
+        </div>
+    </nav>
+
+    <main class="legal-page-wrapper">
+        <!-- Header Principal de Cumplimiento -->
+        <header class="legal-header-box">
+            <div class="legal-badge-pill">
+                <i class="fas fa-scale-balanced"></i> ESTATUTO LEGAL & CUMPLIMIENTO NORMATIVO V2.4
+            </div>
+            <h1 class="main-title" style="font-size: 2.4rem; margin-bottom: 0.6rem; color: #fff;">
+                TÉRMINOS Y CONDICIONES DE COMBATE
+            </h1>
+            <p style="color: #b5b5be; font-size: 0.95rem; max-width: 880px; line-height: 1.6; margin: 0;">
+                Marco normativo de intermediación tecnológica neutral, exención de responsabilidad deportiva, régimen de fichas técnicas de matchmaking y protección de integridad atlética de la plataforma <strong>FIGHT CONNECT</strong>.
+            </p>
+            <div style="display: flex; gap: 1.5rem; margin-top: 1.5rem; font-size: 0.78rem; color: #8e8e93; flex-wrap: wrap;">
+                <span><i class="fas fa-calendar-check" style="color: var(--accent-red); margin-right: 5px;"></i> Última actualización: Octubre 2026</span>
+                <span><i class="fas fa-shield-alt" style="color: #ffc107; margin-right: 5px;"></i> Jurisdicción: República de Colombia & Lex Deportiva</span>
+                <span><i class="fas fa-file-shield" style="color: #4caf50; margin-right: 5px;"></i> Protocolo KYB Activo</span>
+            </div>
+        </header>
+
+        <!-- Barra de Navegación Rápida entre Cláusulas -->
+        <nav class="legal-nav-bar" aria-label="Navegación de cláusulas">
+            <a href="#clausula-1" class="legal-nav-pill"><i class="fas fa-network-wired"></i> 1. Intermediario Puro</a>
+            <a href="#clausula-2" class="legal-nav-pill"><i class="fas fa-heart-pulse"></i> 2. Riesgo Deportivo</a>
+            <a href="#clausula-3" class="legal-nav-pill"><i class="fas fa-file-signature"></i> 3. Matchmaking</a>
+            <a href="#clausula-4" class="legal-nav-pill"><i class="fas fa-building-shield"></i> 4. Verificación KYB</a>
+            <a href="#clausula-5" class="legal-nav-pill"><i class="fas fa-shield-halved"></i> 5. Juego Limpio</a>
+            <a href="#clausula-6" class="legal-nav-pill"><i class="fas fa-user-lock"></i> 6. Habeas Data</a>
+            <a href="#clausula-7" class="legal-nav-pill"><i class="fas fa-gavel"></i> 7. Jurisdicción</a>
+        </nav>
+
+        <!-- CLÁUSULA 1: INTERMEDIARIO TECNOLÓGICO PURO -->
+        <article class="legal-card" id="clausula-1">
+            <div class="clause-header">
+                <div class="clause-num-box">01</div>
+                <div class="clause-title-group">
+                    <h2>Naturaleza de Intermediario Tecnológico Puro</h2>
+                    <span class="clause-subtitle">CERO CUSTODIA FINANCIERA • INEXISTENCIA DE RELACIÓN CONTRACTUAL O PROCESAL</span>
+                </div>
+            </div>
+            <div class="clause-body">
+                <p>
+                    <strong>FIGHT CONNECT</strong> es única y exclusivamente una solución tecnológica de software como servicio (SaaS), dedicada a la comunicación social, registro de récord deportivo, difusión y coordinación de matchmaking entre promotoras y atletas de deportes de combate.
+                </p>
+                <div class="legal-callout-box callout-warning">
+                    <i class="fas fa-hand-holding-dollar" style="font-size: 1.5rem; flex-shrink: 0; margin-top: 2px;"></i>
+                    <div>
+                        <strong>DECLARACIÓN EXPRESA DE CERO CUSTODIA FINANCIERA:</strong><br>
+                        FightConnect <strong>no es promotor físico, no es empleador, no actúa como representante legal, agente deportivo ni es parte contractual</strong> de ningún combate o cartelera. La plataforma <strong>NO cobra, no retiene, no intermedia, no custodia ni garantiza</strong> el pago de bolsas de combate, viáticos, premios en efectivo o indemnizaciones pactadas entre promotoras y peleadores.
+                    </div>
+                </div>
+                <p>
+                    Cualquier contraprestación económica, bolsa de pelea, porcentaje por venta de boletería o gasto logístico constituye un acuerdo estrictamente privado, autónomo e independiente entre la empresa promotora y el atleta o su representante, quedando FightConnect indemne de cualquier reclamación laboral, civil, comercial o tributaria derivada de dicho acuerdo.
+                </p>
+            </div>
+        </article>
+
+        <!-- CLÁUSULA 2: EXENCIÓN DE RIESGO DEPORTIVO (ATHLETIC WAIVER) -->
+        <article class="legal-card" id="clausula-2">
+            <div class="clause-header">
+                <div class="clause-num-box">02</div>
+                <div class="clause-title-group">
+                    <h2>Exención de Responsabilidad por Riesgo Deportivo</h2>
+                    <span class="clause-subtitle">ATHLETIC WAIVER • PROTOCOLOS MÉDICOS Y SOPORTE VITAL EN RINGSIDE</span>
+                </div>
+            </div>
+            <div class="clause-body">
+                <p>
+                    Los deportes de contacto y combate (tales como Artes Marciales Mixtas, Boxeo, Muay Thai, Kickboxing, Lucha Olímpica y Jiu-Jitsu Brasileño) son disciplinas de alto impacto que conllevan <strong>riesgos físicos inherentes de lesiones graves, conmociones cerebrales, traumatismos irreversibles, incapacidad permanente o muerte</strong>.
+                </p>
+                <div class="legal-callout-box callout-danger">
+                    <i class="fas fa-triangle-exclamation" style="font-size: 1.5rem; flex-shrink: 0; margin-top: 2px;"></i>
+                    <div>
+                        <strong>RESPONSABILIDAD EXCLUSIVA E INDELEGABLE DE LA PROMOTORA EN EL RECINTO FÍSICO:</strong><br>
+                        Es obligación legal, médica y operativa exclusiva de la entidad promotora organizadora disponer en el escenario de combate de:
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem;">
+                            <li>Médico de ringside debidamente colegiado con instrumental de reanimación a pie de jaula/ring.</li>
+                            <li>Ambulancia medicalizada de soporte vital avanzado (SVA) estacionada en la arena durante todo el evento.</li>
+                            <li>Póliza colectiva vigente de accidentes personales para todos los atletas en cartelera.</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>
+                    Al postularse o participar en cualquier evento difundido en la red, el atleta declara bajo juramento estar en plenitud de condiciones psicofísicas, contar con exámenes médicos actualizados (tamizaje de sangre, pruebas neurológicas según aplique) y <strong>exime totalmente a FIGHT CONNECT y a sus desarrolladores</strong> de cualquier daño corporal, secuela o pérdida sufrida en o durante la realización del evento.
+                </p>
+            </div>
+        </article>
+
+        <!-- CLÁUSULA 3: FICHA TÉCNICA DE MATCHMAKING -->
+        <article class="legal-card" id="clausula-3">
+            <div class="clause-header">
+                <div class="clause-num-box">03</div>
+                <div class="clause-title-group">
+                    <h2>Ficha Técnica de Matchmaking (No Contrato Laboral)</h2>
+                    <span class="clause-subtitle">COORDINACIÓN DE PARÁMETROS DEPORTIVOS • AUSENCIA DE SUBORDINACIÓN</span>
+                </div>
+            </div>
+            <div class="clause-body">
+                <p>
+                    Cuando un atleta solicita plaza en un combate y una promotora acepta su postulación mediante el sistema interactivo de FightConnect, se genera una <strong>Ficha Técnica de Coordinación Deportiva</strong>. Dicho instrumento contiene:
+                </p>
+                <ul>
+                    <li>Límite de peso acordado para la ceremonia oficial de pesaje.</li>
+                    <li>Disciplina y conjunto de reglas oficiales (Reglas Unificadas de MMA, Boxeo Profesional, Grappling EBI/IBJJF, etc.).</li>
+                    <li>Número de asaltos pactados y duración por asalto.</li>
+                    <li>Designación de esquina (Roja / Azul) y rol en la cartelera (Estelar / Preliminar).</li>
+                </ul>
+                <p>
+                    <strong>Alcance Jurídico:</strong> La confirmación deportiva a través de la plataforma constituye una manifestación de voluntad y coordinación atlética. <strong>No constituye contrato de trabajo ni genera subordinación laboral</strong> de ninguna especie. Los contratos de prestación de servicios promocionales deberán ser formalizados por escrito entre promotora y peleador por fuera del entorno digital.
+                </p>
+            </div>
+        </article>
+
+        <!-- CLÁUSULA 4: PROTOCOLO DE VERIFICACIÓN KYB -->
+        <article class="legal-card" id="clausula-4">
+            <div class="clause-header">
+                <div class="clause-num-box">04</div>
+                <div class="clause-title-group">
+                    <h2>Protocolo de Verificación Institucional (KYB)</h2>
+                    <span class="clause-subtitle">KNOW YOUR BUSINESS • RESPONSABILIDAD TRIBUTARIA Y EXISTENCIA JURÍDICA</span>
+                </div>
+            </div>
+            <div class="clause-body">
+                <p>
+                    Con el fin de salvaguardar la seriedad del circuito y evitar estafas a los atletas o carteleras fraudulentas, las entidades que deseen publicar eventos públicos y abrir convocatorias de peleadores deben someterse al <strong>Protocolo KYB (Know Your Business)</strong>:
+                </p>
+                <ul>
+                    <li><strong>Registro Único Tributario (RUT):</strong> Documento expedido por la DIAN u organismo tributario competente, demostrando actividad económica deportiva o de espectáculos.</li>
+                    <li><strong>Certificado de Existencia y Representación Legal:</strong> Expedido por la Cámara de Comercio con fecha de expedición no superior a sesenta (60) días.</li>
+                    <li><strong>Aval o Reconocimiento Deportivo:</strong> Licencia de promotor o carta de respaldo emitida por una comisión atlética o federación nacional de la disciplina.</li>
+                </ul>
+                <div class="legal-callout-box callout-info">
+                    <i class="fas fa-certificate" style="font-size: 1.5rem; flex-shrink: 0; margin-top: 2px;"></i>
+                    <div>
+                        <strong>SELLO DORADO DE LEGITIMIDAD [🛡️ VERIFICADA PRO]:</strong><br>
+                        La insignia de verificación es una constancia de auditoría documental efectuada por el equipo de FightConnect. Las promotoras que suministren información falsa, certificados apócrifos o que incurran en suplantación serán expulsadas de la red de manera irrevocable y denunciadas ante las autoridades competentes.
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- CLÁUSULA 5: JUEGO LIMPIO Y ANTIDOPAJE -->
+        <article class="legal-card" id="clausula-5">
+            <div class="clause-header">
+                <div class="clause-num-box">05</div>
+                <div class="clause-title-group">
+                    <h2>Juego Limpio, Antidopaje y Código de Conducta</h2>
+                    <span class="clause-subtitle">INTEGRIDAD DEL RÉCORD • TOLERANCIA CERO AL ARREGLO DE COMBATES</span>
+                </div>
+            </div>
+            <div class="clause-body">
+                <p>
+                    La reputación deportiva es el activo más valioso de FightConnect. En consecuencia, se establecen las siguientes prohibiciones infranqueables:
+                </p>
+                <ul>
+                    <li><strong>Manipulación de Récord Deportivo (Record Padding):</strong> Registrar combates ficticios, victorias inexistentes o adulterar el historial de victorias-derrotas conlleva la anulación total del perfil.</li>
+                    <li><strong>Arreglo de Peleas y Fraude Competitivo:</strong> La alteración intencionada del desenlace de un combate por motivos económicos o apuestas acarreará suspensión vitalicia.</li>
+                    <li><strong>Políticas Antidopaje:</strong> Los atletas se comprometen a respetar las normas de la Agencia Mundial Antidopaje (WADA/AMA) y comisiones pertinentes. El dopaje comprobado causará la reversión del resultado a <em>No Contest</em> y el congelamiento del atleta.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- CLÁUSULA 6: PRIVACIDAD Y HABEAS DATA -->
+        <article class="legal-card" id="clausula-6">
+            <div class="clause-header">
+                <div class="clause-num-box">06</div>
+                <div class="clause-title-group">
+                    <h2>Tratamiento de Datos Personales (Habeas Data)</h2>
+                    <span class="clause-subtitle">LEY 1581 DE 2012 • DISTINCIÓN ENTRE DATOS DEPORTIVOS Y DATOS PRIVADOS</span>
+                </div>
+            </div>
+            <div class="clause-body">
+                <p>
+                    En cumplimiento de la Ley Estatutaria 1581 de 2012 y normas concordantes de protección de datos personales:
+                </p>
+                <ul>
+                    <li><strong>Datos Atléticos Públicos:</strong> El nombre de combate, alias, peso, estatura, récord deportivo, fotografías oficiales y vídeos de combate se consideran información de difusión pública inherente al espectáculo y al matchmaking deportivo.</li>
+                    <li><strong>Datos Privados Protegidos:</strong> El documento de identidad, RUT empresarial, dirección de correo electrónico privado, estados bancarios y teléfonos personales son tratados bajo estricta confidencialidad y jamás se comercializan con terceros.</li>
+                    <li><strong>Derecho al Olvido:</strong> Cualquier usuario puede solicitar la baja definitiva y supresión de sus datos de la base de datos a través de los paneles de ajustes o escribiendo al canal oficial de privacidad.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- CLÁUSULA 7: JURISDICCIÓN Y SOLUCIÓN DE CONTROVERSIAS -->
+        <article class="legal-card" id="clausula-7">
+            <div class="clause-header">
+                <div class="clause-num-box">07</div>
+                <div class="clause-title-group">
+                    <h2>Jurisdicción, Ley Aplicable y Solución de Conflictos</h2>
+                    <span class="clause-subtitle">LEGISLACIÓN COLOMBIANA • ARBITRAJE DEPORTIVO</span>
+                </div>
+            </div>
+            <div class="clause-body">
+                <p>
+                    Los presentes términos se regirán e interpretarán de acuerdo con las leyes de la República de Colombia y los principios consuetudinarios del derecho deportivo internacional (<em>lex deportiva</em>).
+                </p>
+                <p>
+                    Cualquier controversia derivada de la utilización de la plataforma de software que no pueda resolverse de forma amistosa en una etapa de arreglo directo de treinta (30) días, será sometida a los tribunales ordinarios de la ciudad de Medellín, Colombia, o al Centro de Arbitraje y Conciliación mercantil competente.
+                </p>
+            </div>
+        </article>
+
+        <!-- Barra de Acciones y Descarga -->
+        <div class="legal-action-bar">
+            <div>
+                <h4 style="margin: 0 0 4px 0; color: #fff; font-size: 0.95rem; font-family: var(--font-heading); letter-spacing: 0.5px;">EXPEDIENTE OFICIAL VIGENTE</h4>
+                <p style="margin: 0; font-size: 0.8rem; color: #8e8e93;">Documento vinculante al crear cuenta o ingresar a la red FightConnect.</p>
+            </div>
+            <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                <button type="button" onclick="window.print()" class="btn-outline" style="border-color: rgba(255,255,255,0.2); color: #fff; padding: 0.65rem 1.2rem; font-size: 0.8rem; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-weight: 600;">
+                    <i class="fas fa-print"></i> IMPRIMIR TÉRMINOS
+                </button>
+                <a href="privacidad.html" class="btn-solid red-btn" style="padding: 0.65rem 1.4rem; font-size: 0.8rem; text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px;">
+                    <i class="fas fa-shield-alt"></i> POLÍTICA DE PRIVACIDAD <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Profesional de Plataforma -->
+    <footer class="dash-pro-footer" style="max-width: 1100px; margin: 6.5rem auto 2rem auto; padding: 3rem 1.5rem 2rem 1.5rem;">
+        <div class="dash-footer-inner">
+            <div class="dash-footer-brand">
+                <div class="logo" style="font-size: 1.15rem;">FIGHT <span>CONNECT</span></div>
+                <span class="dash-footer-tagline">PLATAFORMA TECNOLÓGICA DE SCOUTING & MATCHMAKING DEPORTIVO</span>
+            </div>
+            <div class="dash-footer-links">
+                <a href="terminos.html"><i class="fas fa-file-contract"></i> TÉRMINOS DE COMBATE</a>
+                <a href="privacidad.html"><i class="fas fa-shield-alt"></i> PRIVACIDAD & DATOS</a>
+                <a href="sanciones.html"><i class="fas fa-gavel"></i> CÓDIGO DISCIPLINARIO</a>
+                <a href="local.html"><i class="fas fa-map-marked-alt"></i> CARTELERA NACIONAL</a>
+                <a href="manual-usuario.html"><i class="fas fa-book-open"></i> MANUAL DE USUARIO</a>
+            </div>
+        </div>
+        <div class="dash-footer-bottom">
+            <div class="copyright">&copy; 2026 FIGHT CONNECT. MODELO DE INTERMEDIACIÓN TECNOLÓGICA PURA.</div>
+            <div class="dash-footer-legal-note">Plataforma neutral de difusión • Sin intermediación financiera ni custodia de bolsas</div>
+        </div>
+    </footer>
+
+    <script type="module" src="/js/app.js"></script>
+</body>
+</html>

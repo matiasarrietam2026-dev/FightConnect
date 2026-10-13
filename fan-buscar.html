@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Atletas | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/extensions.css">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo" style="font-size: 1.2rem;">FIGHT <span>CONNECT</span></div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="fan-dashboard.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="fan-favoritos.html"><i class="fas fa-ticket-alt"></i> Mis Favoritos</a></li>
+                <li class="active"><a href="fan-buscar.html"><i class="fas fa-search"></i> Buscar Peleadores</a></li>
+                <li><a href="fan-ajustes.html"><i class="fas fa-cog"></i> Ajustes</a></li>
+                <li class="sidebar-category">ECOSISTEMA</li>
+                <li><a href="local.html"><i class="fas fa-map-marked-alt"></i> Cartelera Local</a></li>
+                <li><a href="internacional.html"><i class="fas fa-globe"></i> Cartelera Int. & Odds</a></li>
+                <li><a href="noticias.html"><i class="fas fa-newspaper"></i> Noticias MMA</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+        <!-- Header -->
+        <header class="dash-header">
+            <div>
+                <p class="pre-title">ROSTER GLOBAL</p>
+                <h1 class="main-title">BUSCADOR DE ATLETAS</h1>
+            </div>
+        </header>
+
+        <!-- Tabs de Exploración: Atletas vs Promotoras -->
+        <div class="fan-search-tabs">
+            <button type="button" class="fan-search-tab active" id="tab-fan-atletas">
+                <i class="fas fa-user-ninja"></i> ATLETAS Y PELEADORES
+            </button>
+            <button type="button" class="fan-search-tab" id="tab-fan-promotoras">
+                <i class="fas fa-shield-alt"></i> PROMOTORAS OFICIALES (LOCALES E INT.)
+            </button>
+        </div>
+
+        <!-- SECCIÓN 1: Búsqueda y Roster de Atletas -->
+        <div id="fan-athletes-section">
+            <!-- Filtros de Búsqueda Mejorados y Alineados -->
+            <section class="fan-scouting-filters glass-panel">
+                <div class="form-group">
+                    <label for="fan-filter-weight"><i class="fas fa-weight-hanging" style="color: var(--accent-red); margin-right: 5px;"></i> CATEGORÍA DE PESO</label>
+                    <select id="fan-filter-weight" name="fan-filter-weight" title="Categoría de Peso" aria-label="Categoría de Peso">
+                        <option value="">Todas las Categorías</option>
+                        <option value="61">61 kg (Gallo)</option>
+                        <option value="66">66 kg (Pluma)</option>
+                        <option value="70">70 kg (Ligero)</option>
+                        <option value="77">77 kg (Wélter)</option>
+                        <option value="84">84 kg (Medio)</option>
+                        <option value="93">93 kg (Semi-Pesado)</option>
+                        <option value="120">120 kg (Pesado)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fan-filter-discipline"><i class="fas fa-fist-raised" style="color: var(--accent-red); margin-right: 5px;"></i> DISCIPLINA PRINCIPAL</label>
+                    <select id="fan-filter-discipline" name="fan-filter-discipline" title="Disciplina Principal" aria-label="Disciplina Principal">
+                        <option value="">Todas las Disciplinas</option>
+                        <option value="mma">Artes Marciales Mixtas (MMA)</option>
+                        <option value="bjj">Jiu-Jitsu / Grappling</option>
+                        <option value="boxeo">Boxeo / Striking</option>
+                        <option value="muaythai">Muay Thai</option>
+                        <option value="kickboxing">Kickboxing</option>
+                        <option value="lucha">Lucha Olímpica</option>
+                        <option value="judo">Judo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fan-filter-query"><i class="fas fa-map-marker-alt" style="color: var(--accent-red); margin-right: 5px;"></i> ATLETA O CIUDAD</label>
+                    <input type="text" id="fan-filter-query" name="fan-filter-query" title="Buscar por nombre, alias o ciudad" aria-label="Buscar por nombre, alias o ciudad" placeholder="Buscar por nombre, alias o ciudad...">
+                </div>
+                <div class="form-group">
+                    <label class="fan-filter-action-label">&nbsp;</label>
+                    <div class="fan-filter-action-group">
+                        <button type="button" id="btn-explorar-roster-fan" class="btn-solid red-btn btn-fan-radar">
+                            <i class="fas fa-satellite-dish"></i> EXPLORAR ROSTER
+                        </button>
+                        <button type="button" id="btn-fan-filter-reset" class="btn-fan-reset" title="Restablecer filtros" aria-label="Restablecer filtros">
+                            <i class="fas fa-redo-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Barra de Estado de Búsqueda -->
+            <div id="fan-search-status-bar" class="fan-search-status-bar">
+                <span id="fan-search-count-badge" class="fan-search-count-badge">Sincronizando con el roster oficial...</span>
+            </div>
+
+            <!-- Grid de Resultados de Atletas -->
+            <section id="fan-search-grid" class="loading-container-v2">
+                <div class="loader-pulse"></div>
+                <p class="loading-text">Sincronizando con la base de datos...</p>
+            </section>
+        </div>
+
+        <!-- SECCIÓN 2: Directorio y Seguimiento de Promotoras Oficiales -->
+        <div id="fan-promoters-section" style="display: none;">
+            <section class="fan-scouting-filters fan-promoter-filters glass-panel" style="margin-bottom: 1.5rem;">
+                <div class="form-group">
+                    <label for="fan-filter-promoter-scope"><i class="fas fa-globe" style="color: var(--accent-red); margin-right: 5px;"></i> ALCANCE DE LA PROMOTORA</label>
+                    <select id="fan-filter-promoter-scope" name="fan-filter-promoter-scope">
+                        <option value="">Todas las Promotoras</option>
+                        <option value="local">Promotoras Locales / Nacionales</option>
+                        <option value="internacional">Ligas Internacionales / Mundiales</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fan-filter-promoter-query"><i class="fas fa-search" style="color: var(--accent-red); margin-right: 5px;"></i> NOMBRE O SEDE</label>
+                    <input type="text" id="fan-filter-promoter-query" placeholder="Buscar promotora (ej. UFC, ONE, BFL, Empire MMA...)">
+                </div>
+                <div class="form-group">
+                    <label class="fan-filter-action-label">&nbsp;</label>
+                    <div class="fan-filter-action-group">
+                        <button type="button" id="btn-fan-promoter-reset" class="btn-fan-reset" title="Restablecer filtros de promotoras">
+                            <i class="fas fa-redo-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Barra de Estado de Promotoras -->
+            <div class="fan-search-status-bar">
+                <span id="fan-promoter-count-badge" class="fan-search-count-badge">Directorio oficial de promotoras. Las veladas de las promotoras que sigas aparecerán en tu <strong>Watchlist</strong>.</span>
+            </div>
+
+            <!-- Grid de Promotoras -->
+            <section id="fan-promoters-grid" class="promoters-grid">
+                <!-- Inyectado reactivamente por JS -->
+            </section>
+        </div>
+
+        <!-- TEMPLATE: Tarjeta de Peleador para el Fan -->
+        <template id="fan-fighter-card-template">
+            <div class="opportunity-card" style="align-items: center; text-align: center;">
+                <div style="padding: 2rem 2rem 0 2rem; transform: translateZ(20px);">
+                    <div class="profile-avatar" style="width: 100px; height: 100px; margin: 0 auto 1rem auto; background: #1a1a1a;">
+                        <i class="fas fa-user avatar-placeholder-icon" style="font-size: 2.5rem; color: #333;"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-heading); color: var(--text-white); font-size: 1.3rem; margin-bottom: 0.2rem;">[NOMBRE DEL PELEADOR]</h3>
+                    <p style="color: var(--accent-red); font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">"[ALIAS]"</p>
+                </div>
+                
+                <div class="opp-details" style="width: 100%; background: transparent; padding: 1rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div class="opp-stat">
+                        <span>RÉCORD</span>
+                        <strong>[V-D-E]</strong>
+                    </div>
+                    <div class="opp-stat">
+                        <span>DIVISIÓN</span>
+                        <strong>[PESO] KG</strong>
+                    </div>
+                    <div class="opp-stat">
+                        <span>BASE</span>
+                        <strong>[DISCIPLINA]</strong>
+                    </div>
+                </div>
+                
+                <div class="opp-actions" style="width: 100%; justify-content: center;">
+                    <button class="btn-outline red-btn" style="width: 100%; justify-content: center; font-size: 0.85rem;"><i class="fas fa-plus"></i> SEGUIR AL ATLETA</button>
+                </div>
+            </div>
+        </template>
+
+        <!-- Footer Limpio -->
+        <footer class="panel-clean-footer">
+            <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+        </footer>
+    </main>
+
+    <!-- Modal: Expediente de Peleador y Cartelera de Peleas para Fan -->
+    <div id="modal-fan-perfil-atleta" class="modal-overlay hidden" style="position: fixed; inset: 0; background: rgba(0,0,0,0.88); backdrop-filter: blur(12px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 1.5rem;">
+        <div class="fan-athlete-modal-card glass-panel" style="max-height: 90vh; overflow-y: auto;">
+            <!-- Modal Header -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1.2rem;">
+                <div style="display: flex; align-items: center; gap: 1.2rem;">
+                    <div id="fan-modal-avatar" style="width: 75px; height: 75px; border-radius: 50%; background: #1a1a1a; border: 2px solid var(--accent-red); overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 15px rgba(230,36,41,0.3);">
+                        <i class="fas fa-user-ninja" style="font-size: 2rem; color: var(--accent-red);"></i>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.72rem; font-family: var(--font-heading); color: var(--accent-red); letter-spacing: 1.5px; font-weight: 700;">PERFIL DEL ATLETA</span>
+                        <h2 id="fan-modal-nombre" style="font-family: var(--font-heading); color: #fff; font-size: 1.5rem; margin: 0.2rem 0; letter-spacing: 1px;">-</h2>
+                        <p id="fan-modal-alias" style="color: var(--accent-red); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin: 0 0 0.4rem 0;">"-"</p>
+                        <p id="fan-modal-location" style="color: var(--text-gray); font-size: 0.8rem; margin: 0;"><i class="fas fa-map-marker-alt" style="color: var(--accent-red); margin-right: 4px;"></i>-</p>
+                    </div>
+                </div>
+                <button type="button" id="btn-cerrar-modal-fan-perfil" title="Cerrar modal" aria-label="Cerrar modal" style="background: none; border: none; color: #888; font-size: 1.4rem; cursor: pointer; transition: color 0.2s;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Stats Grid -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin-bottom: 1.2rem;">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 0.8rem 0.5rem; text-align: center;">
+                    <span id="fan-modal-record-label" style="font-size: 0.65rem; color: var(--text-gray); display: block; letter-spacing: 0.5px; text-transform: uppercase;">RÉCORD PRINCIPAL</span>
+                    <strong id="fan-modal-record" style="font-family: var(--font-heading); color: #fff; font-size: 1.15rem;">0-0-0</strong>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 0.8rem 0.5rem; text-align: center;">
+                    <span style="font-size: 0.65rem; color: var(--text-gray); display: block; letter-spacing: 0.5px;">DIVISIÓN</span>
+                    <strong id="fan-modal-division" style="font-family: var(--font-heading); color: #fff; font-size: 1.15rem;">-</strong>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 0.8rem 0.5rem; text-align: center;">
+                    <span style="font-size: 0.65rem; color: var(--text-gray); display: block; letter-spacing: 0.5px;">PESO ACTUAL</span>
+                    <strong id="fan-modal-peso" style="font-family: var(--font-heading); color: #fff; font-size: 1.15rem;">-</strong>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 0.8rem 0.5rem; text-align: center;">
+                    <span style="font-size: 0.65rem; color: var(--text-gray); display: block; letter-spacing: 0.5px;">DISCIPLINA BASE</span>
+                    <strong id="fan-modal-disciplina" style="font-family: var(--font-heading); color: var(--accent-red); font-size: 1.15rem;">-</strong>
+                </div>
+            </div>
+
+            <!-- Desglose de Récords por Disciplina -->
+            <div id="fan-modal-records-breakdown-section" style="margin-bottom: 1.2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 0.9rem;">
+                <span style="font-size: 0.72rem; color: var(--text-gray); font-family: var(--font-heading); letter-spacing: 1px; display: flex; align-items: center; gap: 5px; margin-bottom: 0.6rem;">
+                    <i class="fas fa-medal" style="color: #ffc107;"></i> RÉCORDS POR DISCIPLINA MARCIAL:
+                </span>
+                <div id="fan-modal-records-breakdown" class="records-breakdown-grid">
+                    <!-- Injected dynamically -->
+                </div>
+            </div>
+
+            <!-- Disciplinas para competir -->
+            <div style="margin-bottom: 1.2rem;">
+                <span style="font-size: 0.7rem; color: var(--text-gray); font-family: var(--font-heading); letter-spacing: 1px; display: block; margin-bottom: 0.5rem;">DISCIPLINAS HABILITADAS:</span>
+                <div id="fan-modal-disciplinas-tags" style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                    <!-- Injected dynamically -->
+                </div>
+            </div>
+
+            <!-- Sección de Peleas en Carteleras -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-calendar-check" style="color: var(--accent-red);"></i>
+                        <h3 style="font-family: var(--font-heading); color: #fff; font-size: 1.05rem; letter-spacing: 1px; margin: 0;">PELEAS EN FIGHT CONNECT</h3>
+                    </div>
+                    <span id="fan-modal-peleas-count" style="font-size: 0.75rem; color: var(--text-gray);">-</span>
+                </div>
+
+                <div id="fan-modal-peleas-container">
+                    <!-- Dynamic bouts injected here -->
+                </div>
+            </div>
+
+            <!-- Footer Modal -->
+            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                <button type="button" id="btn-volver-fan-perfil" class="btn-solid red-btn" style="padding: 0.65rem 1.6rem; font-size: 0.85rem; border-radius: 6px; cursor: pointer;">
+                    CERRAR PERFIL
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/app.js"></script>
+</body>
+</html>

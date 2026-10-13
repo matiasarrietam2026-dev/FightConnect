@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial Médico | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/extensions.css">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar Fijo -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo" style="font-size: 1.2rem;">FIGHT <span>CONNECT</span></div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="fighter-dashboard.html"><i class="fas fa-user-circle"></i> Mi Perfil</a></li>
+                <li><a href="fighter-buscar.html"><i class="fas fa-fist-raised"></i> Buscar Peleas</a></li>
+                <li><a href="fighter-postulaciones.html"><i class="fas fa-file-contract"></i> Mis Postulaciones</a></li>
+                <li class="active"><a href="fighter-historial.html"><i class="fas fa-weight"></i> Historial Médico/Peso</a></li>
+                <li class="sidebar-category">ECOSISTEMA</li>
+                <li><a href="local.html"><i class="fas fa-map-marked-alt"></i> Cartelera Local</a></li>
+                <li><a href="internacional.html"><i class="fas fa-globe"></i> Cartelera Int. & Odds</a></li>
+                <li><a href="noticias.html"><i class="fas fa-newspaper"></i> Noticias MMA</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+        <!-- Header -->
+        <header class="dash-header">
+            <div>
+                <p class="pre-title">RENDIMIENTO</p>
+                <h1 class="main-title">CONTROL FÍSICO Y MÉDICO</h1>
+            </div>
+        </header>
+
+        <!-- Weight Cut Module -->
+        <section class="weight-cut-module">
+            <div class="weight-header">
+                <div>
+                    <h2 style="font-family: var(--font-heading); color: var(--text-white); margin:0 0 0.5rem 0; letter-spacing: 2px;">CORTE DE PESO ACTIVO</h2>
+                    <p style="color: var(--text-gray); margin:0; font-size: 0.85rem;"><i class="far fa-calendar-alt"></i> Sincronizando próximo evento...</p>
+                </div>
+            </div>
+            
+            <div class="weight-visualizer">
+                <div class="progress-track">
+                    <div class="progress-fill" id="weight-fill-bar"></div>
+                </div>
+                <div class="weight-markers">
+                    <div class="marker start">
+                        <span class="lbl">INICIO</span>
+                        <span class="val" id="start-weight">0 KG</span>
+                    </div>
+                    <div class="marker current">
+                        <span class="lbl">ACTUAL</span>
+                        <span class="val" id="bar-current">0 KG</span>
+                    </div>
+                    <div class="marker target">
+                        <span class="lbl">META (LÍMITE)</span>
+                        <span class="val" id="bar-target">0 KG</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="log-weight-form" class="weight-input-area">
+                <div class="form-group" style="flex: 1; margin:0;">
+                    <label>NUEVO REGISTRO (KG)</label>
+                    <input type="number" id="today-weight" step="0.1" min="0" placeholder="Ej. 77.5" required>
+                </div>
+                <button type="submit" class="btn-solid red-btn"><i class="fas fa-weight"></i> REGISTRAR PESO DE HOY</button>
+            </form>
+        </section>
+
+        <!-- Injury History -->
+        <section style="margin-bottom: 4rem;">
+            <div class="section-header-small" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+                <div>
+                    <h2 class="main-title" style="font-size: 1.5rem; letter-spacing: 2px; margin: 0;">HISTORIAL DE LESIONES</h2>
+                    <p style="color: var(--text-gray); font-size: 0.85rem; margin: 0.3rem 0 0 0;">Registro clínico confidencial y seguimiento médico de campamento.</p>
+                </div>
+                <button type="button" id="btn-abrir-modal-lesion" class="btn-solid red-btn" style="font-size: 0.85rem; padding: 0.7rem 1.4rem; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <i class="fas fa-plus-circle"></i> REGISTRAR LESIÓN
+                </button>
+            </div>
+            <div class="events-table-wrapper">
+                <table class="events-table">
+                    <thead>
+                        <tr>
+                            <th>FECHA REPORTE</th>
+                            <th>DIAGNÓSTICO</th>
+                            <th>ESTADO MÉDICO</th>
+                            <th>NOTAS & OBSERVACIONES</th>
+                            <th style="text-align: right;">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lesiones-body">
+                        <!-- Estado de Carga -->
+                        <tr>
+                            <td colspan="5" style="padding: 0; border: none;">
+                                <div class="loading-container-v2" style="min-height: 200px; background: transparent; border: none; backdrop-filter: none;">
+                                    <div class="loader-pulse"></div>
+                                    <p class="loading-text">Sincronizando expediente médico...</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Recomendaciones Médicas y Protocolo de Corte Seguro -->
+        <section class="medical-recommendations-section" style="margin-bottom: 4rem;">
+            <div class="section-header-small" style="text-align: left; margin-bottom: 2rem;">
+                <p class="pre-title" style="color: var(--accent-red); letter-spacing: 2px; font-weight: 700; margin-bottom: 0.3rem;">MEDICINA DEL COMBATE</p>
+                <h2 class="main-title" style="font-size: 1.5rem; letter-spacing: 2px;">DIRECTRICES CLÍNICAS & CORTE DE PESO SEGURO</h2>
+                <p style="color: var(--text-gray); font-size: 0.85rem; margin-top: 0.3rem;">Lineamientos avalados para maximizar longevidad en jaula y prevenir daño metabólico irreversible.</p>
+            </div>
+
+            <div class="medical-cards-grid">
+                <!-- Card 1: Corte de Peso -->
+                <div class="medical-card">
+                    <div class="med-card-header">
+                        <div class="med-icon-box" style="background: rgba(230, 36, 41, 0.15); color: var(--accent-red);">
+                            <i class="fas fa-tint-slash"></i>
+                        </div>
+                        <div>
+                            <span class="med-badge red">FASE DE DESHIDRATACIÓN</span>
+                            <h3 class="med-card-title">Carga y Restricción Hídrica</h3>
+                        </div>
+                    </div>
+                    <p class="med-card-text">
+                        Inicia la carga de agua (8-10L/día) 5 días antes y restringe gradualmente a 24h del pesaje. <strong>Nunca cortes más del 8-10% del peso corporal en sudor activo</strong> (sauna/baño termal). Cortar por encima del 10% colapsa el líquido cefalorraquídeo y cuadruplica el riesgo de trauma craneal.
+                    </p>
+                    <ul class="med-checklist">
+                        <li><i class="fas fa-check-circle"></i> Máximo 20-25 minutos por sesión en sauna con toalla seca.</li>
+                        <li><i class="fas fa-check-circle"></i> Control estricto de temperatura corporal para evitar golpe de calor.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Rehidratación -->
+                <div class="medical-card">
+                    <div class="med-card-header">
+                        <div class="med-icon-box" style="background: rgba(0, 168, 255, 0.15); color: #00a8ff;">
+                            <i class="fas fa-prescription-bottle-alt"></i>
+                        </div>
+                        <div>
+                            <span class="med-badge blue">POST-PESAJE (24-36 HORAS)</span>
+                            <h3 class="med-card-title">Restauración de Electrolitos</h3>
+                        </div>
+                    </div>
+                    <p class="med-card-text">
+                        Ingiere 1.5 litros de solución con electrolitos balanceados por cada kilogramo perdido. <strong>No bebas agua sola en grandes volúmenes</strong> para prevenir hiponatremia dilucional aguda. Combina agua con sodio (50-60 mmol/L), potasio y carbohidratos simples de bajo índice glucémico inicial.
+                    </p>
+                    <ul class="med-checklist">
+                        <li><i class="fas fa-check-circle"></i> Primeras 2 horas: 1 litro de suero oral a sorbos pequeños (cada 10 min).</li>
+                        <li><i class="fas fa-check-circle"></i> Comidas blandas ricas en glucógeno 3 horas después del pesaje.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Conmociones & KO -->
+                <div class="medical-card">
+                    <div class="med-card-header">
+                        <div class="med-icon-box" style="background: rgba(255, 193, 7, 0.15); color: #ffc107;">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <span class="med-badge yellow">PROTOCOLO NEUROLÓGICO</span>
+                            <h3 class="med-card-title">Retorno Seguro tras KO / TKO</h3>
+                        </div>
+                    </div>
+                    <p class="med-card-text">
+                        Todo golpe contundente a la cabeza con pérdida de conciencia o mareo severo exige una <strong>suspensión médica mínima de 30 a 60 días</strong> sin sparring de impacto. El cerebro requiere reposo metabólico estricto antes de tolerar nuevas fuerzas de aceleración rotacional.
+                    </p>
+                    <ul class="med-checklist">
+                        <li><i class="fas fa-check-circle"></i> Fase 1 (14 días): Cero impacto, trabajo aeróbico suave sin sobrecarga.</li>
+                        <li><i class="fas fa-check-circle"></i> Autorización de neurólogo deportivo antes de reanudar campamento.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Manejo de Tejidos y Articulaciones -->
+                <div class="medical-card">
+                    <div class="med-card-header">
+                        <div class="med-icon-box" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                            <i class="fas fa-bone"></i>
+                        </div>
+                        <div>
+                            <span class="med-badge green">REHABILITACIÓN MUSCULAR</span>
+                            <h3 class="med-card-title">Protocolo Articular "PEACE & LOVE"</h3>
+                        </div>
+                    </div>
+                    <p class="med-card-text">
+                        Ante esguinces, microdesgarros o hiperextensiones en grappling/striking: <strong>Protege</strong>, <strong>Eleva</strong>, <strong>Evita antiinflamatorios excesivos los primeros 3 días</strong> (retrasan la angiogénesis celular natural) y <strong>Comprime</strong>. En la fase subaguda, promueve movimiento activo y vascularización.
+                    </p>
+                    <ul class="med-checklist">
+                        <li><i class="fas fa-check-circle"></i> Crioterapia intermitente (15 min) solo para analgesia aguda controlada.</li>
+                        <li><i class="fas fa-check-circle"></i> Readaptación biomecánica progresiva con vendaje funcional.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Limpio -->
+        <footer class="panel-clean-footer">
+            <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+        </footer>
+    </main>
+
+    <!-- Modal Registrar Lesión -->
+    <div id="modal-registrar-lesion" class="modal-overlay hidden" style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1.5rem;">
+        <div class="glass-panel" style="background: #111116; border: 1px solid rgba(255,255,255,0.12); border-top: 3px solid var(--accent-red); border-radius: 12px; width: 100%; max-width: 540px; padding: 2.2rem; box-shadow: 0 25px 50px rgba(0,0,0,0.8);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.8rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1rem;">
+                <div>
+                    <span style="font-size: 0.72rem; font-family: var(--font-heading); color: var(--accent-red); letter-spacing: 1.5px; font-weight: 700;">EXPEDIENTE MÉDICO</span>
+                    <h2 style="font-family: var(--font-heading); color: #fff; font-size: 1.4rem; margin: 0.2rem 0 0 0; letter-spacing: 1px;">REGISTRAR LESIÓN</h2>
+                </div>
+                <button type="button" id="btn-cerrar-modal-lesion" title="Cerrar modal" aria-label="Cerrar modal" style="background: none; border: none; color: #888; font-size: 1.3rem; cursor: pointer; transition: color 0.2s;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form id="form-registrar-lesion">
+                <div class="form-group" style="margin-bottom: 1.2rem;">
+                    <label for="lesion-fecha" style="color: var(--text-gray); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 0.4rem;">FECHA DE LA LESIÓN / REPORTE *</label>
+                    <input type="date" id="lesion-fecha" name="lesion-fecha" title="Fecha de la lesión" aria-label="Fecha de la lesión" required style="width: 100%; height: 46px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 0 1rem; font-family: var(--font-sans);">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.2rem;">
+                    <label for="lesion-diagnostico" style="color: var(--text-gray); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 0.4rem;">DIAGNÓSTICO O TIPO DE LESIÓN *</label>
+                    <input type="text" id="lesion-diagnostico" name="lesion-diagnostico" title="Diagnóstico o tipo de lesión" aria-label="Diagnóstico o tipo de lesión" placeholder="Ej. Esguince ligamento medial rodilla derecha, fractura 5to metacarpo..." required style="width: 100%; height: 46px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 0 1rem; font-family: var(--font-sans);">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.2rem;">
+                    <label for="lesion-estado" style="color: var(--text-gray); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 0.4rem;">ESTADO MÉDICO ACTUAL *</label>
+                    <select id="lesion-estado" name="lesion-estado" title="Estado médico actual" aria-label="Estado médico actual" required style="width: 100%; height: 46px; background: #181820; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 0 1rem; font-family: var(--font-sans); cursor: pointer;">
+                        <option value="En Recuperación">En Recuperación (Sin sparring activo)</option>
+                        <option value="Alta Médica">Alta Médica (Apto para combate)</option>
+                        <option value="Tratamiento Activo">Tratamiento Activo / Fisioterapia</option>
+                        <option value="Requiere Cirugía">Requiere Procedimiento Quirúrgico</option>
+                        <option value="Monitoreo Preventivo">Monitoreo Preventivo</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.8rem;">
+                    <label for="lesion-notas" style="color: var(--text-gray); font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 0.4rem;">NOTAS CLÍNICAS / OBSERVACIONES</label>
+                    <textarea id="lesion-notas" name="lesion-notas" title="Notas clínicas u observaciones" aria-label="Notas clínicas u observaciones" rows="3" placeholder="Detalles de rehabilitación, indicaciones médicas o tiempos estimados..." style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 0.8rem 1rem; font-family: var(--font-sans); resize: vertical;"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" id="btn-cancelar-modal-lesion" class="btn-outline" style="padding: 0.7rem 1.4rem; font-size: 0.85rem; border-radius: 8px; cursor: pointer;">CANCELAR</button>
+                    <button type="submit" id="btn-guardar-lesion" class="btn-solid red-btn" style="padding: 0.7rem 1.6rem; font-size: 0.85rem; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-save"></i> GUARDAR EN EXPEDIENTE
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

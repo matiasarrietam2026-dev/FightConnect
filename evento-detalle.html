@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Evento | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/detalle.css">
+</head>
+<body>
+    <div id="bg-canvas"></div>
+    <div class="grid-overlay"></div>
+
+    <nav class="top-nav">
+        <div class="logo"><a href="index.html" class="nav-logo-link">FIGHT <span>CONNECT</span></a></div>
+        <ul class="nav-links">
+            <li class="dropdown-container">
+                <a href="#" class="dropdown-trigger active-nav">EVENTOS <i class="fas fa-chevron-down nav-chevron-icon"></i></a>
+                <div class="dropdown-menu">
+                    <a href="local.html">EVENTOS LOCALES</a>
+                    <a href="internacional.html">CARTELERAS INTERNACIONALES</a>
+                </div>
+            </li>
+            <li><a href="noticias.html">NOTICIAS</a></li>
+            <li><a href="fightfeed.html"><i class="fas fa-fire nav-fire-icon"></i>FIGHTFEED</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="index.html"><button class="btn-join">INICIAR SESIÓN</button></a>
+        </div>
+    </nav>
+
+    <main class="detalle-container">
+        <!-- Hero Banner Dinámico -->
+        <section class="event-hero event-hero-banner">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="badge hero-league-badge">[NOMBRE DE LA LIGA / ORGANIZACIÓN]</span>
+                <h1 class="hero-title">[ESTELAR A] <span class="hero-title-vs">VS</span> [ESTELAR B]</h1>
+                <p class="hero-meta"><i class="far fa-calendar-alt"></i> [FECHA DEL EVENTO] &nbsp;&nbsp;|&nbsp;&nbsp; <i class="fas fa-map-marker-alt"></i> [CIUDAD, RECINTO]</p>
+            </div>
+        </section>
+
+        <!-- CARTELERA COMPLETA -->
+        
+        <!-- MAIN EVENT -->
+        <section class="card-section">
+            <div class="section-header-small">
+                <h2 class="main-title">MAIN EVENT</h2>
+                <div class="title-underline-small"></div>
+            </div>
+            <div class="matchup-list">
+                <div class="matchup-row main-event">
+                    <div class="fighter-side left-side">
+                        <h3 class="fighter-name">[ESTELAR A] <span class="fighter-record">(0-0-0)</span></h3>
+                        <div class="odds-badge favorite">CUOTA: [-000]</div>
+                    </div>
+                    <div class="vs-circle">VS</div>
+                    <div class="fighter-side right-side">
+                        <h3 class="fighter-name">[ESTELAR B] <span class="fighter-record">(0-0-0)</span></h3>
+                        <div class="odds-badge underdog">CUOTA: [+000]</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CO-MAIN EVENT -->
+        <section class="card-section">
+            <div class="section-header-small">
+                <h2 class="main-title comain-title">CO-MAIN EVENT</h2>
+                <div class="title-underline-small comain-underline"></div>
+            </div>
+            <div class="matchup-list">
+                <div class="matchup-row">
+                    <div class="fighter-side left-side">
+                        <h3 class="fighter-name">[CO-MAIN A] <span class="fighter-record">(0-0-0)</span></h3>
+                        <div class="odds-badge favorite">CUOTA: [-000]</div>
+                    </div>
+                    <div class="vs-circle">VS</div>
+                    <div class="fighter-side right-side">
+                        <h3 class="fighter-name">[CO-MAIN B] <span class="fighter-record">(0-0-0)</span></h3>
+                        <div class="odds-badge underdog">CUOTA: [+000]</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN CARD -->
+        <section class="card-section">
+            <div class="section-header-small">
+                <h2 class="main-title maincard-title">MAIN CARD</h2>
+            </div>
+            <div class="matchup-list">
+                <!-- 3 Peleas Main Card -->
+                <div class="matchup-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3><div class="odds-badge favorite">[-000]</div></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3><div class="odds-badge underdog">[+000]</div></div></div>
+                <div class="matchup-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3><div class="odds-badge favorite">[-000]</div></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3><div class="odds-badge underdog">[+000]</div></div></div>
+                <div class="matchup-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3><div class="odds-badge favorite">[-000]</div></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3><div class="odds-badge underdog">[+000]</div></div></div>
+            </div>
+        </section>
+
+        <!-- PRELIMS -->
+        <section class="card-section">
+            <div class="section-header-small">
+                <h2 class="main-title prelims-title">PRELIMS</h2>
+            </div>
+            <div class="matchup-list">
+                <!-- 4 Peleas Prelims -->
+                <div class="matchup-row prelim-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3></div></div>
+                <div class="matchup-row prelim-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3></div></div>
+                <div class="matchup-row prelim-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3></div></div>
+                <div class="matchup-row prelim-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3></div></div>
+            </div>
+        </section>
+
+        <!-- EARLY PRELIMS -->
+        <section class="card-section">
+            <div class="section-header-small">
+                <h2 class="main-title early-prelims-title">EARLY PRELIMS</h2>
+            </div>
+            <div class="matchup-list">
+                <!-- 3 Peleas Early Prelims -->
+                <div class="matchup-row prelim-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3></div></div>
+                <div class="matchup-row prelim-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3></div></div>
+                <div class="matchup-row prelim-row"><div class="fighter-side left-side"><h3 class="fighter-name">[ATLETA]</h3></div><div class="vs-circle">VS</div><div class="fighter-side right-side"><h3 class="fighter-name">[ATLETA]</h3></div></div>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <div class="odds-disclaimer">
+            <i class="fas fa-info-circle"></i> AVISO LEGAL: Las cuotas (Live Odds) mostradas en esta plataforma se sincronizan en tiempo real y tienen propósitos puramente informativos o de análisis estadístico. Fight Connect no procesa transacciones de dinero.
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="logo">FIGHT <span>CONNECT</span></div>
+        <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+    </footer>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

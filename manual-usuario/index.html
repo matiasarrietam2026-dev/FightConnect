@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Oficial de Usuario | FIGHT CONNECT</title>
+    <!-- Google Fonts Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Dedicated Manual Stylesheet (Relativo y Autónomo) -->
+    <link rel="stylesheet" href="./css/manual.css">
+</head>
+<body>
+
+    <!-- Ambient Glow & Cyber Grid -->
+    <div class="ambient-bg">
+        <div class="ambient-orb-1"></div>
+        <div class="ambient-orb-2"></div>
+        <div class="ambient-orb-3"></div>
+        <div class="ambient-grid"></div>
+    </div>
+
+    <!-- Header Superior Flotante -->
+    <header class="manual-header">
+        <a href="../index.html" class="brand-wrapper">
+            <div class="brand-logo">FIGHT <span>CONNECT</span></div>
+            <span class="brand-badge"><i class="fas fa-book-bookmark"></i> MANUAL OFICIAL v2.4</span>
+        </a>
+
+        <div class="header-center-search">
+            <i class="fas fa-search search-icon-left"></i>
+            <input type="text" id="manual-search-box" class="search-input-pill" placeholder="Buscar pantalla, rol, regla, endpoint..." autocomplete="off">
+            <span class="search-shortcut-kbd">Ctrl K</span>
+        </div>
+
+        <div class="header-actions">
+            <button class="btn-ghost" onclick="window.print()" title="Imprimir o exportar como documento PDF">
+                <i class="fas fa-file-pdf" style="color: #ff6b6b;"></i> Guardar PDF
+            </button>
+            <a href="../index.html" class="btn-primary-glow">
+                <i class="fas fa-arrow-left"></i> Ir al Aplicativo
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenedor Maestro de Documentación -->
+    <div class="manual-container">
+
+        <!-- Sidebar Izquierda: Navegación por Capítulos y Filtros -->
+        <aside class="sidebar-nav">
+            <!-- Filtro Rápido por Rol -->
+            <div class="role-filter-group">
+                <button class="role-chip active" data-role="all">Todos</button>
+                <button class="role-chip" data-role="promoter">Promotora</button>
+                <button class="role-chip" data-role="fighter">Peleador</button>
+                <button class="role-chip" data-role="fan">Fanático</button>
+                <button class="role-chip" data-role="public">Ecosistema</button>
+            </div>
+
+            <!-- Capítulo 01 -->
+            <div class="nav-section">
+                <div class="nav-section-title"><i class="fas fa-door-open"></i> 01. Acceso & Registro</div>
+                <ul class="nav-list">
+                    <li><a href="#doc-portal-login"><span>Portal de Acceso</span><span class="nav-badge-pill">index</span></a></li>
+                    <li><a href="#doc-promoter-reg"><span>Registro Promotora</span><span class="nav-badge-pill">kyb</span></a></li>
+                    <li><a href="#doc-fighter-reg"><span>Registro Peleador</span><span class="nav-badge-pill">form</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Capítulo 02 -->
+            <div class="nav-section">
+                <div class="nav-section-title"><i class="fas fa-building"></i> 02. Promotoras & KYB</div>
+                <ul class="nav-list">
+                    <li><a href="#doc-promoter-lvl0"><span>Dashboard Nivel 0</span><span class="nav-badge-pill">L0</span></a></li>
+                    <li><a href="#doc-promoter-kyb"><span>Ajustes & KYB Médico</span><span class="nav-badge-pill">L1</span></a></li>
+                    <li><a href="#doc-promoter-lvl2"><span>Dashboard Nivel 2</span><span class="nav-badge-pill">L2</span></a></li>
+                    <li><a href="#doc-promoter-scout"><span>Motor de Scouting</span><span class="nav-badge-pill">PRO</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Capítulo 03 -->
+            <div class="nav-section">
+                <div class="nav-section-title"><i class="fas fa-fist-raised"></i> 03. Peleadores</div>
+                <ul class="nav-list">
+                    <li><a href="#doc-fighter-dash"><span>Panel de Mando</span><span class="nav-badge-pill">KPI</span></a></li>
+                    <li><a href="#doc-fighter-buscar"><span>Buscar Oportunidades</span><span class="nav-badge-pill">BOUTS</span></a></li>
+                    <li><a href="#doc-fighter-postulaciones"><span>Postulaciones</span><span class="nav-badge-pill">APPLY</span></a></li>
+                    <li><a href="#doc-fighter-historial"><span>Récord & Historial</span><span class="nav-badge-pill">W-L-D</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Capítulo 04 -->
+            <div class="nav-section">
+                <div class="nav-section-title"><i class="fas fa-ticket-alt"></i> 04. Fanáticos</div>
+                <ul class="nav-list">
+                    <li><a href="#doc-fan-dash"><span>Centro del Fan</span><span class="nav-badge-pill">DASH</span></a></li>
+                    <li><a href="#doc-fan-buscar"><span>Explorador Global</span><span class="nav-badge-pill">SEARCH</span></a></li>
+                    <li><a href="#doc-fan-favoritos"><span>Roster Favoritos</span><span class="nav-badge-pill">STAR</span></a></li>
+                    <li><a href="#doc-fan-ajustes"><span>Preferencias del Fan</span><span class="nav-badge-pill">USER</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Capítulo 05 -->
+            <div class="nav-section">
+                <div class="nav-section-title"><i class="fas fa-globe"></i> 05. Ecosistema Público</div>
+                <ul class="nav-list">
+                    <li><a href="#doc-fightfeed"><span>FightFeed Social</span><span class="nav-badge-pill">FEED</span></a></li>
+                    <li><a href="#doc-local"><span>Cartelera Local</span><span class="nav-badge-pill">RADAR</span></a></li>
+                    <li><a href="#doc-internacional"><span>Cartelera Mundial</span><span class="nav-badge-pill">PPV</span></a></li>
+                    <li><a href="#doc-evento-detalle"><span>Detalle de Velada</span><span class="nav-badge-pill">MAIN</span></a></li>
+                    <li><a href="#doc-noticias"><span>Central de Noticias</span><span class="nav-badge-pill">NEWS</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Capítulo 06 -->
+            <div class="nav-section">
+                <div class="nav-section-title"><i class="fas fa-balance-scale"></i> 06. Regulación & Prensa</div>
+                <ul class="nav-list">
+                    <li><a href="#doc-sanciones"><span>Comisión Disciplinaria</span><span class="nav-badge-pill">WADA</span></a></li>
+                    <li><a href="#doc-terminos"><span>Estatuto Legal</span><span class="nav-badge-pill">LEGAL</span></a></li>
+                    <li><a href="#doc-privacidad"><span>Tratamiento de Datos</span><span class="nav-badge-pill">PRIVACY</span></a></li>
+                    <li><a href="#doc-mediakit"><span>Media Kit Institucional</span><span class="nav-badge-pill">BRAND</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Capítulo 07 -->
+            <div class="nav-section">
+                <div class="nav-section-title"><i class="fas fa-mobile-screen"></i> 07. Responsive Móvil</div>
+                <ul class="nav-list">
+                    <li><a href="#doc-mobile"><span>Auditoría en Smartphones</span><span class="nav-badge-pill">390PX</span></a></li>
+                    <li><a href="#doc-faq"><span>Preguntas Frecuentes</span><span class="nav-badge-pill">FAQ</span></a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Columna Central: Contenido y Vistas con Mac Frames -->
+        <main class="main-content">
+
+            <!-- Hero Banner -->
+            <div class="hero-box">
+                <div class="hero-meta-row">
+                    <span class="meta-pill pill-live"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> ECOSISTEMA ACTIVO</span>
+                    <span class="meta-pill"><i class="fas fa-shield-alt"></i> VERIFICACIÓN KYB NIVEL 0-2</span>
+                    <span class="meta-pill"><i class="fas fa-code"></i> ARQUITECTURA MULTI-PÁGINA (MPA)</span>
+                </div>
+                <h1 class="hero-title">MANUAL INTEGRAL DE USUARIO<br><span>FIGHT CONNECT</span></h1>
+                <p class="hero-description">
+                    Guía técnica y operativa completa para promotores de ligas de combate, peleadores profesionales y aficionados. Este manual detalla cada pantalla, flujo de interacción, candado de seguridad y requerimiento médico-deportivo homologado.
+                </p>
+
+                <div class="hero-metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-val">25+</div>
+                        <div class="metric-label">Vistas y Módulos Web</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val">3 Niveles</div>
+                        <div class="metric-label">Cumplimiento KYB Promotora</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val">100%</div>
+                        <div class="metric-label">Seguridad Anti-Manipulación</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val">0%</div>
+                        <div class="metric-label">Comisión en Taquilla</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================================= -->
+            <!-- 01. ACCESO & REGISTRO                                   -->
+            <!-- ======================================================= -->
+            
+            <!-- PORTAL LOGIN -->
+            <section id="doc-portal-login" class="doc-section" data-doc-role="public">
+                <div class="doc-section-header">
+                    <div class="doc-eyebrow"><i class="fas fa-fingerprint"></i> Módulo 01 · Autenticación</div>
+                    <h2 class="doc-title">Portal de Acceso y Selección de Rol <span class="badge-role role-public">PÚBLICO</span></h2>
+                    <p class="doc-subtitle">Punto de entrada seguro al ecosistema con autenticación Firebase y derivación inteligente de roles.</p>
+                </div>
+
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/index.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">PROD</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../index.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir vista</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Portal de Acceso y Selección de Rol (index.html)">
+                        <img src="./screenshots/01_index_portal.png" alt="Portal de Acceso FightConnect">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Autenticar de manera segura a promotores, peleadores y aficionados mediante credenciales encriptadas, verificando el rol asignado en Firestore para redirigir al panel correspondiente.
+                        </div>
+
+                        <div class="doc-grid-2col">
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-list-check"></i> Elementos Clave</div>
+                                <ul class="bullets-list">
+                                    <li><strong>Formulario SSL:</strong> Correo y contraseña con hashing criptográfico.</li>
+                                    <li><strong>Redirección Automática:</strong> Detecta el rol (`promoter`, `fighter`, `fan`) y traslada al usuario a su vista privada.</li>
+                                    <li><strong>Enlace "Únete al Club":</strong> Despliega el selector de roles para nuevos registros.</li>
+                                </ul>
+                            </div>
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-route"></i> Flujo Paso a Paso</div>
+                                <div class="step-roadmap">
+                                    <div class="step-row">
+                                        <div class="step-circle">1</div>
+                                        <div class="step-heading">Ingresar Credenciales</div>
+                                        <div class="step-detail">Escribe el email corporativo o deportivo y contraseña autorizada.</div>
+                                    </div>
+                                    <div class="step-row">
+                                        <div class="step-circle">2</div>
+                                        <div class="step-heading">Validación de Rol</div>
+                                        <div class="step-detail">El guardián de rutas comprueba permisos y da paso al dashboard.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="callout-box tip">
+                            <i class="fas fa-shield-halved"></i>
+                            <div><strong>Guardián de Rutas Activo:</strong> Si un usuario intenta acceder por URL directa a un panel privado sin sesión, es redirigido de inmediato a este portal de autenticación.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REGISTRO PROMOTORA -->
+            <section id="doc-promoter-reg" class="doc-section" data-doc-role="promoter">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/index.html#register-promoter</span>
+                            <span style="color: var(--accent-gold); font-size: 0.68rem; font-weight: 700;">KYB ONBOARDING</span>
+                        </div>
+                        <div class="mac-actions">
+                            <span class="badge-role role-promoter">PROMOTORA</span>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Formulario de Afiliación de Promotora (index.html)">
+                        <img src="./screenshots/02_promoter_registro.png" alt="Registro Promotora">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Registrar legalmente una liga u organización deportiva. Toda promotora ingresa en <strong>Nivel 0</strong> hasta consignar ambulancia y seguro médico.
+                        </div>
+
+                        <div class="doc-grid-2col">
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-file-signature"></i> Campos Exigidos</div>
+                                <ul class="bullets-list">
+                                    <li><strong>Nombre de la Liga:</strong> Marca deportiva oficial.</li>
+                                    <li><strong>Representante Legal:</strong> Titular civilmente responsable ante la comisión.</li>
+                                    <li><strong>Sede & Teléfono:</strong> Canal de contacto para taquilla y matchmakers.</li>
+                                </ul>
+                            </div>
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-lock"></i> Protocolo Nivel 0</div>
+                                <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                                    El registro crea la cuenta con <code>verificationLevel: 0</code> y <code>isVerified: false</code>. Los botones de publicación se inhabilitan hasta la validación de seguros.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="callout-box warning">
+                            <i class="fas fa-triangle-exclamation"></i>
+                            <div><strong>Responsabilidad Médica:</strong> FightConnect no cobra intermediación en entradas, pero exige cumplimiento riguroso de pólizas de salud para salvaguardar la vida de los atletas.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REGISTRO PELEADOR -->
+            <section id="doc-fighter-reg" class="doc-section" data-doc-role="fighter">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/index.html#register-fighter</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">ATHLETE PROFILE</span>
+                        </div>
+                        <div class="mac-actions">
+                            <span class="badge-role role-fighter">PELEADOR</span>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Ficha de Inscripción Deportiva del Peleador (index.html)">
+                        <img src="./screenshots/06_fighter_registro.png" alt="Registro del Peleador">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Crear el currículum deportivo del atleta con división de peso, récord oficial certificado y gimnasio de entrenamiento.
+                        </div>
+
+                        <div class="doc-grid-2col">
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-dumbbell"></i> Datos del Perfil</div>
+                                <ul class="bullets-list">
+                                    <li><strong>División de Peso:</strong> De Peso Mosca (125 lbs) a Peso Pesado (+205 lbs).</li>
+                                    <li><strong>Récord Oficial:</strong> Victorias, Derrotas y Empates (W-L-D).</li>
+                                    <li><strong>Gimnasio y Ciudad:</strong> Ubicación para emparejamientos regionales.</li>
+                                </ul>
+                            </div>
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-bolt"></i> Acceso Directo</div>
+                                <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                                    Al enviar la ficha, el peleador accede a su panel de control y puede buscar carteleras con cupos abiertos para postularse.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 02. PROMOTORAS & KYB                                    -->
+            <!-- ======================================================= -->
+
+            <!-- PROMOTORA NIVEL 0 -->
+            <section id="doc-promoter-lvl0" class="doc-section" data-doc-role="promoter">
+                <div class="doc-section-header">
+                    <div class="doc-eyebrow"><i class="fas fa-shield-virus"></i> Módulo 02 · Promotoras & KYB</div>
+                    <h2 class="doc-title">Dashboard de Promotora: Nivel 0 (No Verificada) <span class="badge-role role-promoter">NIVEL 0</span></h2>
+                    <p class="doc-subtitle">Panel inicial de la promotora con candados preventivos de publicación y banner de advertencia.</p>
+                </div>
+
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/promotor-dashboard.html</span>
+                            <span style="color: var(--accent-gold); font-size: 0.68rem; font-weight: 700;">NIVEL 0 · RESTRINGIDO</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../promotor-dashboard.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Dashboard de Promotora Nivel 0 con Banner de Advertencia (promotor-dashboard.html)">
+                        <img src="./screenshots/03_promoter_dash_nivel0.png" alt="Dashboard Promotora Nivel 0">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Impedir que organizaciones no avaladas anuncien veladas en la cartelera pública sin antes certificar paramédicos y seguros.
+                        </div>
+
+                        <div class="doc-grid-2col">
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-lock"></i> Candados de Nivel 0</div>
+                                <ul class="bullets-list">
+                                    <li><strong>Botón "Crear Evento" Bloqueado:</strong> Muestra un candado y abre el modal de aviso KYB.</li>
+                                    <li><strong>Banner Amarillo:</strong> Indica el estado "Pendiente de Verificación KYB".</li>
+                                    <li><strong>Oculto en Cartelera Local:</strong> Ningún evento borrador es visible a la afición.</li>
+                                </ul>
+                            </div>
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-forward"></i> Pasos a Seguir</div>
+                                <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                                    Haz clic en <strong>"Completar Expediente KYB"</strong> o ingresa a <strong>Ajustes</strong> para adjuntar los comprobantes médicos y fiscales.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AJUSTES Y KYB PROMOTOR -->
+            <section id="doc-promoter-kyb" class="doc-section" data-doc-role="promoter">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/promotor-ajustes.html</span>
+                            <span style="color: var(--accent-gold); font-size: 0.68rem; font-weight: 700;">CENTRO KYB & MÉDICO</span>
+                        </div>
+                        <div class="mac-actions">
+                            <span class="badge-role role-promoter">KYB PROTOCOL</span>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Formulario de Verificación KYB y Protocolo Médico (promotor-ajustes.html)">
+                        <img src="./screenshots/04_promotor_ajustes_kyb.png" alt="Ajustes KYB Promotora">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Cargar los datos legales y médicos que elevan la promotora a <strong>Nivel 1 (En Revisión)</strong> y, tras auditoría del comité, a <strong>Nivel 2 (Verificada)</strong>.
+                        </div>
+
+                        <div class="doc-grid-2col">
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-file-medical"></i> Expediente Médico Requerido</div>
+                                <ul class="bullets-list">
+                                    <li><strong>Número de Licencia de Comisión:</strong> Registro oficial ante el ente regulador.</li>
+                                    <li><strong>Ambulancia UTI Móvil:</strong> Proveedor médico con médico deportólogo in situ.</li>
+                                    <li><strong>Póliza de Gastos Médicos:</strong> Seguro contra accidentes de combate.</li>
+                                    <li><strong>Declaración Médica:</strong> Checkbox obligatorio de aceptación de responsabilidad.</li>
+                                </ul>
+                            </div>
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-layer-group"></i> Escala de Niveles KYB</div>
+                                <div class="step-roadmap">
+                                    <div class="step-row">
+                                        <div class="step-circle">0</div>
+                                        <div class="step-heading">Nivel 0: Sin Documentos</div>
+                                        <div class="step-detail">Cuenta nueva, eventos bloqueados.</div>
+                                    </div>
+                                    <div class="step-row">
+                                        <div class="step-circle">1</div>
+                                        <div class="step-heading">Nivel 1: En Auditoría</div>
+                                        <div class="step-detail">Expediente remitido a la comisión evaluadora.</div>
+                                    </div>
+                                    <div class="step-row">
+                                        <div class="step-circle">2</div>
+                                        <div class="step-heading">Nivel 2: Verificada</div>
+                                        <div class="step-detail">Insignia dorada oficial, creación de veladas y taquilla habilitadas.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="callout-box tip">
+                            <i class="fas fa-lock"></i>
+                            <div><strong>Seguridad Anti-Manipulación:</strong> Ningún usuario puede elevar su propio nivel mediante scripts o consola. Las reglas de Firestore bloquean cualquier escritura a <code>isVerified</code> o <code>verificationLevel</code> sin autorización de la plataforma.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROMOTORA NIVEL 2 VERIFICADA -->
+            <section id="doc-promoter-lvl2" class="doc-section" data-doc-role="promoter">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/promotor-dashboard.html</span>
+                            <span style="color: var(--accent-green); font-size: 0.68rem; font-weight: 700;">NIVEL 2 · VERIFICADA</span>
+                        </div>
+                        <div class="mac-actions">
+                            <span class="badge-role" style="background: rgba(0,230,118,0.15); border: 1px solid rgba(0,230,118,0.4); color: var(--accent-green);">VERIFICADA</span>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Dashboard de Promotora Verificada Nivel 2 (promotor-dashboard.html)">
+                        <img src="./screenshots/05_promotor_dash_nivel2.png" alt="Dashboard Promotora Nivel 2">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Gestionar el ciclo de vida completo de las veladas deportivas: creación de carteleras, gestión de taquilla directa (WhatsApp/URL) y confirmación de peleadores postulados.
+                        </div>
+
+                        <div class="doc-grid-2col">
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-sliders"></i> Herramientas Habilitadas</div>
+                                <ul class="bullets-list">
+                                    <li><strong>Creador de Veladas:</strong> Fecha, sede, divisiones de peso y afiches oficiales.</li>
+                                    <li><strong>Bandeja de Postulantes:</strong> Evalúa atletas y confírmalos en la cartelera.</li>
+                                    <li><strong>Taquilla Oficial:</strong> Vincula tu WhatsApp o boletería externa sin cobro de comisiones.</li>
+                                </ul>
+                            </div>
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-handshake"></i> Flujo para Aceptar una Pelea</div>
+                                <div class="step-roadmap">
+                                    <div class="step-row">
+                                        <div class="step-circle">1</div>
+                                        <div class="step-heading">Revisar Récord</div>
+                                        <div class="step-detail">Examina el historial y peso del peleador postulado.</div>
+                                    </div>
+                                    <div class="step-row">
+                                        <div class="step-circle">2</div>
+                                        <div class="step-heading">Confirmar Combate</div>
+                                        <div class="step-detail">Haz clic en "Aceptar" para formalizar la pelea en la cartelera.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROMOTOR SCOUTING -->
+            <section id="doc-promoter-scout" class="doc-section" data-doc-role="promoter">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/promotor-scouting.html</span>
+                            <span style="color: var(--accent-gold); font-size: 0.68rem; font-weight: 700;">RADAR DE TALENTOS</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../promotor-scouting.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Motor de Scouting de Atletas (promotor-scouting.html)">
+                        <img src="./screenshots/13_promotor_scouting.png" alt="Motor de Scouting">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Encontrar atletas activos según división de peso, récord y ubicación para reemplazos urgentes o peleas estelares.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 03. PELEADORES                                          -->
+            <!-- ======================================================= -->
+
+            <!-- PELEADOR DASHBOARD -->
+            <section id="doc-fighter-dash" class="doc-section" data-doc-role="fighter">
+                <div class="doc-section-header">
+                    <div class="doc-eyebrow"><i class="fas fa-trophy"></i> Módulo 03 · Peleadores</div>
+                    <h2 class="doc-title">Panel de Mando del Peleador <span class="badge-role role-fighter">PELEADOR</span></h2>
+                    <p class="doc-subtitle">Resumen integral del atleta con récord deportivo, estado de licencia médica y accesos rápidos.</p>
+                </div>
+
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/fighter-dashboard.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">ATHLETE DASHBOARD</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../fighter-dashboard.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Dashboard del Peleador (fighter-dashboard.html)">
+                        <img src="./screenshots/07_fighter_dashboard.png" alt="Dashboard Peleador">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Brindar al deportista un centro de control con estadísticas homologadas, estado de licencia física y alertas de combate.
+                        </div>
+
+                        <div class="doc-grid-2col">
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-chart-line"></i> Estadísticas Clave</div>
+                                <ul class="bullets-list">
+                                    <li><strong>Tarjeta de Récord:</strong> Victorias, derrotas, empates y porcentaje de finalización.</li>
+                                    <li><strong>Estatus Médico:</strong> Vigencia del apto físico deportivo reglamentario.</li>
+                                    <li><strong>Próximo Combate:</strong> Ficha de la velada confirmada y rival.</li>
+                                </ul>
+                            </div>
+                            <div class="panel-block">
+                                <div class="panel-block-title"><i class="fas fa-compass"></i> Navegación Rápida</div>
+                                <ul class="bullets-list">
+                                    <li><strong>Buscar Carteleras:</strong> Explorar oportunidades de combate abiertas.</li>
+                                    <li><strong>Mis Postulaciones:</strong> Monitorear respuestas de promotores.</li>
+                                    <li><strong>Historial:</strong> Registro cronológico de combates.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PELEADOR BUSCAR -->
+            <section id="doc-fighter-buscar" class="doc-section" data-doc-role="fighter">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/fighter-buscar.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">OPORTUNIDADES DE COMBATE</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../fighter-buscar.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Buscador de Carteleras y Oportunidades (fighter-buscar.html)">
+                        <img src="./screenshots/10_fighter_buscar.png" alt="Buscar Carteleras">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Explorar veladas de promotoras verificadas con combates vacantes en la división de peso del atleta y postularse con un clic.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PELEADOR POSTULACIONES -->
+            <section id="doc-fighter-postulaciones" class="doc-section" data-doc-role="fighter">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/fighter-postulaciones.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">MIS POSTULACIONES</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../fighter-postulaciones.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Seguimiento de Postulaciones (fighter-postulaciones.html)">
+                        <img src="./screenshots/08_fighter_postulaciones.png" alt="Mis Postulaciones">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Monitorear el estado de cada solicitud enviada a promotoras: <em>Pendiente</em>, <em>Aceptada</em> o <em>Rechazada</em>, con opción de cancelar postulación en caso de lesión.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PELEADOR HISTORIAL -->
+            <section id="doc-fighter-historial" class="doc-section" data-doc-role="fighter">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/fighter-historial.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">HISTORIAL DEPORTIVO</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../fighter-historial.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Historial Deportivo del Atleta (fighter-historial.html)">
+                        <img src="./screenshots/09_fighter_historial.png" alt="Historial Deportivo">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Bitácora inmutable de combates: rival, método (KO/SUB/DEC), asalto y resultado oficial avalado por la comisión.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 04. FANÁTICOS                                           -->
+            <!-- ======================================================= -->
+
+            <!-- FAN DASHBOARD -->
+            <section id="doc-fan-dash" class="doc-section" data-doc-role="fan">
+                <div class="doc-section-header">
+                    <div class="doc-eyebrow"><i class="fas fa-users"></i> Módulo 04 · Fanáticos</div>
+                    <h2 class="doc-title">Centro de Experiencia del Fanático <span class="badge-role role-fan">FANÁTICO</span></h2>
+                    <p class="doc-subtitle">Panel para seguir veladas cercanas, peleadores favoritos y acceso a taquilla directa.</p>
+                </div>
+
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/fan-dashboard.html</span>
+                            <span style="color: var(--accent-cyan); font-size: 0.68rem; font-weight: 700;">FAN DASHBOARD</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../fan-dashboard.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Dashboard del Fanático (fan-dashboard.html)">
+                        <img src="./screenshots/08_fan_dashboard.png" alt="Dashboard Fan">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Conectar a la afición con eventos en su ciudad, noticias de sus ídolos deportivos y enlace de taquilla oficial sin recargos.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAN BUSCADOR -->
+            <section id="doc-fan-buscar" class="doc-section" data-doc-role="fan">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/fan-buscar.html</span>
+                            <span style="color: var(--accent-cyan); font-size: 0.68rem; font-weight: 700;">EXPLORADOR DE EVENTOS</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../fan-buscar.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Explorador para Fanáticos (fan-buscar.html)">
+                        <img src="./screenshots/16_fan_buscar.png" alt="Explorador Fanático">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Localizar cualquier velada, liga o atleta mediante filtros de ciudad y disciplina en tiempo real.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAN FAVORITOS -->
+            <section id="doc-fan-favoritos" class="doc-section" data-doc-role="fan">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/fan-favoritos.html</span>
+                            <span style="color: var(--accent-cyan); font-size: 0.68rem; font-weight: 700;">ROSTER FAVORITO</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../fan-favoritos.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Colección de Favoritos del Fan (fan-favoritos.html)">
+                        <img src="./screenshots/15_fan_favoritos.png" alt="Favoritos del Fan">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Guardar eventos y atletas con la estrella para recibir recordatorios antes de cada pelea.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAN AJUSTES -->
+            <section id="doc-fan-ajustes" class="doc-section" data-doc-role="fan">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/fan-ajustes.html</span>
+                            <span style="color: var(--accent-cyan); font-size: 0.68rem; font-weight: 700;">PREFERENCIAS DEL FAN</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../fan-ajustes.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Ajustes de Cuenta del Fan (fan-ajustes.html)">
+                        <img src="./screenshots/09_fan_ajustes.png" alt="Ajustes Fan">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Administrar datos de perfil, ciudad predilecta para el radar y preferencias de alertas.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 05. ECOSISTEMA SOCIAL & CARTELERAS                      -->
+            <!-- ======================================================= -->
+
+            <!-- FIGHTFEED -->
+            <section id="doc-fightfeed" class="doc-section" data-doc-role="public">
+                <div class="doc-section-header">
+                    <div class="doc-eyebrow"><i class="fas fa-comments"></i> Módulo 05 · Ecosistema Social & Carteleras</div>
+                    <h2 class="doc-title">FightFeed: Red Social de Artes Marciales <span class="badge-role role-public">COMUNIDAD</span></h2>
+                    <p class="doc-subtitle">Muro de debate, campamentos de entrenamiento y reacciones temáticas de combate.</p>
+                </div>
+
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/fightfeed.html</span>
+                            <span style="color: #fff; font-size: 0.68rem; font-weight: 700;">FIGHTFEED SOCIAL</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../fightfeed.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Muro Social FightFeed (fightfeed.html)">
+                        <img src="./screenshots/02_fightfeed_social.png" alt="FightFeed Social">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Permitir a los peleadores compartir actualizaciones de pesaje, a promotores difundir eventos y a la comunidad debatir sanamente.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CARTELERA LOCAL -->
+            <section id="doc-local" class="doc-section" data-doc-role="public">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/local.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">RADAR LOCAL</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../local.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Cartelera Local de Veladas (local.html)">
+                        <img src="./screenshots/10_cartelera_local.png" alt="Cartelera Local">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Radar geográfico de veladas locales con filtro de ciudad y botón de compra de entradas oficial conectado con la promotora.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CARTELERA INTERNACIONAL -->
+            <section id="doc-internacional" class="doc-section" data-doc-role="public">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/internacional.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">CIRCUITO MUNDIAL</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../internacional.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Cartelera Internacional PPV (internacional.html)">
+                        <img src="./screenshots/04_cartelera_internacional.png" alt="Cartelera Internacional">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Calendario de veladas mundiales de UFC, Bellator, ONE Championship y boxeo internacional con horarios oficiales.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DETALLE DE EVENTO -->
+            <section id="doc-evento-detalle" class="doc-section" data-doc-role="public">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/evento-detalle.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">DETALLE DE VELADA</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../evento-detalle.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Ficha Técnica y Cartelera Estelar (evento-detalle.html)">
+                        <img src="./screenshots/05_evento_detalle.png" alt="Detalle del Evento">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Desglose completo de combates: Esquina Roja vs. Azul, cartelera estelar, preliminares y sede con mapa interactivo.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOTICIAS -->
+            <section id="doc-noticias" class="doc-section" data-doc-role="public">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/noticias.html</span>
+                            <span style="color: #fff; font-size: 0.68rem; font-weight: 700;">CENTRAL PERIODÍSTICA</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../noticias.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Portal de Noticias MMA y Boxeo (noticias.html)">
+                        <img src="./screenshots/06_noticias_mma.png" alt="Noticias de Deportes de Contacto">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Cobertura periodística de resultados, anuncios de firmas de atletas y novedades del circuito nacional e internacional.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 06. REGULACIÓN, LEGAL & PRENSA                          -->
+            <!-- ======================================================= -->
+
+            <!-- SANCIONES -->
+            <section id="doc-sanciones" class="doc-section" data-doc-role="public">
+                <div class="doc-section-header">
+                    <div class="doc-eyebrow"><i class="fas fa-scale-balanced"></i> Módulo 06 · Regulación, Legal & Prensa</div>
+                    <h2 class="doc-title">Comisión Disciplinaria y Registro Antidopaje <span class="badge-role role-public">ÉTICA & WADA</span></h2>
+                    <p class="doc-subtitle">Publicación transparente de inhabilitaciones médicas por KO y sanciones antidopaje.</p>
+                </div>
+
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/sanciones.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">CÓDIGO DISCIPLINARIO</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../sanciones.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Registro Oficial de Sanciones (sanciones.html)">
+                        <img src="./screenshots/18_sanciones_comision.png" alt="Comisión Disciplinaria y Sanciones">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Proteger la salud de los atletas transparentando suspensiones médicas obligatorias.
+                        </div>
+
+                        <div class="callout-box danger">
+                            <i class="fas fa-ban"></i>
+                            <div><strong>Bloqueo Automático:</strong> Todo peleador con expediente sancionatorio activo tiene bloqueado el botón de postulación a cualquier cartelera en FightConnect.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TÉRMINOS LEGALES -->
+            <section id="doc-terminos" class="doc-section" data-doc-role="public">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/terminos.html</span>
+                            <span style="color: #fff; font-size: 0.68rem; font-weight: 700;">ESTATUTO LEGAL</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../terminos.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Términos de Combate y Estatuto Legal (terminos.html)">
+                        <img src="./screenshots/11_terminos_legales.png" alt="Términos Legales">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Marco contractual de combate, exenciones de responsabilidad médica y compromiso ético de promotores y atletas.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRIVACIDAD -->
+            <section id="doc-privacidad" class="doc-section" data-doc-role="public">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/privacidad.html</span>
+                            <span style="color: #fff; font-size: 0.68rem; font-weight: 700;">DATOS SENSIBLES</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../privacidad.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Política de Privacidad y Tratamiento de Datos (privacidad.html)">
+                        <img src="./screenshots/20_privacidad_datos.png" alt="Privacidad y Datos">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Cifrado de datos médicos y documentación fiscal bajo estrictas normas de protección de datos.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MEDIA KIT -->
+            <section id="doc-mediakit" class="doc-section" data-doc-role="public">
+                <div class="mac-window-frame">
+                    <div class="mac-titlebar">
+                        <div class="mac-traffic-lights">
+                            <span class="traffic-light red"></span>
+                            <span class="traffic-light yellow"></span>
+                            <span class="traffic-light green"></span>
+                        </div>
+                        <div class="mac-address-bar">
+                            <span class="url-text"><i class="fas fa-lock"></i> https://fightconnect.app/media-kit.html</span>
+                            <span style="color: var(--accent-red); font-size: 0.68rem; font-weight: 700;">BRAND ASSETS</span>
+                        </div>
+                        <div class="mac-actions">
+                            <a href="../media-kit.html" class="btn-open-real" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Abrir</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-display" data-caption="Media Kit Institucional y Recursos Gráficos (media-kit.html)">
+                        <img src="./screenshots/21_media_kit.png" alt="Media Kit Oficial">
+                        <span class="screenshot-glass-badge"><i class="fas fa-magnifying-glass-plus"></i> Clic para Ampliar</span>
+                    </div>
+
+                    <div class="doc-card-body">
+                        <div class="doc-objective-box">
+                            <strong>Propósito:</strong> Proveer a medios de prensa y organizadores los logotipos vectoriales, tipografías y reglas de difusión de FightConnect.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 07. EXPERIENCIA MÓVIL EN SMARTPHONES                    -->
+            <!-- ======================================================= -->
+            <section id="doc-mobile" class="doc-section" data-doc-role="public">
+                <div class="doc-section-header">
+                    <div class="doc-eyebrow"><i class="fas fa-mobile-screen"></i> Módulo 07 · Responsividad Móvil</div>
+                    <h2 class="doc-title">Experiencia Móvil en Smartphones <span class="badge-role role-public">VIEWPORT 390PX</span></h2>
+                    <p class="doc-subtitle">Diseño táctil optimizado para navegación con pulgares sin desbordamiento horizontal.</p>
+                </div>
+
+                <div class="mobile-gallery">
+                    <div class="mobile-phone-frame" data-caption="Vista Móvil: Panel de Promotora (390x844px)">
+                        <div class="mobile-phone-notch"><span class="mobile-phone-notch-bar"></span></div>
+                        <img src="./screenshots/12_mobile_promotor.png" alt="Promotora Móvil">
+                        <div class="mobile-phone-info">
+                            <h4>Panel Promotora Móvil</h4>
+                            <p>Gestión de veladas y postulantes adaptada a pantalla vertical.</p>
+                        </div>
+                    </div>
+
+                    <div class="mobile-phone-frame" data-caption="Vista Móvil: Dashboard del Peleador (390x844px)">
+                        <div class="mobile-phone-notch"><span class="mobile-phone-notch-bar"></span></div>
+                        <img src="./screenshots/13_mobile_fighter.png" alt="Peleador Móvil">
+                        <div class="mobile-phone-info">
+                            <h4>Dashboard Peleador Móvil</h4>
+                            <p>KPIs deportivos y postulación a peleas con un solo toque.</p>
+                        </div>
+                    </div>
+
+                    <div class="mobile-phone-frame" data-caption="Vista Móvil: Cartelera Local y Taquilla (390x844px)">
+                        <div class="mobile-phone-notch"><span class="mobile-phone-notch-bar"></span></div>
+                        <img src="./screenshots/14_mobile_cartelera.png" alt="Cartelera Local Móvil">
+                        <div class="mobile-phone-info">
+                            <h4>Cartelera Local Móvil</h4>
+                            <p>Exploración fluida de eventos y taquilla directa en smartphones.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PREGUNTAS FRECUENTES FAQ -->
+            <section id="doc-faq" class="doc-section" data-doc-role="public">
+                <div class="doc-section-header">
+                    <div class="doc-eyebrow"><i class="fas fa-circle-question"></i> Soporte y Preguntas Frecuentes</div>
+                    <h2 class="doc-title">Preguntas Frecuentes (FAQ)</h2>
+                </div>
+
+                <div class="mac-window-frame">
+                    <div class="doc-card-body">
+                        <div style="margin-bottom: 1.8rem;">
+                            <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.4rem;">
+                                ¿FightConnect cobra comisión por venta de boletos o bolsas de pelea?
+                            </h4>
+                            <p style="color: var(--text-secondary); font-size: 0.92rem; margin: 0; line-height: 1.6;">
+                                No. FightConnect es un facilitador tecnológico puro (0% comisiones). Conectamos directamente a los aficionados con la taquilla o WhatsApp oficial de la promotora.
+                            </p>
+                        </div>
+                        <div style="margin-bottom: 1.8rem; border-top: 1px solid var(--border-subtle); padding-top: 1.4rem;">
+                            <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.4rem;">
+                                ¿Por qué mi promotora aparece en Nivel 0 y no puede publicar eventos?
+                            </h4>
+                            <p style="color: var(--text-secondary); font-size: 0.92rem; margin: 0; line-height: 1.6;">
+                                Por regulaciones estrictas de seguridad de combate, ninguna entidad puede publicar veladas hasta certificar servicio de ambulancia con médico deportólogo y seguro médico en <code>promotor-ajustes.html</code>.
+                            </p>
+                        </div>
+                        <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.4rem;">
+                            <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.4rem;">
+                                ¿Cómo se homologan los récords de los peleadores?
+                            </h4>
+                            <p style="color: var(--text-secondary); font-size: 0.92rem; margin: 0; line-height: 1.6;">
+                                Cada combate finalizado se coteja contra las actas oficiales emitidas por las comisiones atléticas y árbitros certificados de la velada.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer del Manual -->
+            <footer style="margin-top: 5rem; padding: 3rem 0; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; color: var(--text-muted); font-size: 0.85rem;">
+                <div><strong>FIGHT CONNECT &copy; 2026</strong> · Manual Oficial de Operaciones.</div>
+                <div>
+                    <a href="../index.html" style="color: #fff; text-decoration: none; margin: 0 8px;">Inicio</a>
+                    <a href="../local.html" style="color: #fff; text-decoration: none; margin: 0 8px;">Cartelera</a>
+                    <a href="../terminos.html" style="color: #fff; text-decoration: none; margin: 0 8px;">Términos</a>
+                    <a href="../privacidad.html" style="color: #fff; text-decoration: none; margin: 0 8px;">Privacidad</a>
+                    <a href="../media-kit.html" style="color: #fff; text-decoration: none; margin: 0 8px;">Media Kit</a>
+                    <a href="../manual-programador/index.html" style="color: #00d2d3; text-decoration: none; margin: 0 8px; font-weight: 600;"><i class="fas fa-terminal"></i> Manual de Programador</a>
+                </div>
+            </footer>
+
+        </main>
+
+        <!-- Sidebar Derecha: Tabla de Contenidos (On This Page) -->
+        <aside class="toc-sidebar">
+            <div class="toc-title"><i class="fas fa-list"></i> En esta página</div>
+            <ul class="toc-list">
+                <li><a href="#doc-portal-login">Portal de Acceso</a></li>
+                <li><a href="#doc-promoter-reg">Registro Promotora</a></li>
+                <li><a href="#doc-fighter-reg">Registro Peleador</a></li>
+                <li><a href="#doc-promoter-lvl0">Promotora Nivel 0</a></li>
+                <li><a href="#doc-promoter-kyb">Ajustes & KYB</a></li>
+                <li><a href="#doc-promoter-lvl2">Promotora Nivel 2</a></li>
+                <li><a href="#doc-promoter-scout">Scouting</a></li>
+                <li><a href="#doc-fighter-dash">Panel Peleador</a></li>
+                <li><a href="#doc-fighter-buscar">Buscar Peleas</a></li>
+                <li><a href="#doc-fighter-postulaciones">Postulaciones</a></li>
+                <li><a href="#doc-fighter-historial">Récord & Historial</a></li>
+                <li><a href="#doc-fan-dash">Centro del Fan</a></li>
+                <li><a href="#doc-fan-buscar">Explorador Fan</a></li>
+                <li><a href="#doc-fan-favoritos">Favoritos</a></li>
+                <li><a href="#doc-fan-ajustes">Ajustes Fan</a></li>
+                <li><a href="#doc-fightfeed">FightFeed</a></li>
+                <li><a href="#doc-local">Cartelera Local</a></li>
+                <li><a href="#doc-internacional">Cartelera Mundial</a></li>
+                <li><a href="#doc-evento-detalle">Detalle de Velada</a></li>
+                <li><a href="#doc-noticias">Noticias</a></li>
+                <li><a href="#doc-sanciones">Sanciones</a></li>
+                <li><a href="#doc-terminos">Términos</a></li>
+                <li><a href="#doc-privacidad">Privacidad</a></li>
+                <li><a href="#doc-mediakit">Media Kit</a></li>
+                <li><a href="#doc-mobile">Móvil en Smartphones</a></li>
+                <li><a href="#doc-faq">FAQ</a></li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <!-- Lightbox Modal de Alta Definición -->
+    <div id="manual-lightbox-modal">
+        <div class="lightbox-content-box" onclick="event.stopPropagation()">
+            <button class="lightbox-close-btn" onclick="closeLightboxModal()">&times;</button>
+            <img id="lightbox-active-img" src="" alt="Captura ampliada">
+            <div class="lightbox-footer-bar">
+                <span id="lightbox-caption-text" style="font-weight: 600;"></span>
+                <span style="font-size: 0.75rem; color: #888;">Navega con flechas ◀ ▶ o presiona ESC para cerrar</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Autónomo del Manual -->
+    <script type="module" src="./js/manual.js"></script>
+
+</body>
+</html>

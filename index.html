@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticación | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/extensions.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="grid-overlay"></div>
+
+    <!-- Minimal Nav for Auth -->
+    <nav class="top-nav" style="justify-content: center;">
+        <div class="logo">FIGHT <span>CONNECT</span></div>
+    </nav>
+
+    <main class="auth-wrapper">
+        <!-- ESTADO 1: LOGIN -->
+        <section id="login-section" class="auth-step active">
+            <div class="form-wrapper glass-panel">
+                <div class="form-header" style="text-align: center; justify-content: center; flex-direction: column; align-items: center;">
+                    <h2>ACCESO AL SISTEMA</h2>
+                    <p class="protocol-text">PROTOCOLO DE SEGURIDAD ESTRICTO</p>
+                </div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>CORREO ELECTRÓNICO</label>
+                        <input type="email" id="login-email" placeholder="USUARIO@RED.COM" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CONTRASEÑA</label>
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-submit-form" style="width: 100%; margin-top: 1rem;">ACCEDER</button>
+                </form>
+                <div class="auth-switch">
+                    <p>¿No eres parte del ecosistema? <a href="#" id="link-to-register">ÚNETE AL CLUB</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESTADO 2: REGISTRO DINÁMICO -->
+        <section id="register-section" class="auth-step">
+            <!-- Paso 1: Selección de Camino -->
+            <div id="role-selection" class="step active">
+                <div class="section-header">
+                    <p class="pre-title">INICIALIZANDO ONBOARDING</p>
+                    <h1 class="main-title" style="font-size: 2rem;">ELIGE TU POSICIÓN EN EL ECOSISTEMA</h1>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="role-cards" style="max-width: 1000px; margin: 0 auto;">
+                    <!-- FIGHTER -->
+                    <div class="role-card" data-role="fighter">
+                        <div class="card-bg-icon"><i class="fas fa-dumbbell"></i></div>
+                        <div class="card-icon-box active-box"><i class="fas fa-hand-rock"></i></div>
+                        <h3>PELEADOR</h3>
+                        <p style="margin-bottom: 1rem;">Atletas buscando oportunidades y gestión de récord.</p>
+                        <ul style="text-align: left; margin: 0 0 1.5rem 0; font-size: 0.8rem; color: var(--text-gray); list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem;"><span style="color: var(--accent-red); margin-right: 8px; font-size: 0.6rem;">■</span> Bio Pro & Récord</li>
+                            <li style="margin-bottom: 0.5rem;"><span style="color: var(--accent-red); margin-right: 8px; font-size: 0.6rem;">■</span> Gestión de combates</li>
+                            <li><span style="color: var(--accent-red); margin-right: 8px; font-size: 0.6rem;">■</span> Contacto con eventos</li>
+                        </ul>
+                        <button class="btn-select">SELECCIONAR ESTATUS</button>
+                    </div>
+                    
+                    <!-- PROMOTION -->
+                    <div class="role-card" data-role="promotion">
+                        <div class="card-bg-icon"><i class="fas fa-building"></i></div>
+                        <div class="card-icon-box"><i class="fas fa-medal"></i></div>
+                        <h3>PROMOTOR</h3>
+                        <p style="margin-bottom: 1rem;">Organizaciones que crean eventos y reclutan talento.</p>
+                        <ul style="text-align: left; margin: 0 0 1.5rem 0; font-size: 0.8rem; color: var(--text-gray); list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem;"><span style="color: var(--accent-red); margin-right: 8px; font-size: 0.6rem;">■</span> Operaciones de Eventos</li>
+                            <li style="margin-bottom: 0.5rem;"><span style="color: var(--accent-red); margin-right: 8px; font-size: 0.6rem;">■</span> Scouting Nacional</li>
+                            <li><span style="color: var(--accent-red); margin-right: 8px; font-size: 0.6rem;">■</span> Integración PPV</li>
+                        </ul>
+                        <button class="btn-select">SELECCIONAR ESTATUS</button>
+                    </div>
+
+                    <!-- FAN -->
+                    <div class="role-card" data-role="fan">
+                        <div class="card-bg-icon"><i class="fas fa-users"></i></div>
+                        <div class="card-icon-box"><i class="fas fa-ticket-alt"></i></div>
+                        <h3>FANÁTICO</h3>
+                        <p style="margin-bottom: 1rem;">Entusiastas siguiendo la acción en vivo.</p>
+                        <ul style="text-align: left; margin: 0 0 1.5rem 0; font-size: 0.8rem; color: var(--text-gray); list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem;"><span style="color: var(--accent-red); margin-right: 8px; font-size: 0.6rem;">■</span> Datos en Tiempo Real</li>
+                            <li style="margin-bottom: 0.5rem;"><span style="color: var(--accent-red); margin-right: 8px; font-size: 0.6rem;">■</span> Historial de Peleas</li>
+                            <li><span style="color: var(--accent-red); margin-right: 8px; font-size: 0.6rem;">■</span> Acceso a Comunidad</li>
+                        </ul>
+                        <button class="btn-select">SELECCIONAR ESTATUS</button>
+                    </div>
+                </div>
+                <div class="auth-switch" style="text-align: center; margin-top: 3rem;">
+                    <p><a href="#" class="link-to-login"><i class="fas fa-arrow-left"></i> Volver al Login</a></p>
+                </div>
+            </div>
+
+            <!-- Paso 2: Formulario Condicional -->
+            <div id="registration-form" class="step">
+                <div class="form-wrapper glass-panel">
+                    <div class="form-header">
+                        <div>
+                            <h2 id="form-main-title">APLICACIÓN</h2>
+                            <p class="protocol-text">PROTOCOLO: VERIFICACIÓN PROFESIONAL ESTÁNDAR REQUERIDA</p>
+                        </div>
+                        <div class="live-portal-badge">
+                            <span class="dot"></span> PORTAL SEGURO
+                        </div>
+                    </div>
+
+                    <form id="dynamic-form">
+                        <!-- Injected via JS -->
+                    </form>
+                    
+                    <div class="auth-switch" style="text-align: center; margin-top: 2rem;">
+                        <p><a href="#" id="link-back-roles">Volver a selección de roles</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="#" class="link-to-login">Volver al Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer" style="justify-content: center; border-top: none; flex-direction: column; gap: 0.5rem; text-align: center;">
+        <div>
+            <a href="manual-usuario/index.html" style="color: #ff6b6b; font-size: 0.8rem; font-weight: 600; text-decoration: none; letter-spacing: 0.5px;"><i class="fas fa-book-open"></i> MANUAL OFICIAL DE USUARIO</a>
+            &nbsp;&nbsp;•&nbsp;&nbsp;
+            <a href="terminos.html" style="color: #888899; font-size: 0.8rem; text-decoration: none;">TÉRMINOS</a>
+            &nbsp;&nbsp;•&nbsp;&nbsp;
+            <a href="privacidad.html" style="color: #888899; font-size: 0.8rem; text-decoration: none;">PRIVACIDAD</a>
+        </div>
+        <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+    </footer>
+
+    <script type="module" src="/js/auth.js"></script>
+    <script type="module" src="/js/app.js"></script>
+</body>
+</html>

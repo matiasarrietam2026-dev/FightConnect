@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustes de Espectador | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fighter.css">
+    <link rel="stylesheet" href="css/extensions.css">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo" style="font-size: 1.2rem;">FIGHT <span>CONNECT</span></div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="fan-dashboard.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="fan-favoritos.html"><i class="fas fa-ticket-alt"></i> Mis Favoritos</a></li>
+                <li><a href="fan-buscar.html"><i class="fas fa-search"></i> Buscar Peleadores</a></li>
+                <li class="active"><a href="fan-ajustes.html"><i class="fas fa-cog"></i> Ajustes</a></li>
+                <li class="sidebar-category">ECOSISTEMA</li>
+                <li><a href="local.html"><i class="fas fa-map-marked-alt"></i> Cartelera Local</a></li>
+                <li><a href="internacional.html"><i class="fas fa-globe"></i> Cartelera Int. & Odds</a></li>
+                <li><a href="noticias.html"><i class="fas fa-newspaper"></i> Noticias MMA</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+        <form id="fan-settings-form">
+            <!-- Header -->
+            <header class="dash-header">
+                <div>
+                    <p class="pre-title">CONFIGURACIÓN DE CUENTA</p>
+                    <h1 class="main-title">[NOMBRE DEL FAN]</h1>
+                </div>
+                <button type="submit" id="btn-save-fan-settings" class="btn-solid red-btn"><i class="fas fa-save"></i> GUARDAR CAMBIOS</button>
+            </header>
+            <div class="settings-grid">
+                
+                <!-- BLOQUE 1: Perfil de Usuario -->
+                <div class="settings-card glass-panel">
+                    <h2 class="section-title"><i class="fas fa-user-circle"></i> PERFIL PÚBLICO</h2>
+                    
+                    <div class="form-group" style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
+                        <div class="profile-avatar avatar-loading" id="fan-avatar-box" style="width: 100px; height: 100px; cursor: pointer;" title="Haz clic para subir avatar">
+                            <i class="fas fa-user avatar-placeholder-icon" id="fan-avatar-placeholder-icon" style="font-size: 2.5rem;"></i>
+                            <img id="fan-avatar-preview" class="avatar-preview-img" alt="Avatar del fanático" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+                            <div class="avatar-overlay">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <input type="file" id="fan-avatar-input" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="logo-meta-box">
+                            <p style="color: var(--text-white); font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.35rem; letter-spacing: 1.5px; font-weight: 600;">AVATAR DE LA COMUNIDAD</p>
+                            <p style="color: var(--text-gray); font-size: 0.8rem; margin-bottom: 0.85rem; line-height: 1.4;">Sube tu foto de perfil para destacar en FightFeed y los pronósticos.</p>
+                            <button type="button" class="btn-upload-fan" id="btn-trigger-fan-avatar">
+                                <i class="fas fa-cloud-arrow-up"></i> SUBIR FOTO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>NOMBRE COMPLETO</label>
+                        <input type="text" id="edit-fan-name" placeholder="Ej. Juan Pérez">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>CORREO ELECTRÓNICO</label>
+                            <input type="email" id="edit-fan-email" placeholder="usuario@correo.com">
+                        </div>
+                        <div class="form-group">
+                            <label>UBICACIÓN</label>
+                            <input type="text" id="edit-fan-location" placeholder="País, Ciudad">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 2: Preferencias -->
+                <div class="settings-card glass-panel">
+                    <h2 class="section-title"><i class="fas fa-sliders-h"></i> PREFERENCIAS DEL ECOSISTEMA</h2>
+                    
+                    <div class="form-group">
+                        <label>DISCIPLINAS FAVORITAS (ALGORITMO)</label>
+                        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                            <label class="certify-box" style="margin: 0; padding: 0; border: none; align-items: center; cursor: pointer;">
+                                <input type="checkbox" id="fan-pref-mma" value="mma" checked>
+                                <span style="font-size: 0.85rem; color: var(--text-white);">Artes Marciales Mixtas (MMA)</span>
+                            </label>
+                            <label class="certify-box" style="margin: 0; padding: 0; border: none; align-items: center; cursor: pointer;">
+                                <input type="checkbox" id="fan-pref-bjj" value="bjj">
+                                <span style="font-size: 0.85rem; color: var(--text-white);">Grappling / BJJ</span>
+                            </label>
+                            <label class="certify-box" style="margin: 0; padding: 0; border: none; align-items: center; cursor: pointer;">
+                                <input type="checkbox" id="fan-pref-boxeo" value="boxeo">
+                                <span style="font-size: 0.85rem; color: var(--text-white);">Boxeo y Striking</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <label>NOTIFICACIONES</label>
+                        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                            <label class="certify-box" style="margin: 0; padding: 0; border: none; align-items: center; cursor: pointer;">
+                                <input type="checkbox" id="fan-pref-alertas" value="alertas" checked>
+                                <span style="font-size: 0.85rem; color: var(--text-white);">Recibir alertas de nuevos eventos en mi zona</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BLOQUE 3: Zona de Peligro -->
+            <div class="settings-card danger-zone glass-panel" style="margin-top: 2rem;">
+                <div>
+                    <h2 class="section-title" style="color: #ff3333; border-bottom: none; margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> ELIMINAR CUENTA</h2>
+                    <p style="color: var(--text-gray); font-size: 0.85rem; max-width: 600px;">Si eliminas tu cuenta, perderás acceso a tus tickets comprados, tu watchlist y tus preferencias. Esta acción es irreversible.</p>
+                </div>
+                <button type="button" class="btn-outline danger-btn" id="btn-eliminar-cuenta-fan" style="border-color: #ff3333; color: #ff3333; padding: 0.8rem 1.5rem; white-space: nowrap;"><i class="fas fa-trash-alt"></i> CERRAR CUENTA</button>
+            </div>
+        </form>
+
+        <!-- MODAL DE CONFIRMACIÓN: ELIMINACIÓN DE CUENTA DE FAN -->
+        <div id="modal-eliminar-cuenta-fan" class="modal-overlay hidden">
+            <div class="modal-container glass-panel" style="max-width: 540px; border-top: 3px solid #ff3333; border-color: rgba(255, 51, 51, 0.4); box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 35px rgba(255, 51, 51, 0.25); position: relative;">
+                <button type="button" class="close-btn" id="btn-cerrar-modal-eliminar-fan">&times;</button>
+                
+                <div class="modal-header" style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(255, 51, 51, 0.15); border: 2px solid #ff3333; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: #ff3333; font-size: 2rem; box-shadow: 0 0 25px rgba(255, 51, 51, 0.4);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h2 style="color: #ff3333; font-family: var(--font-heading); letter-spacing: 2px; font-size: 1.6rem; margin: 0;">¿CERRAR TU CUENTA DEFINITIVAMENTE?</h2>
+                    <p style="color: var(--text-gray); font-size: 0.85rem; margin-top: 0.4rem;">Perderás de forma permanente el acceso a tickets, favoritos e historial de actividad.</p>
+                </div>
+
+                <div style="margin-bottom: 1.8rem;">
+                    <label for="input-confirmar-eliminar-fan" style="display: block; font-size: 0.8rem; color: var(--text-gray); margin-bottom: 0.6rem; letter-spacing: 0.5px;">
+                        Para confirmar, escribe <strong style="color: #ff3333; letter-spacing: 1px;">ELIMINAR</strong> a continuación:
+                    </label>
+                    <input type="text" id="input-confirmar-eliminar-fan" placeholder="Escribe ELIMINAR" autocomplete="off" style="width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 51, 51, 0.4); border-radius: 6px; color: #fff; padding: 0.85rem 1rem; font-size: 1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-align: center; outline: none; transition: border-color 0.3s, box-shadow 0.3s;">
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" id="btn-cancelar-eliminar-fan" class="btn-outline" style="padding: 0.8rem 1.4rem; border-color: rgba(255,255,255,0.2); color: #fff; font-family: var(--font-heading); letter-spacing: 1px; cursor: pointer;">
+                        CANCELAR
+                    </button>
+                    <button type="button" id="btn-confirmar-eliminar-fan" disabled style="padding: 0.8rem 1.6rem; background: #333; color: #777; border: 1px solid #444; border-radius: 4px; font-family: var(--font-heading); letter-spacing: 1.5px; font-weight: 700; cursor: not-allowed; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.6rem;">
+                        <i class="fas fa-trash-alt"></i> ELIMINAR CUENTA
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Limpio -->
+        <footer class="panel-clean-footer">
+            <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+        </footer>
+    </main>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

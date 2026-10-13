@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIGHT CONNECT - Noticias y Prensa de Deportes de Combate</title>
+    <meta name="description" content="Portal oficial de noticias, reportajes, exclusivas y cobertura en tiempo real de MMA, Boxeo, Jiu-Jitsu, Muay Thai y Kickboxing en FightConnect.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/local.css">
+    <link rel="stylesheet" href="css/noticias.css">
+</head>
+<body>
+    <div id="bg-canvas"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navegación Superior Pública -->
+    <nav class="top-nav">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">FIGHT <span>CONNECT</span></a></div>
+        <ul class="nav-links">
+            <li class="dropdown-container">
+                <a href="#" class="dropdown-trigger">EVENTOS <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                <div class="dropdown-menu">
+                    <a href="local.html">EVENTOS LOCALES</a>
+                    <a href="internacional.html">CARTELERAS INTERNACIONALES</a>
+                </div>
+            </li>
+            <li><a href="noticias.html" class="active-nav" style="color: var(--accent-red);">NOTICIAS</a></li>
+            <li><a href="fightfeed.html"><i class="fas fa-fire" style="color: var(--accent-red); margin-right: 4px;"></i>FIGHTFEED</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="index.html"><button class="btn-join">INICIAR SESIÓN</button></a>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal de Noticias -->
+    <main class="news-container">
+        
+        <!-- Ticker de Noticias de Última Hora -->
+        <div class="breaking-ticker-wrapper">
+            <div class="ticker-badge">
+                <i class="fas fa-bolt"></i> ÚLTIMA HORA
+            </div>
+            <div class="ticker-content-track">
+                <div id="breaking-ticker-marquee" class="ticker-marquee">
+                    <!-- Inyectado dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Encabezado de Sección -->
+        <header class="section-header">
+            <p class="pre-title">PRENSA & ACTUALIDAD GLOBAL</p>
+            <h1 class="main-title">NOTICIAS DEL MUNDO DE LOS DEPORTES DE COMBATE</h1>
+            <div class="title-underline"></div>
+            
+            <div class="live-status-pill">
+                <span class="pulse-dot"></span>
+                <span>SINCRONIZADO CON REDES OFICIALES DE PRENSA & ESPN EN VIVO</span>
+            </div>
+        </header>
+
+        <!-- Barra de Búsqueda y Selector de Categorías -->
+        <div class="controls-container">
+            <div class="search-bar-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="news-search-input" placeholder="Buscar noticia, peleador (ej. Pereira, Topuria, Canelo, Rodtang) o liga (UFC, PFL, ONE)..." autocomplete="off">
+            </div>
+
+            <div class="filters-wrapper">
+                <button class="filter-pill active" data-filter="all">TODOS</button>
+                <button class="filter-pill" data-filter="ufc"><i class="fas fa-fire" style="color: var(--accent-red); margin-right: 5px;"></i>UFC</button>
+                <button class="filter-pill" data-filter="mma">MMA (TODAS)</button>
+                <button class="filter-pill" data-filter="boxing">BOXEO</button>
+                <button class="filter-pill" data-filter="bjj">JIU-JITSU</button>
+                <button class="filter-pill" data-filter="muaythai">MUAY THAI</button>
+                <button class="filter-pill" data-filter="kickboxing">KICKBOXING</button>
+                <button class="filter-pill" data-filter="lucha">LUCHA</button>
+            </div>
+        </div>
+
+        <!-- Noticia Principal Destacada (Hero) -->
+        <section id="featured-news-hero" style="width: 100%;">
+            <!-- Inyectado dinámicamente -->
+        </section>
+
+        <!-- Grid de Artículos de Prensa y Noticias -->
+        <section id="news-grid-container" class="news-grid">
+            <!-- Loading State Inicial -->
+            <div class="loading-state" style="grid-column: 1 / -1; border: 1px dashed var(--border-light); padding: 4rem; text-align: center;">
+                <div class="spinner" style="margin: 0 auto 1.5rem auto;"></div>
+                <p style="color: var(--text-white); font-size: 1.1rem; letter-spacing: 2px;">CARGANDO NOTICIAS EN TIEMPO REAL...</p>
+                <span class="sub-loading" style="color: var(--text-gray); margin-top: 0.5rem; display: block;">CONECTANDO CON SERVIDORES DE PRENSA INTERNACIONALES</span>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal para Lectura de Noticia Completa -->
+    <div id="news-detail-modal" class="news-modal-wrapper" aria-hidden="true">
+        <div class="news-modal-backdrop" onclick="window.closeNewsModal && window.closeNewsModal()"></div>
+        <div class="news-modal-card">
+            <button class="news-modal-close-btn" aria-label="Cerrar artículo" onclick="window.closeNewsModal && window.closeNewsModal()">&times;</button>
+            <div id="news-modal-dynamic-content">
+                <!-- Se inyectará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de Página Principal -->
+    <footer class="main-footer">
+        <div class="logo">FIGHT <span>CONNECT</span></div>
+        <ul class="footer-links">
+            <li><a href="privacidad.html">POLÍTICA DE PRIVACIDAD</a></li>
+            <li><a href="terminos.html">TÉRMINOS DE COMBATE</a></li>
+            <li><a href="sanciones.html">SANCIONES</a></li>
+            <li><a href="media-kit.html">MEDIA KIT</a></li>
+            <li><a href="manual-usuario.html">MANUAL DE USUARIO</a></li>
+        </ul>
+        <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+    </footer>
+
+    <!-- Scripts y Módulos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="module" src="/js/firebase-config.js"></script>
+    <script type="module" src="/js/noticias.js"></script>
+    <script type="module" src="/js/app.js"></script>
+</body>
+</html>

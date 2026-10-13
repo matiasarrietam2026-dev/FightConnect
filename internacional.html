@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIGHT CONNECT - Eventos Internacionales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/local.css">
+    <link rel="stylesheet" href="css/extensions.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="grid-overlay"></div>
+
+    <nav class="top-nav">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">FIGHT <span>CONNECT</span></a></div>
+        <ul class="nav-links">
+            <li class="dropdown-container">
+                <a href="#" class="dropdown-trigger active-nav">EVENTOS <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                <div class="dropdown-menu">
+                    <a href="local.html">EVENTOS LOCALES</a>
+                    <a href="internacional.html" class="active-nav">CARTELERAS INTERNACIONALES</a>
+                </div>
+            </li>
+            <li><a href="noticias.html">NOTICIAS</a></li>
+            <li><a href="fightfeed.html"><i class="fas fa-fire" style="color: var(--accent-red); margin-right: 4px;"></i>FIGHTFEED</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="index.html" class="btn-join" style="text-decoration:none;">INICIAR SESIÓN</a>
+        </div>
+    </nav>
+
+    <main class="local-container">
+        <div class="section-header">
+            <p class="pre-title">LAS GRANDES LIGAS</p>
+            <h1 class="main-title">EVENTOS INTERNACIONALES Y LIVE ODDS</h1>
+            <div class="title-underline"></div>
+            
+            <!-- Live API Status Indicator -->
+            <div id="live-api-status" class="live-status-pill">
+                <span class="pulse-dot"></span>
+                <span>CONECTANDO A ESPN & BOXING REAL-TIME API...</span>
+            </div>
+        </div>
+
+        <!-- Search & Filter Section -->
+        <div class="controls-container">
+            <div class="search-bar-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="event-search-input" placeholder="Buscar peleador (ej. Canelo, Makhachev), liga o ciudad..." autocomplete="off">
+            </div>
+
+            <div class="filters-wrapper">
+                <button class="filter-pill active" data-filter="all">TODOS</button>
+                <button class="filter-pill" data-filter="mma">MMA</button>
+                <button class="filter-pill" data-filter="boxing">BOXEO</button>
+                <button class="filter-pill" data-filter="lucha">LUCHA</button>
+                <button class="filter-pill" data-filter="bjj">JIU-JITSU</button>
+                <button class="filter-pill" data-filter="muaythai">MUAY THAI</button>
+                <button class="filter-pill" data-filter="kickboxing">KICKBOXING</button>
+            </div>
+        </div>
+
+        <!-- Event Grid (Dynamic API Injection) -->
+        <div id="international-events-grid" class="events-grid">
+            <!-- Loading State -->
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>CONECTANDO CON SERVIDORES INTERNACIONALES DE UFC Y BOXEO...</p>
+                <span class="sub-loading">SINCRONIZANDO CARTELERAS EN TIEMPO REAL Y CUOTAS EN VIVO</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para Cartelera Completa y Probabilidades -->
+    <div id="event-detail-modal" class="modal-wrapper">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card">
+            <button class="modal-close-btn" aria-label="Cerrar modal">&times;</button>
+            <div id="modal-event-content">
+                <!-- Se inyectará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="logo">FIGHT <span>CONNECT</span></div>
+        <ul class="footer-links">
+            <li><a href="privacidad.html">POLÍTICA DE PRIVACIDAD</a></li>
+            <li><a href="terminos.html">TÉRMINOS DE COMBATE</a></li>
+            <li><a href="sanciones.html">SANCIONES</a></li>
+            <li><a href="media-kit.html">MEDIA KIT</a></li>
+            <li><a href="manual-usuario.html">MANUAL DE USUARIO</a></li>
+        </ul>
+        <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="module" src="/js/firebase-config.js"></script>
+    <script type="module" src="/js/app.js"></script>
+    <script type="module" src="/js/internacional.js"></script>
+</body>
+</html>

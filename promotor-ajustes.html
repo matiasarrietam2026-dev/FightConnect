@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustes de Organización | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fighter.css"> <!-- Reutilizando estilos base del avatar -->
+    <link rel="stylesheet" href="css/extensions.css">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo" style="font-size: 1.2rem;">FIGHT <span>CONNECT</span></div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="promotor-dashboard.html"><i class="fas fa-calendar-alt"></i> Mis Eventos</a></li>
+                <li><a href="promotor-scouting.html"><i class="fas fa-search"></i> Scouting</a></li>
+                <li class="active"><a href="promotor-ajustes.html"><i class="fas fa-cog"></i> Ajustes de Organización</a></li>
+                <li class="sidebar-category">ECOSISTEMA</li>
+                <li><a href="local.html"><i class="fas fa-map-marked-alt"></i> Cartelera Local</a></li>
+                <li><a href="internacional.html"><i class="fas fa-globe"></i> Cartelera Int. & Odds</a></li>
+                <li><a href="noticias.html"><i class="fas fa-newspaper"></i> Noticias MMA</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+        <!-- Header -->
+        <header class="dash-header">
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <div class="org-header-logo-box" id="org-header-logo-box" style="width: 64px; height: 64px; border-radius: 12px; background: #16161a; border: 2px solid rgba(255, 193, 7, 0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; box-shadow: 0 0 15px rgba(255, 193, 7, 0.15);">
+                    <i class="fas fa-building" id="org-header-logo-icon" style="font-size: 1.8rem; color: #ffc107;"></i>
+                    <img id="org-header-logo-img" alt="Logo de la promotora" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                    <p class="pre-title">CONFIGURACIÓN ADMINISTRATIVA</p>
+                    <h1 class="main-title">[NOMBRE DE LA ORGANIZACIÓN]</h1>
+                </div>
+            </div>
+            <button type="submit" form="org-settings-form" class="btn-solid red-btn"><i class="fas fa-save"></i> GUARDAR CAMBIOS</button>
+        </header>
+
+        <form id="org-settings-form">
+            <div class="settings-grid">
+                
+                <!-- BLOQUE 1: Identidad Corporativa -->
+                <div class="settings-card glass-panel">
+                    <h2 class="section-title"><i class="fas fa-id-badge"></i> IDENTIDAD CORPORATIVA</h2>
+                    
+                    <div class="form-group" style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
+                        <div class="company-logo-uploader avatar-loading" id="org-logo-uploader-box" title="Haz clic para subir logotipo" style="cursor: pointer;">
+                            <i class="fas fa-building avatar-placeholder-icon" id="org-logo-placeholder-icon"></i>
+                            <img id="org-logo-preview" class="avatar-preview-img" alt="Logotipo de la promotora" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+                            <div class="avatar-overlay">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <input type="file" id="edit-org-logo-input" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="logo-meta-box">
+                            <p style="color: var(--text-white); font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.35rem; letter-spacing: 1.5px; font-weight: 600;">LOGOTIPO DE LA LIGA</p>
+                            <p style="color: var(--text-gray); font-size: 0.8rem; margin-bottom: 0.85rem; line-height: 1.4;">Recomendado: archivo PNG o JPG cuadrado (400×400px).</p>
+                            <button type="button" class="btn-upload-logo" id="btn-trigger-logo-upload">
+                                <i class="fas fa-cloud-arrow-up"></i> SUBIR LOGOTIPO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>NOMBRE LEGAL DE LA PROMOTORA</label>
+                        <input type="text" id="edit-org-name" placeholder="Ej. Fight Connect Promotions LLC">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>CORREO ELECTRÓNICO OFICIAL</label>
+                            <input type="email" id="edit-org-email" placeholder="contacto@organizacion.com">
+                        </div>
+                        <div class="form-group">
+                            <label>SITIO WEB OFICIAL</label>
+                            <input type="url" id="edit-org-website" placeholder="https://www.organizacion.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>SEDE PRINCIPAL (PAÍS / CIUDAD)</label>
+                        <input type="text" id="edit-org-location" placeholder="Ej. Colombia, Medellín">
+                    </div>
+                </div>
+
+                <!-- BLOQUE 2: Verificación Institucional y Cumplimiento (KYB) -->
+                <div class="settings-card glass-panel" id="kyb-section">
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 0.8rem; margin-bottom: 1.5rem;">
+                        <h2 class="section-title" style="border-bottom: none; margin: 0; padding: 0;">
+                            <i class="fas fa-shield-alt" style="color: #ffc107;"></i> VERIFICACIÓN INSTITUCIONAL Y CUMPLIMIENTO (KYB)
+                        </h2>
+                        <span id="kyb-status-pill" class="kyb-status-pill unverified">
+                            <i class="fas fa-shield-halved"></i> <span id="kyb-status-text">NO VERIFICADA (NIVEL 0)</span>
+                        </span>
+                    </div>
+
+                    <!-- Callout Exención e Intermediario -->
+                    <div class="kyb-legal-callout">
+                        <i class="fas fa-info-circle" style="color: #ffc107; margin-right: 6px;"></i>
+                        <strong>ESTATUTO DE INTERMEDIARIO TECNOLÓGICO:</strong> FightConnect es un canal neutral de difusión y matchmaking deportivo. No custodiamos bolsas, no participamos en contratos laborales ni retenemos fondos financieros. La verificación KYB valida la legitimidad legal de la promotora y garantiza estándares médicos obligatorios en beneficio de la integridad de los atletas.
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>NÚMERO DE IDENTIFICACIÓN FISCAL / RUT</label>
+                            <input type="text" id="edit-org-rut" placeholder="Ej. 901.234.567-8 (DIAN o equivalente)">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-org-commission">COMISIÓN ATLÉTICA O FEDERACIÓN AFILIADA</label>
+                            <select id="edit-org-commission" title="Comisión atlética o federación afiliada" aria-label="Comisión atlética o federación afiliada">
+                                <option value="">Seleccione afiliación deportiva...</option>
+                                <option value="ocamm">Asociación OCAMM (Artes Marciales Mixtas)</option>
+                                <option value="fecolmma">FECOLMMA (Federación Colombiana MMA)</option>
+                                <option value="fedebox">Federación Colombiana de Boxeo</option>
+                                <option value="wako">WAKO Kickboxing Colombia</option>
+                                <option value="independiente">Circuito Independiente / Reglas Unificadas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Cuadrícula de Carga de Documentación Legal (KYB Docs) -->
+                    <div style="margin-top: 1rem; margin-bottom: 0.8rem;">
+                        <label style="color: #fff; font-size: 0.85rem; font-family: var(--font-heading); letter-spacing: 1px;">
+                            EXPEDIENTE DE DOCUMENTACIÓN LEGAL (ARCHIVOS PDF / JPG / PNG HASTA 10MB)
+                        </label>
+                    </div>
+
+                    <div class="kyb-docs-grid">
+                        <!-- Doc 1: RUT Oficial -->
+                        <div class="kyb-doc-upload-box">
+                            <div class="kyb-doc-header">
+                                <div class="kyb-doc-title">
+                                    <i class="fas fa-file-invoice" style="color: #ffc107;"></i> RUT Tributario
+                                </div>
+                                <span class="kyb-doc-status-tag" id="status-tag-rut">Sin archivo</span>
+                            </div>
+                            <p class="kyb-doc-desc">Documento DIAN oficial con actividad económica deportiva o espectáculos.</p>
+                            <div class="kyb-doc-actions">
+                                <button type="button" class="btn-kyb-upload" id="btn-upload-rut">
+                                    <i class="fas fa-cloud-arrow-up"></i> Subir RUT
+                                </button>
+                                <input type="file" id="file-kyb-rut" accept=".pdf,image/*" style="display: none;">
+                                <a id="link-view-rut" class="btn-kyb-view-doc" target="_blank" style="display: none;">Ver doc</a>
+                            </div>
+                        </div>
+
+                        <!-- Doc 2: Cámara de Comercio -->
+                        <div class="kyb-doc-upload-box">
+                            <div class="kyb-doc-header">
+                                <div class="kyb-doc-title">
+                                    <i class="fas fa-landmark" style="color: #ffc107;"></i> Cámara de Comercio
+                                </div>
+                                <span class="kyb-doc-status-tag" id="status-tag-camara">Sin archivo</span>
+                            </div>
+                            <p class="kyb-doc-desc">Certificado de existencia y representación legal con vigencia menor a 60 días.</p>
+                            <div class="kyb-doc-actions">
+                                <button type="button" class="btn-kyb-upload" id="btn-upload-camara">
+                                    <i class="fas fa-cloud-arrow-up"></i> Subir Certificado
+                                </button>
+                                <input type="file" id="file-kyb-camara" accept=".pdf,image/*" style="display: none;">
+                                <a id="link-view-camara" class="btn-kyb-view-doc" target="_blank" style="display: none;">Ver doc</a>
+                            </div>
+                        </div>
+
+                        <!-- Doc 3: Aval Deportivo / Reconocimiento -->
+                        <div class="kyb-doc-upload-box">
+                            <div class="kyb-doc-header">
+                                <div class="kyb-doc-title">
+                                    <i class="fas fa-certificate" style="color: #ffc107;"></i> Aval / Licencia
+                                </div>
+                                <span class="kyb-doc-status-tag" id="status-tag-aval">Sin archivo</span>
+                            </div>
+                            <p class="kyb-doc-desc">Constancia de comisión, personería deportiva o licencia de promotor.</p>
+                            <div class="kyb-doc-actions">
+                                <button type="button" class="btn-kyb-upload" id="btn-upload-aval">
+                                    <i class="fas fa-cloud-arrow-up"></i> Subir Aval
+                                </button>
+                                <input type="file" id="file-kyb-aval" accept=".pdf,image/*" style="display: none;">
+                                <a id="link-view-aval" class="btn-kyb-view-doc" target="_blank" style="display: none;">Ver doc</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Declaración Médica Obligatoria en Ringside -->
+                    <div class="kyb-medical-box">
+                        <label class="kyb-medical-label">
+                            <input type="checkbox" id="kyb-medical-agreement" class="kyb-medical-checkbox">
+                            <span>
+                                <strong style="color: #ff4d4d;"><i class="fas fa-heart-pulse"></i> COMPROMISO DE SEGURIDAD Y SOPORTE VITAL EN RINGSIDE:</strong><br>
+                                Como organizador responsable, declaro bajo la gravedad de juramento que cada cartelera física incluirá médico colegiado de ringside en lona, ambulancia medicalizada presencial y paramédicos certificados. Asumo la total y exclusiva responsabilidad por la atención médica y seguridad de los combatientes.
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Botón de Acción de Verificación Oficial -->
+                    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+                        <button type="button" class="btn-solid kyb-submit-btn" id="btn-submit-kyb" style="background: linear-gradient(135deg, #ffc107, #d97706); color: #000; font-weight: 700; border: none; padding: 0.9rem 1.8rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(255, 193, 7, 0.25); border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-size: 0.88rem;">
+                            <i class="fas fa-file-shield"></i> RADICAR EXPEDIENTE PARA AUDITORÍA OFICIAL
+                        </button>
+                        <span style="font-size: 0.78rem; color: #8e8e93; display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-lock" style="color: #4caf50;"></i> Expediente confidencial bajo secreto comercial y Habeas Data
+                        </span>
+                    </div>
+                    <div id="kyb-feedback-msg" style="display: none; margin-top: 1.2rem; padding: 1rem 1.25rem; border-radius: 8px; font-size: 0.85rem; line-height: 1.5;"></div>
+
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <label>DESCRIPCIÓN DE LA ORGANIZACIÓN</label>
+                        <textarea id="edit-org-description" rows="4" placeholder="Breve descripción de la liga, su misión y visión..." style="width: 100%; background: transparent; border: 1px solid var(--border-light); color: var(--text-white); padding: 1rem; font-family: var(--font-sans); font-size: 0.85rem; resize: vertical;"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BLOQUE 3: Zona de Peligro -->
+            <div class="settings-card danger-zone glass-panel" style="margin-top: 2rem;">
+                <div>
+                    <h2 class="section-title" style="color: #ff3333; border-bottom: none; margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> ZONA DE PELIGRO</h2>
+                    <p style="color: var(--text-gray); font-size: 0.85rem; max-width: 600px;">Una vez que elimines la cuenta de la organización, no hay marcha atrás. Todos los eventos activos serán cancelados y los contratos pendientes serán anulados.</p>
+                </div>
+                <button type="button" class="btn-outline danger-btn" id="btn-eliminar-cuenta-promotor" style="border-color: #ff3333; color: #ff3333; padding: 0.8rem 1.5rem; white-space: nowrap;"><i class="fas fa-trash-alt"></i> SOLICITAR ELIMINACIÓN</button>
+            </div>
+        </form>
+
+        <!-- MODAL DE SEGURIDAD: CONFIRMACIÓN DE ELIMINACIÓN DE CUENTA DE ORGANIZACIÓN -->
+        <div id="modal-eliminar-cuenta-org" class="modal-overlay hidden">
+            <div class="modal-container glass-panel" style="max-width: 580px; border-top: 3px solid #ff3333; border-color: rgba(255, 51, 51, 0.4); box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 35px rgba(255, 51, 51, 0.25); position: relative;">
+                <button type="button" class="close-btn" id="btn-cerrar-modal-eliminar-org">&times;</button>
+                
+                <div class="modal-header" style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(255, 51, 51, 0.15); border: 2px solid #ff3333; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: #ff3333; font-size: 2rem; box-shadow: 0 0 25px rgba(255, 51, 51, 0.4);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h2 style="color: #ff3333; font-family: var(--font-heading); letter-spacing: 2px; font-size: 1.6rem; margin: 0;">¿ELIMINAR CUENTA DEFINITIVAMENTE?</h2>
+                    <p style="color: var(--text-gray); font-size: 0.85rem; margin-top: 0.4rem;">Esta operación es irreversible y tendrá consecuencias inmediatas en el ecosistema.</p>
+                </div>
+
+                <div style="background: rgba(255, 51, 51, 0.06); border: 1px solid rgba(255, 51, 51, 0.25); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 0.8rem; text-transform: uppercase;">
+                        <i class="fas fa-shield-alt" style="color: #ff3333; margin-right: 6px;"></i> Impacto según los términos de advertencia:
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.82rem; color: #ccc;">
+                        <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
+                            <i class="fas fa-calendar-times" style="color: #ff3333; margin-top: 3px; font-size: 0.95rem; flex-shrink: 0;"></i>
+                            <span><strong>Eventos activos cancelados:</strong> Todas las carteleras y eventos organizados por tu promotora se cancelarán y borrarán del circuito local y público.</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
+                            <i class="fas fa-file-contract" style="color: #ff3333; margin-top: 3px; font-size: 0.95rem; flex-shrink: 0;"></i>
+                            <span><strong>Contratos y solicitudes anulados:</strong> Todas las postulaciones recibidas y contratos pendientes hacia peleadores quedarán anulados inmediatamente.</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
+                            <i class="fas fa-bell" style="color: #ffc107; margin-top: 3px; font-size: 0.95rem; flex-shrink: 0;"></i>
+                            <span><strong>Aviso a los peleadores:</strong> Se enviará una notificación en la plataforma a todos los peleadores involucrados informando de la anulación.</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
+                            <i class="fas fa-user-slash" style="color: #ff3333; margin-top: 3px; font-size: 0.95rem; flex-shrink: 0;"></i>
+                            <span><strong>Baja total de la organización:</strong> Tu perfil, logotipo, historial y credenciales de acceso serán suprimidos de forma definitiva.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 1.8rem;">
+                    <label for="input-confirmar-eliminar-org" style="display: block; font-size: 0.8rem; color: var(--text-gray); margin-bottom: 0.6rem; letter-spacing: 0.5px;">
+                        Para confirmar, escribe <strong style="color: #ff3333; letter-spacing: 1px;">ELIMINAR</strong> a continuación:
+                    </label>
+                    <input type="text" id="input-confirmar-eliminar-org" placeholder="Escribe ELIMINAR" autocomplete="off" style="width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 51, 51, 0.4); border-radius: 6px; color: #fff; padding: 0.85rem 1rem; font-size: 1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-align: center; outline: none; transition: border-color 0.3s, box-shadow 0.3s;">
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" id="btn-cancelar-eliminar-org" class="btn-outline" style="padding: 0.8rem 1.4rem; border-color: rgba(255,255,255,0.2); color: #fff; font-family: var(--font-heading); letter-spacing: 1px; cursor: pointer;">
+                        CANCELAR
+                    </button>
+                    <button type="button" id="btn-confirmar-eliminar-org" disabled style="padding: 0.8rem 1.6rem; background: #333; color: #777; border: 1px solid #444; border-radius: 4px; font-family: var(--font-heading); letter-spacing: 1.5px; font-weight: 700; cursor: not-allowed; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.6rem;">
+                        <i class="fas fa-trash-alt"></i> CONFIRMAR ELIMINACIÓN
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Profesional de Plataforma -->
+        <footer class="dash-pro-footer">
+            <div class="dash-footer-inner">
+                <div class="dash-footer-brand">
+                    <div class="logo" style="font-size: 1.1rem;">FIGHT <span>CONNECT</span></div>
+                    <span class="dash-footer-tagline">PLATAFORMA TECNOLÓGICA DE SCOUTING & MATCHMAKING DEPORTIVO</span>
+                </div>
+                <div class="dash-footer-links">
+                    <a href="terminos.html"><i class="fas fa-file-contract"></i> TÉRMINOS DE COMBATE</a>
+                    <a href="privacidad.html"><i class="fas fa-shield-alt"></i> PRIVACIDAD & DATOS</a>
+                    <a href="sanciones.html"><i class="fas fa-gavel"></i> CÓDIGO DISCIPLINARIO</a>
+                    <a href="local.html"><i class="fas fa-map-marked-alt"></i> CARTELERA NACIONAL</a>
+                </div>
+            </div>
+            <div class="dash-footer-bottom">
+                <div class="copyright">&copy; 2026 FIGHT CONNECT. MODELO DE INTERMEDIACIÓN TECNOLÓGICA PURA.</div>
+                <div class="dash-footer-legal-note">Plataforma neutral de difusión • Sin intermediación financiera ni custodia de bolsas</div>
+            </div>
+        </footer>
+    </main>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

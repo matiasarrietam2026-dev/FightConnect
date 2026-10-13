@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Técnico de Programador | FIGHT CONNECT ARCHITECTURE</title>
+    <!-- Google Fonts Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Hoja de Estilos de Documentación Técnica -->
+    <link rel="stylesheet" href="./css/developer.css">
+</head>
+<body>
+
+    <!-- Ambient Grid & Lights -->
+    <div class="dev-ambient">
+        <div class="dev-orb-1"></div>
+        <div class="dev-orb-2"></div>
+        <div class="dev-grid-lines"></div>
+    </div>
+
+    <!-- Header Superior -->
+    <header class="dev-header">
+        <a href="../index.html" class="dev-brand-box">
+            <div class="dev-brand-logo">FIGHT <span>CONNECT</span></div>
+            <span class="dev-badge-tag"><i class="fas fa-terminal"></i> DEV DOCS v2.4</span>
+        </a>
+
+        <div class="dev-search-center">
+            <i class="fas fa-search dev-search-icon"></i>
+            <input type="text" id="dev-search-input" class="dev-search-input" placeholder="Buscar módulo, función, colección, vista..." autocomplete="off">
+            <span class="dev-search-kbd">Ctrl K</span>
+        </div>
+
+        <div class="dev-header-actions">
+            <a href="../manual-usuario/index.html" class="btn-dev-outline">
+                <i class="fas fa-book-open"></i> Manual de Usuario
+            </a>
+            <a href="../index.html" class="btn-dev-primary">
+                <i class="fas fa-arrow-left"></i> Ir a la App
+            </a>
+        </div>
+    </header>
+
+    <!-- Layout Grid -->
+    <div class="dev-container">
+
+        <!-- Sidebar Izquierda: Navegación de Arquitectura y Vistas -->
+        <aside class="dev-sidebar">
+            <div class="dev-nav-group">
+                <div class="dev-nav-header"><i class="fas fa-cubes"></i> 01. Arquitectura Base</div>
+                <ul class="dev-nav-list">
+                    <li><a href="#dev-arch-overview"><span>Visión General MPA</span><span class="dev-nav-tag">Vite</span></a></li>
+                    <li><a href="#dev-tree-structure"><span>Estructura de Código</span><span class="dev-nav-tag">Tree</span></a></li>
+                    <li><a href="#dev-auth-guard"><span>Guardián de Rutas</span><span class="dev-nav-tag">RBAC</span></a></li>
+                    <li><a href="#dev-firestore-rules"><span>Security Rules</span><span class="dev-nav-tag">NoSQL</span></a></li>
+                </ul>
+            </div>
+
+            <div class="dev-nav-group">
+                <div class="dev-nav-header"><i class="fas fa-door-open"></i> 02. Acceso & Registro</div>
+                <ul class="dev-nav-list">
+                    <li><a href="#dev-screen-login"><span>Portal de Acceso</span><span class="dev-nav-tag">index</span></a></li>
+                    <li><a href="#dev-screen-promoter-reg"><span>Registro Promotora</span><span class="dev-nav-tag">kyb-l0</span></a></li>
+                    <li><a href="#dev-screen-fighter-reg"><span>Registro Peleador</span><span class="dev-nav-tag">profile</span></a></li>
+                </ul>
+            </div>
+
+            <div class="dev-nav-group">
+                <div class="dev-nav-header"><i class="fas fa-building"></i> 03. Promotoras & KYB</div>
+                <ul class="dev-nav-list">
+                    <li><a href="#dev-screen-promoter-l0"><span>Promotora Nivel 0</span><span class="dev-nav-tag">lock</span></a></li>
+                    <li><a href="#dev-screen-promoter-kyb"><span>Ajustes & KYB Médico</span><span class="dev-nav-tag">docs</span></a></li>
+                    <li><a href="#dev-screen-promoter-l2"><span>Promotora Nivel 2</span><span class="dev-nav-tag">events</span></a></li>
+                    <li><a href="#dev-screen-promoter-scout"><span>Motor de Scouting</span><span class="dev-nav-tag">query</span></a></li>
+                </ul>
+            </div>
+
+            <div class="dev-nav-group">
+                <div class="dev-nav-header"><i class="fas fa-fist-raised"></i> 04. Peleadores</div>
+                <ul class="dev-nav-list">
+                    <li><a href="#dev-screen-fighter-dash"><span>Panel del Atleta</span><span class="dev-nav-tag">kpi</span></a></li>
+                    <li><a href="#dev-screen-fighter-buscar"><span>Buscador de Peleas</span><span class="dev-nav-tag">bouts</span></a></li>
+                    <li><a href="#dev-screen-fighter-apps"><span>Postulaciones</span><span class="dev-nav-tag">state</span></a></li>
+                    <li><a href="#dev-screen-fighter-historial"><span>Récord e Historial</span><span class="dev-nav-tag">w-l-d</span></a></li>
+                </ul>
+            </div>
+
+            <div class="dev-nav-group">
+                <div class="dev-nav-header"><i class="fas fa-ticket-alt"></i> 05. Fanáticos</div>
+                <ul class="dev-nav-list">
+                    <li><a href="#dev-screen-fan-dash"><span>Centro del Fan</span><span class="dev-nav-tag">feed</span></a></li>
+                    <li><a href="#dev-screen-fan-buscar"><span>Explorador Global</span><span class="dev-nav-tag">search</span></a></li>
+                    <li><a href="#dev-screen-fan-favs"><span>Roster Favoritos</span><span class="dev-nav-tag">stars</span></a></li>
+                    <li><a href="#dev-screen-fan-ajustes"><span>Preferencias del Fan</span><span class="dev-nav-tag">config</span></a></li>
+                </ul>
+            </div>
+
+            <div class="dev-nav-group">
+                <div class="dev-nav-header"><i class="fas fa-globe"></i> 06. Ecosistema Social</div>
+                <ul class="dev-nav-list">
+                    <li><a href="#dev-screen-fightfeed"><span>FightFeed Social</span><span class="dev-nav-tag">sync</span></a></li>
+                    <li><a href="#dev-screen-local"><span>Cartelera Local</span><span class="dev-nav-tag">three.js</span></a></li>
+                    <li><a href="#dev-screen-internacional"><span>Cartelera Mundial</span><span class="dev-nav-tag">ppv</span></a></li>
+                    <li><a href="#dev-screen-evento-detalle"><span>Detalle de Velada</span><span class="dev-nav-tag">fights</span></a></li>
+                    <li><a href="#dev-screen-noticias"><span>Central de Noticias</span><span class="dev-nav-tag">news</span></a></li>
+                </ul>
+            </div>
+
+            <div class="dev-nav-group">
+                <div class="dev-nav-header"><i class="fas fa-scale-balanced"></i> 07. Regulación & Prensa</div>
+                <ul class="dev-nav-list">
+                    <li><a href="#dev-screen-sanciones"><span>Comisión Disciplinaria</span><span class="dev-nav-tag">wada</span></a></li>
+                    <li><a href="#dev-screen-terminos"><span>Estatuto Legal</span><span class="dev-nav-tag">legal</span></a></li>
+                    <li><a href="#dev-screen-privacidad"><span>Privacidad & Datos</span><span class="dev-nav-tag">crypto</span></a></li>
+                    <li><a href="#dev-screen-mediakit"><span>Media Kit</span><span class="dev-nav-tag">assets</span></a></li>
+                </ul>
+            </div>
+
+            <div class="dev-nav-group">
+                <div class="dev-nav-header"><i class="fas fa-mobile-screen"></i> 08. Móvil & Testing</div>
+                <ul class="dev-nav-list">
+                    <li><a href="#dev-screen-mobile"><span>Auditoría Móvil 390px</span><span class="dev-nav-tag">touch</span></a></li>
+                    <li><a href="#dev-troubleshooting"><span>Troubleshooting & FAQ</span><span class="dev-nav-tag">logs</span></a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dev-main">
+
+            <!-- Hero Banner Técnico -->
+            <div class="dev-hero">
+                <div class="dev-hero-meta">
+                    <span class="dev-pill live"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> VITE v8.0.10 MPA</span>
+                    <span class="dev-pill"><i class="fab fa-google"></i> FIREBASE v10.9.0 SDK</span>
+                    <span class="dev-pill"><i class="fas fa-cube"></i> THREE.JS 3D OCTAGON</span>
+                    <span class="dev-pill"><i class="fas fa-camera"></i> CAPTURAS & CÓDIGO</span>
+                </div>
+                <h1 class="dev-hero-title">MANUAL TÉCNICO DE PROGRAMADOR<br><span>FIGHT CONNECT ARCHITECTURE</span></h1>
+                <p class="dev-hero-desc">
+                    Documentación de ingeniería de software exhaustiva para cada pantalla del ecosistema FightConnect. Incluye capturas reales de la interfaz, metadatos de archivos HTML/JS/CSS, consultas Firestore NoSQL, controladores del DOM, funciones transaccionales y directivas de seguridad backend aplicadas.
+                </p>
+
+                <div class="dev-stack-pills">
+                    <span class="stack-tag"><i class="fab fa-js"></i> Vanilla ES6 Modules</span>
+                    <span class="stack-tag"><i class="fas fa-fire"></i> Cloud Firestore NoSQL</span>
+                    <span class="stack-tag"><i class="fas fa-key"></i> Firebase Auth (JWT)</span>
+                    <span class="stack-tag"><i class="fas fa-paint-brush"></i> CSS3 Custom Properties</span>
+                    <span class="stack-tag"><i class="fas fa-mobile-screen"></i> 390px Zero-Overflow</span>
+                    <span class="stack-tag"><i class="fas fa-shield-virus"></i> Hardened RBAC Rules</span>
+                </div>
+            </div>
+
+            <!-- ======================================================= -->
+            <!-- 01. FUNDAMENTOS DE ARQUITECTURA                         -->
+            <!-- ======================================================= -->
+            <section id="dev-arch-overview" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-sitemap"></i> 01. Fundamentos de Arquitectura</div>
+                    <h2 class="dev-title">Arquitectura Global del Sistema</h2>
+                    <p class="dev-desc">FightConnect está construida como una <strong>Aplicación Multi-Página (MPA) modular</strong> basada en JavaScript ES6 nativo y el empaquetador Vite, eliminando la sobrecarga de frameworks monolíticos.</p>
+                </div>
+
+                <div class="diagram-box">
+                    <div class="diag-grid">
+                        <div class="diag-node node-blue">
+                            <div class="diag-node-title"><i class="fas fa-desktop"></i> CLIENTE (MPA)</div>
+                            <div class="diag-node-sub">Vanilla JS Modules + CSS3 Tokens</div>
+                            <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 6px;">
+                                • Enrutamiento por archivos HTML<br>
+                                • Three.js 3D Canvas<br>
+                                • Canvas Image Compressor WebP
+                            </div>
+                        </div>
+
+                        <div class="diag-node node-cyan">
+                            <div class="diag-node-title"><i class="fas fa-server"></i> VITE DEV & BUILD ENGINE</div>
+                            <div class="diag-node-sub">Rollup Bundle + Local Middleware</div>
+                            <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 6px;">
+                                • Dynamic Entry Points Scan<br>
+                                • /api/upload-image (Multer disk)<br>
+                                • Output: Zero-config static MPA
+                            </div>
+                        </div>
+
+                        <div class="diag-node node-green">
+                            <div class="diag-node-title"><i class="fas fa-cloud"></i> BACKEND FIREBASE</div>
+                            <div class="diag-node-sub">Cloud Firestore + Auth + Storage</div>
+                            <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 6px;">
+                                • Autenticación segura (Tokens JWT)<br>
+                                • Firestore NoSQL (users, events)<br>
+                                • Reglas Perimetrales Anti-Tamper
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ESTRUCTURA DEL CÓDIGO -->
+            <section id="dev-tree-structure" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-folder-tree"></i> Organización del Repositorio</div>
+                    <h2 class="dev-title">Árbol de Directorios y Modularización</h2>
+                    <p class="dev-desc">Estructura limpia e independiente para vistas principales, manuales web aislados, assets y lógica compartida.</p>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fas fa-folder"></i> Estructura del Proyecto FightConnect</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code>FightConnect/
+├── css/                   # Estilos modulares (styles.css, auth.css, dashboard.css, extensions.css)
+├── js/                    # Módulos JS ES6 (app.js, auth.js, firebase-config.js, internacional.js, local.js, noticias.js)
+├── manual-usuario/        # [MANUAL WEB INDEPENDIENTE] Manual de Usuario final con capturas HD
+│   ├── css/               # Estilos independientes de documentación de usuario
+│   ├── js/                # Scripts de búsqueda y lightbox
+│   ├── screenshots/       # 68 capturas reales de vistas en formato PNG
+│   └── index.html         # Portal de usuario interactivo
+├── manual-programador/    # [MANUAL TÉCNICO INDEPENDIENTE] Manual de Ingeniería y Código Fuente
+│   ├── css/developer.css  # Tema oscuro tipo JetBrains / Linear
+│   ├── js/developer.js    # Motor de búsqueda, scrollspy y lightbox interactivo
+│   ├── screenshots/       # Capturas vinculadas a código y explicaciones técnicas
+│   └── index.html         # Este documento técnico
+├── firestore.rules        # Reglas de seguridad NoSQL perimetrales
+├── vite.config.js         # Configuración MPA multi-página con escaneo dinámico
+└── [páginas HTML raíz]   # index.html, local.html, promotor-*.html, fighter-*.html, fan-*.html, etc.</code></pre>
+                </div>
+            </section>
+
+            <!-- GUARDIÁN DE RUTAS -->
+            <section id="dev-auth-guard" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-lock"></i> Seguridad Perimetral</div>
+                    <h2 class="dev-title">Guardián de Rutas RBAC (`protegerRutas`)</h2>
+                    <p class="dev-desc">Mecanismo cliente-servidor que evita accesos no autorizados a vistas privadas mediante verificación en memoria de <code>userRole</code>.</p>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Función protegerRutas()</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">function</span> <span class="hl-func">protegerRutas</span>() {
+    <span class="hl-keyword">const</span> rolActual = localStorage.<span class="hl-func">getItem</span>(<span class="hl-str">'userRole'</span>);
+    <span class="hl-keyword">const</span> paginaActual = window.location.pathname;
+
+    <span class="hl-comment">// 1. Excepción Pública (Páginas informativas, carteleras y manuales)</span>
+    <span class="hl-keyword">if</span> (
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'local.html'</span>) || 
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'internacional.html'</span>) || 
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'noticias.html'</span>) || 
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'evento-detalle.html'</span>) ||
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'sanciones.html'</span>) ||
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'terminos.html'</span>) ||
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'privacidad.html'</span>) ||
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'media-kit.html'</span>) ||
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'manual-usuario'</span>) ||
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'manual-programador'</span>) ||
+        paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'fightfeed.html'</span>) ||
+        paginaActual === <span class="hl-str">'/'</span> || paginaActual === <span class="hl-str">''</span>
+    ) {
+        <span class="hl-keyword">return</span>; <span class="hl-comment">// Paso libre permitido</span>
+    }
+
+    <span class="hl-comment">// 2. Bloqueo de No Autenticados</span>
+    <span class="hl-keyword">if</span> (!rolActual &amp;&amp; !paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'index.html'</span>)) {
+        window.location.href = <span class="hl-str">'index.html'</span>;
+        <span class="hl-keyword">return</span>;
+    }
+
+    <span class="hl-comment">// 3. Validación Cruzada de Privilegios por Rol</span>
+    <span class="hl-keyword">if</span> (rolActual === <span class="hl-str">'fighter'</span> &amp;&amp; (paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'promotor-'</span>) || paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'fan-'</span>))) {
+        window.location.href = <span class="hl-str">'fighter-dashboard.html'</span>;
+    } <span class="hl-keyword">else</span> <span class="hl-keyword">if</span> (rolActual === <span class="hl-str">'promoter'</span> &amp;&amp; (paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'fighter-'</span>) || paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'fan-'</span>))) {
+        window.location.href = <span class="hl-str">'promotor-dashboard.html'</span>;
+    } <span class="hl-keyword">else</span> <span class="hl-keyword">if</span> (rolActual === <span class="hl-str">'fan'</span> &amp;&amp; (paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'fighter-'</span>) || paginaActual.<span class="hl-func">includes</span>(<span class="hl-str">'promotor-'</span>))) {
+        window.location.href = <span class="hl-str">'fan-dashboard.html'</span>;
+    }
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- SECURITY RULES -->
+            <section id="dev-firestore-rules" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-shield-halved"></i> Backend Hardening</div>
+                    <h2 class="dev-title">Reglas de Seguridad Firestore (`firestore.rules`)</h2>
+                    <p class="dev-desc">Políticas perimetrales NoSQL que blindan colecciones contra manipulación maliciosa de privilegios y escalado de roles.</p>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fas fa-shield-alt"></i> firestore.rules · Reglas de Colecciones Principales</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">match</span> /users/{userId} {
+    <span class="hl-keyword">allow</span> read: <span class="hl-keyword">if</span> <span class="hl-keyword">true</span>;
+    <span class="hl-keyword">allow</span> create: <span class="hl-keyword">if</span> isOwner(userId) &amp;&amp; (!('isVerified' <span class="hl-keyword">in</span> request.resource.data) || request.resource.data.isVerified == <span class="hl-keyword">false</span>);
+    <span class="hl-keyword">allow</span> update: <span class="hl-keyword">if</span> isOwner(userId) &amp;&amp; (
+        <span class="hl-comment">// Bloquea que un usuario se auto-verifique a Nivel 2</span>
+        !('isVerified' <span class="hl-keyword">in</span> request.resource.data) || request.resource.data.isVerified == resource.data.isVerified
+    );
+}
+
+<span class="hl-keyword">match</span> /events/{eventId} {
+    <span class="hl-keyword">allow</span> read: <span class="hl-keyword">if</span> <span class="hl-keyword">true</span>;
+    <span class="hl-keyword">allow</span> create: <span class="hl-keyword">if</span> isAuthenticated() &amp;&amp; request.resource.data.promoterId == request.auth.uid;
+    <span class="hl-keyword">allow</span> update, delete: <span class="hl-keyword">if</span> isAuthenticated() &amp;&amp; resource.data.promoterId == request.auth.uid;
+}
+
+<span class="hl-keyword">match</span> /fightfeed_posts/{postId} {
+    <span class="hl-keyword">allow</span> read: <span class="hl-keyword">if</span> <span class="hl-keyword">true</span>;
+    <span class="hl-keyword">allow</span> update: <span class="hl-keyword">if</span> isAuthenticated() &amp;&amp; (
+        resource.data.userId == request.auth.uid ||
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['kos', 'techs', 'iqs', 'hypes'])
+    );
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 02. ACCESO Y AUTENTICACIÓN (VISTAS & CÓDIGO)             -->
+            <!-- ======================================================= -->
+
+            <!-- VISTA: INDEX PORTAL -->
+            <section id="dev-screen-login" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-fingerprint"></i> Módulo 02 · Vistas de Autenticación</div>
+                    <h2 class="dev-title">Portal de Acceso y Login (`index.html`)</h2>
+                    <p class="dev-desc">Controlador de autenticación de usuario, inicializador del canvas animado y selector de roles.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/index.html</span>
+                            <span class="dev-status-tag">200 OK · AUTH</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Portal de Acceso y Selección de Rol (index.html)">
+                        <img src="./screenshots/01_index_portal.png" alt="Portal de Acceso">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> index.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/auth.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/auth.css, css/styles.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Firestore</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> users/{uid}</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/auth.js · Submit Handler de Inicio de Sesión</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code>loginForm.<span class="hl-func">addEventListener</span>(<span class="hl-str">'submit'</span>, <span class="hl-keyword">async</span> (e) => {
+    e.<span class="hl-func">preventDefault</span>();
+    <span class="hl-keyword">const</span> email = document.<span class="hl-func">getElementById</span>(<span class="hl-str">'login-email'</span>).value.<span class="hl-func">trim</span>();
+    <span class="hl-keyword">const</span> password = document.<span class="hl-func">getElementById</span>(<span class="hl-str">'login-password'</span>).value;
+
+    <span class="hl-keyword">try</span> {
+        <span class="hl-keyword">const</span> userCredential = <span class="hl-keyword">await</span> <span class="hl-func">signInWithEmailAndPassword</span>(auth, email, password);
+        <span class="hl-keyword">const</span> uid = userCredential.user.uid;
+
+        <span class="hl-keyword">const</span> userDoc = <span class="hl-keyword">await</span> <span class="hl-func">getDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'users'</span>, uid));
+        <span class="hl-keyword">if</span> (userDoc.<span class="hl-func">exists</span>()) {
+            <span class="hl-keyword">const</span> data = userDoc.<span class="hl-func">data</span>();
+            localStorage.<span class="hl-func">setItem</span>(<span class="hl-str">'userRole'</span>, data.role);
+            localStorage.<span class="hl-func">setItem</span>(<span class="hl-str">'userId'</span>, uid);
+            localStorage.<span class="hl-func">setItem</span>(<span class="hl-str">'userEmail'</span>, email);
+
+            <span class="hl-keyword">if</span> (data.role === <span class="hl-str">'promoter'</span>) window.location.href = <span class="hl-str">'promotor-dashboard.html'</span>;
+            <span class="hl-keyword">else</span> <span class="hl-keyword">if</span> (data.role === <span class="hl-str">'fighter'</span>) window.location.href = <span class="hl-str">'fighter-dashboard.html'</span>;
+            <span class="hl-keyword">else</span> window.location.href = <span class="hl-str">'fan-dashboard.html'</span>;
+        }
+    } <span class="hl-keyword">catch</span> (err) {
+        <span class="hl-func">console</span>.<span class="hl-func">error</span>(<span class="hl-str">'Error en autenticación:'</span>, err.message);
+    }
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 0.8rem;">
+                        <strong>Propósito:</strong> Constituye el punto único de entrada autenticado al sistema. Renderiza un formulario asíncrono con conmutación dinámica de pestañas (Login, Registro Promotora, Registro Atleta) y fondo procedural en Canvas animado.
+                    </p>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 0.8rem;">
+                        <strong>Flujo de Datos y Eventos:</strong> Escucha el evento <code>submit</code> en <code>#login-form</code>. Delega las credenciales a <code>signInWithEmailAndPassword</code> de Firebase Auth. Tras la resolución del JWT, consulta el documento <code>users/{uid}</code> para extraer el atributo inmutable <code>role</code>. Persiste <code>userRole</code> y <code>userId</code> en <code>localStorage</code> y redirige al dashboard especializado sin recargas innecesarias.
+                    </p>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Seguridad:</strong> Manejo de excepciones de Firebase (<code>auth/user-not-found</code>, <code>auth/wrong-password</code>) con mensajes neutrales para prevenir ataques de enumeración de usuarios.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: REGISTRO PROMOTORA -->
+            <section id="dev-screen-promoter-reg" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Registro de Promotora & Alta en Nivel 0</h2>
+                    <p class="dev-desc">Creación de cuenta corporativa con asignación obligatoria de <code>verificationLevel: 0</code> y <code>isVerified: false</code>.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/index.html#register-promoter</span>
+                            <span class="dev-status-tag" style="color: var(--dev-gold); border-color: var(--dev-gold); background: rgba(255,184,0,0.15);">ONBOARDING L0</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Formulario de Afiliación de Promotora (index.html)">
+                        <img src="./screenshots/02_promoter_registro.png" alt="Registro Promotora">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> index.html (#promoter-register)</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/auth.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/auth.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Mutación NoSQL</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> users/{uid} (setDoc)</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/auth.js · Payload Transaccional de Promotora</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> userCred = <span class="hl-keyword">await</span> <span class="hl-func">createUserWithEmailAndPassword</span>(auth, email, password);
+<span class="hl-keyword">await</span> <span class="hl-func">setDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'users'</span>, userCred.user.uid), {
+    uid: userCred.user.uid,
+    email: email,
+    role: <span class="hl-str">'promoter'</span>,
+    isVerified: <span class="hl-keyword">false</span>,          <span class="hl-comment">// Obligatorio: Reglas backend rechazan true</span>
+    verificationLevel: <span class="hl-num">0</span>,        <span class="hl-comment">// Nivel 0 inicial restringido</span>
+    kybStatus: <span class="hl-str">'unverified'</span>,     <span class="hl-comment">// Pendiente de auditoría médica</span>
+    createdAt: <span class="hl-func">serverTimestamp</span>(),
+    promoterProfile: {
+        organizationName: orgName,
+        representativeName: repName,
+        phone: phone,
+        city: city
+    }
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 0.8rem;">
+                        <strong>Propósito:</strong> Registro legal de entidades y ligas de combate. Inicia a la promotora en estado de cuarentena técnica (Nivel 0) sin capacidades de publicación de eventos hasta acreditar pólizas médicas y ambulancia.
+                    </p>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Reglas de Seguridad:</strong> La regla <code>firestore.rules</code> (líneas 27-31) verifica en el servidor que la clave <code>isVerified</code> no exista o sea obligatoriamente <code>false</code>. Cualquier payload alterado en DevTools que intente enviar <code>isVerified: true</code> es rechazado de inmediato por el motor NoSQL.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: REGISTRO PELEADOR -->
+            <section id="dev-screen-fighter-reg" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Ficha de Inscripción Deportiva (`fighterProfile`)</h2>
+                    <p class="dev-desc">Alta del perfil del atleta con división de peso, récord oficial de combates y equipo de procedencia.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/index.html#register-fighter</span>
+                            <span class="dev-status-tag">PROFILE CREATION</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Ficha de Inscripción del Peleador (index.html)">
+                        <img src="./screenshots/06_fighter_registro.png" alt="Registro del Peleador">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> index.html (#fighter-register)</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/auth.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/auth.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Estructura NoSQL</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> users/{uid}.fighterProfile</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/auth.js · Payload de Perfil Deportivo</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">await</span> <span class="hl-func">setDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'users'</span>, uid), {
+    uid: uid,
+    email: email,
+    role: <span class="hl-str">'fighter'</span>,
+    isVerified: <span class="hl-keyword">false</span>,
+    fighterProfile: {
+        fullName: name,
+        nickname: nickname,
+        weightClass: weightClass, <span class="hl-comment">// ej. "Peso Ligero (70.3 kg)"</span>
+        record: { wins: parseInt(w), losses: parseInt(l), draws: parseInt(d), kos: 0 },
+        gym: gymName,
+        city: city,
+        discipline: <span class="hl-str">'MMA'</span>
+    }
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Propósito:</strong> Inicializa el récord deportivo oficial W-L-D (Victorias, Derrotas, Empates) y la división de peso reglamentaria. Normaliza los valores numéricos mediante <code>parseInt()</code> para prevenir inyecciones de cadenas o NaN en las fórmulas de rendimiento del atleta.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 03. PROMOTORAS & KYB (VISTAS & CÓDIGO)                  -->
+            <!-- ======================================================= -->
+
+            <!-- VISTA: PROMOTORA NIVEL 0 -->
+            <section id="dev-screen-promoter-l0" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-shield-virus"></i> Módulo 03 · Promotoras & KYB</div>
+                    <h2 class="dev-title">Dashboard Promotora Nivel 0 (`promotor-dashboard.html`)</h2>
+                    <p class="dev-desc">Lógica de inhabilitación de eventos y banner de advertencia para organizaciones sin documentación aprobada.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/promotor-dashboard.html</span>
+                            <span class="dev-status-tag" style="color: var(--dev-gold); border-color: var(--dev-gold); background: rgba(255,184,0,0.15);">RESTRICTED L0</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Dashboard de Promotora Nivel 0 (promotor-dashboard.html)">
+                        <img src="./screenshots/03_promoter_dash_nivel0.png" alt="Dashboard Promotora Nivel 0">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> promotor-dashboard.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/dashboard.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Atributo Clave</div>
+                        <div class="chip-val"><i class="fas fa-lock"></i> verificationLevel &lt; 2</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Lógica de Bloqueo Preventivo Nivel 0</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> userSnap = <span class="hl-keyword">await</span> <span class="hl-func">getDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'users'</span>, uid));
+<span class="hl-keyword">const</span> uData = userSnap.<span class="hl-func">data</span>();
+
+<span class="hl-keyword">if</span> (uData.verificationLevel &lt; <span class="hl-num">2</span> || !uData.isVerified) {
+    document.<span class="hl-func">getElementById</span>(<span class="hl-str">'kyb-warning-banner'</span>).style.display = <span class="hl-str">'flex'</span>;
+
+    <span class="hl-keyword">const</span> btnCrear = document.<span class="hl-func">getElementById</span>(<span class="hl-str">'btn-crear-evento'</span>);
+    btnCrear.<span class="hl-func">classList</span>.<span class="hl-func">add</span>(<span class="hl-str">'disabled-btn'</span>);
+    btnCrear.<span class="hl-func">addEventListener</span>(<span class="hl-str">'click'</span>, (e) => {
+        e.<span class="hl-func">preventDefault</span>();
+        <span class="hl-func">mostrarModalKYBRequerido</span>(); <span class="hl-comment">// Alerta al promotor</span>
+    });
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Mecanismo de Candado:</strong> El panel evalúa reactivamente el campo <code>verificationLevel</code>. Si es 0 o 1, inyecta la clase CSS <code>.disabled-btn</code> en los botones de acción transaccional, interrumpe el evento <code>click</code> con <code>preventDefault()</code> y abre un modal guiando al promotor hacia el módulo de Ajustes KYB.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: AJUSTES KYB -->
+            <section id="dev-screen-promoter-kyb" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Centro de Cumplimiento KYB (`promotor-ajustes.html`)</h2>
+                    <p class="dev-desc">Formulario de consignación de licencia de comisión, ambulancia medicalizada y póliza de seguro médico.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/promotor-ajustes.html</span>
+                            <span class="dev-status-tag" style="color: var(--dev-gold); border-color: var(--dev-gold); background: rgba(255,184,0,0.15);">KYB FORM</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Formulario de Verificación KYB (promotor-ajustes.html)">
+                        <img src="./screenshots/04_promotor_ajustes_kyb.png" alt="Ajustes KYB Promotora">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> promotor-ajustes.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Privada</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> promoter_kyb_docs/{uid}</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Transición de Estado</div>
+                        <div class="chip-val"><i class="fas fa-sync"></i> Nivel 0 &rarr; Nivel 1 (Pending)</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Manejador de Solicitud KYB</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">await</span> <span class="hl-func">setDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'promoter_kyb_docs'</span>, uid), {
+    promoterId: uid,
+    licenseNumber: document.<span class="hl-func">getElementById</span>(<span class="hl-str">'kyb-license'</span>).value,
+    ambulanceCompany: document.<span class="hl-func">getElementById</span>(<span class="hl-str">'kyb-ambulance'</span>).value,
+    medicalInsurancePolicy: document.<span class="hl-func">getElementById</span>(<span class="hl-str">'kyb-insurance'</span>).value,
+    submittedAt: <span class="hl-func">serverTimestamp</span>(),
+    status: <span class="hl-str">'pending'</span>
+});
+
+<span class="hl-keyword">await</span> <span class="hl-func">updateDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'users'</span>, uid), {
+    kybStatus: <span class="hl-str">'pending'</span>,
+    verificationLevel: <span class="hl-num">1</span>
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Operación Atómica:</strong> Registra los datos de la póliza de salud y ambulancia en una colección aislada y privada (<code>promoter_kyb_docs</code>) accesible únicamente por la propia promotora y administradores. Eleva el estado del promotor a Nivel 1 (En Revisión).
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: PROMOTORA NIVEL 2 -->
+            <section id="dev-screen-promoter-l2" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Dashboard Promotora Nivel 2 Verificada (`promotor-dashboard.html`)</h2>
+                    <p class="dev-desc">Acceso al creador de veladas, integración de taquilla y confirmación de peleadores postulados.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/promotor-dashboard.html</span>
+                            <span class="dev-status-tag">VERIFIED L2</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Dashboard Promotora Nivel 2 (promotor-dashboard.html)">
+                        <img src="./screenshots/05_promotor_dash_nivel2.png" alt="Dashboard Promotora Nivel 2">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> promotor-dashboard.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Firestore</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> events (addDoc)</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Capacidad Activa</div>
+                        <div class="chip-val"><i class="fas fa-ticket-alt"></i> Publicación de Veladas</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Creación de Velada en Firestore</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> eventDocRef = <span class="hl-keyword">await</span> <span class="hl-func">addDoc</span>(<span class="hl-func">collection</span>(db, <span class="hl-str">'events'</span>), {
+    promoterId: uid,
+    promoterName: orgName,
+    title: eventTitle,
+    date: eventDate,
+    city: eventCity,
+    venue: eventVenue,
+    ticketUrl: ticketUrl,
+    category: <span class="hl-str">'local'</span>,
+    status: <span class="hl-str">'published'</span>,
+    fights: initialBoutsArray, <span class="hl-comment">// Array de combates y esquinas</span>
+    createdAt: <span class="hl-func">serverTimestamp</span>()
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Capacidades Nivel 2:</strong> Desbloquea la creación de eventos en tiempo real. La promotora puede generar la cartelera oficial, configurar la URL de venta de boletos externa y estructurar los combates (Pelea Estelar, Co-Estelar y Preliminares) que luego se alimentan al matchmaking de peleadores.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: SCOUTING -->
+            <section id="dev-screen-promoter-scout" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Motor de Scouting y Radar de Atletas (`promotor-scouting.html`)</h2>
+                    <p class="dev-desc">Consulta multi-criterio de peleadores con filtros por división de peso, récord y estado de licencia médica.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/promotor-scouting.html</span>
+                            <span class="dev-status-tag">SCOUTING RADAR</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Motor de Scouting de Atletas (promotor-scouting.html)">
+                        <img src="./screenshots/13_promotor_scouting.png" alt="Motor de Scouting">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> promotor-scouting.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/dashboard.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Query Firestore</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> users (where role == 'fighter')</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Consulta Firestore de Scouting</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> fightersQuery = <span class="hl-func">query</span>(
+    <span class="hl-func">collection</span>(db, <span class="hl-str">'users'</span>),
+    <span class="hl-func">where</span>(<span class="hl-str">'role'</span>, <span class="hl-str">'=='</span>, <span class="hl-str">'fighter'</span>)
+);
+<span class="hl-keyword">const</span> querySnap = <span class="hl-keyword">await</span> <span class="hl-func">getDocs</span>(fightersQuery);
+<span class="hl-keyword">const</span> allFighters = [];
+querySnap.<span class="hl-func">forEach</span>(doc => allFighters.<span class="hl-func">push</span>({ id: doc.id, ...doc.<span class="hl-func">data</span>() }));
+
+<span class="hl-comment">// Filtrado en memoria reactivo</span>
+<span class="hl-keyword">const</span> filtered = allFighters.<span class="hl-func">filter</span>(f => {
+    <span class="hl-keyword">const</span> fp = f.fighterProfile || {};
+    <span class="hl-keyword">return</span> (!weightFilter || fp.weightClass === weightFilter) &amp;&amp;
+           (!gymFilter || fp.gym?.<span class="hl-func">toLowerCase</span>().<span class="hl-func">includes</span>(gymFilter));
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Optimización de Consultas:</strong> Recupera los atletas mediante una consulta indexada por rol y realiza el filtrado por cadena de texto (nombre, gimnasio, ciudad) del lado del cliente, evitando lecturas NoSQL redundantes y optimizando la cuota de operaciones.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 04. PELEADORES (VISTAS & CÓDIGO)                        -->
+            <!-- ======================================================= -->
+
+            <!-- VISTA: FIGHTER DASHBOARD -->
+            <section id="dev-screen-fighter-dash" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-fist-raised"></i> Módulo 04 · Peleadores</div>
+                    <h2 class="dev-title">Panel de Control del Atleta (`fighter-dashboard.html`)</h2>
+                    <p class="dev-desc">Renderizado de tarjetas de rendimiento deportivo, vigencia de licencia médica y próxima velada programada.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/fighter-dashboard.html</span>
+                            <span class="dev-status-tag">ATHLETE METRICS</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Dashboard del Peleador (fighter-dashboard.html)">
+                        <img src="./screenshots/07_fighter_dashboard.png" alt="Dashboard Peleador">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> fighter-dashboard.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/dashboard.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Firestore</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> users/{uid}.fighterProfile</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Renderizado de Métricas y Licencia</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> fp = userData.fighterProfile || {};
+<span class="hl-keyword">const</span> record = fp.record || { wins: 0, losses: 0, draws: 0, kos: 0 };
+
+document.<span class="hl-func">getElementById</span>(<span class="hl-str">'stat-record-wins'</span>).textContent = record.wins;
+document.<span class="hl-func">getElementById</span>(<span class="hl-str">'stat-record-losses'</span>).textContent = record.losses;
+document.<span class="hl-func">getElementById</span>(<span class="hl-str">'stat-record-draws'</span>).textContent = record.draws;
+
+<span class="hl-keyword">const</span> totalBouts = record.wins + record.losses + record.draws;
+<span class="hl-keyword">const</span> koRate = totalBouts > 0 ? Math.<span class="hl-func">round</span>((record.kos / record.wins) * 100) : 0;
+document.<span class="hl-func">getElementById</span>(<span class="hl-str">'stat-ko-percentage'</span>).textContent = `${koRate}%`;</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Métricas Computadas:</strong> Procesa el registro de combates en tiempo real. Calcula el ratio de efectividad de finalización (KO Rate) y valida la vigencia del apto médico deportivo. Si la fecha actual sobrepasa los 365 días desde el último examen, se despliega una advertencia preventiva de renovación de licencia.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: FIGHTER BUSCAR OPORTUNIDADES -->
+            <section id="dev-screen-fighter-buscar" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Buscador de Carteleras & Postulación (`fighter-buscar.html`)</h2>
+                    <p class="dev-desc">Mecanismo de matchmaking donde el peleador descubre combates vacantes y envía su postulación.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/fighter-buscar.html</span>
+                            <span class="dev-status-tag">MATCHMAKING BOUTS</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Buscador de Oportunidades para Peleadores (fighter-buscar.html)">
+                        <img src="./screenshots/10_fighter_buscar.png" alt="Buscar Oportunidades">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> fighter-buscar.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/dashboard.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Destino</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> applications (addDoc)</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Acción de Postulación Atómica</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">async</span> <span class="hl-keyword">function</span> <span class="hl-func">postularACombate</span>(eventId, promoterId, weightClass) {
+    <span class="hl-keyword">const</span> fighterId = localStorage.<span class="hl-func">getItem</span>(<span class="hl-str">'userId'</span>);
+    <span class="hl-keyword">await</span> <span class="hl-func">addDoc</span>(<span class="hl-func">collection</span>(db, <span class="hl-str">'applications'</span>), {
+        eventId: eventId,
+        promoterId: promoterId,
+        fighterId: fighterId,
+        weightClass: weightClass,
+        status: <span class="hl-str">'pending'</span>,
+        appliedAt: <span class="hl-func">serverTimestamp</span>()
+    });
+    <span class="hl-func">mostrarNotificacionExito</span>(<span class="hl-str">'Postulación enviada exitosamente a la promotora'</span>);
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Flujo Transaccional:</strong> Genera un documento en <code>applications</code> vinculando el ID del evento, la promotora organizadora y el atleta. Si el atleta ya posee una postulación activa para ese evento, el botón se bloquea automáticamente evitando registros duplicados.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: POSTULACIONES -->
+            <section id="dev-screen-fighter-apps" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Seguimiento de Postulaciones (`fighter-postulaciones.html`)</h2>
+                    <p class="dev-desc">Consulta reactiva de contratos y estado del combate (Pendiente, Aceptada, Rechazada).</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/fighter-postulaciones.html</span>
+                            <span class="dev-status-tag">CONTRACT TRACKING</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Seguimiento de Postulaciones (fighter-postulaciones.html)">
+                        <img src="./screenshots/08_fighter_postulaciones.png" alt="Mis Postulaciones">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> fighter-postulaciones.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/dashboard.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Firestore</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> applications (where fighterId)</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Cancelación de Postulación</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">async</span> <span class="hl-keyword">function</span> <span class="hl-func">cancelarPostulacion</span>(appId) {
+    <span class="hl-keyword">await</span> <span class="hl-func">updateDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'applications'</span>, appId), {
+        status: <span class="hl-str">'cancelled'</span>,
+        cancelledAt: <span class="hl-func">serverTimestamp</span>()
+    });
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Gestión de Contratos:</strong> Permite al atleta retirar una postulación voluntariamente (por ejemplo ante una lesión en campamento). La regla de seguridad en <code>firestore.rules</code> garantiza que únicamente el peleador titular o la promotora asignada puedan modificar el estado del documento.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: HISTORIAL & CORTE DE PESO -->
+            <section id="dev-screen-fighter-historial" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Control Físico y Corte de Peso (`fighter-historial.html`)</h2>
+                    <p class="dev-desc">Visualizador reactivo del corte de peso hacia la ceremonia de pesaje oficial y registro histórico de peso.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/fighter-historial.html</span>
+                            <span class="dev-status-tag">WEIGHT CUT RADAR</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Control Físico y Corte de Peso Activo (fighter-historial.html)">
+                        <img src="./screenshots/09_fighter_historial.png" alt="Historial Médico y de Peso">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> fighter-historial.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/dashboard.css, css/extensions.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Documento Firestore</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> users/{uid}.weightLogs</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Registro de Pesaje y Barra Dinámica</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> weightForm = document.<span class="hl-func">getElementById</span>(<span class="hl-str">'log-weight-form'</span>);
+weightForm.<span class="hl-func">addEventListener</span>(<span class="hl-str">'submit'</span>, <span class="hl-keyword">async</span> (e) => {
+    e.<span class="hl-func">preventDefault</span>();
+    <span class="hl-keyword">const</span> currentWeight = parseFloat(document.<span class="hl-func">getElementById</span>(<span class="hl-str">'input-weight'</span>).value);
+    <span class="hl-keyword">const</span> fighterId = localStorage.<span class="hl-func">getItem</span>(<span class="hl-str">'userId'</span>);
+
+    <span class="hl-keyword">await</span> <span class="hl-func">updateDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'users'</span>, fighterId), {
+        <span class="hl-str">'fighterProfile.currentWeight'</span>: currentWeight,
+        <span class="hl-str">'fighterProfile.weightLogs'</span>: <span class="hl-func">arrayUnion</span>({
+            weight: currentWeight,
+            timestamp: <span class="hl-keyword">new</span> Date().<span class="hl-func">toISOString</span>()
+        })
+    });
+
+    <span class="hl-comment">// Cálculo del progreso del corte hacia el límite de división</span>
+    <span class="hl-keyword">const</span> pct = Math.<span class="hl-func">min</span>(<span class="hl-num">100</span>, Math.<span class="hl-func">max</span>(<span class="hl-num">0</span>, ((startWeight - currentWeight) / (startWeight - targetLimit)) * <span class="hl-num">100</span>));
+    document.<span class="hl-func">getElementById</span>(<span class="hl-str">'weight-fill-bar'</span>).style.width = `${pct}%`;
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 0.8rem;">
+                        <strong>Cálculo Visual:</strong> Modela la reducción de peso desde el inicio de campamento hasta el pesaje oficial pactado. Utiliza <code>arrayUnion</code> para añadir entradas inmutables con fecha ISO al historial del atleta.
+                    </p>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Protección Médica:</strong> Si el ritmo de descenso supera el 8% de peso corporal en 48 horas, el sistema emite una advertencia visual por deshidratación crítica según normativas de comisiones de combate.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 05. FANÁTICOS (VISTAS & CÓDIGO)                         -->
+            <!-- ======================================================= -->
+
+            <!-- VISTA: FAN DASHBOARD -->
+            <section id="dev-screen-fan-dash" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-ticket-alt"></i> Módulo 05 · Fanáticos</div>
+                    <h2 class="dev-title">Centro de Mando del Fan (`fan-dashboard.html`)</h2>
+                    <p class="dev-desc">Radar de veladas locales seguidas, carrusel de promotoras oficiales y campamento de atletas favoritos.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/fan-dashboard.html</span>
+                            <span class="dev-status-tag">FAN RADAR</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Dashboard del Fanático (fan-dashboard.html)">
+                        <img src="./screenshots/08_fan_dashboard.png" alt="Centro del Fan">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> fan-dashboard.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/dashboard.css, css/extensions.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Consultada</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> events (status == 'published')</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Sincronización de Radar para Fanáticos</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> eventsQuery = <span class="hl-func">query</span>(
+    <span class="hl-func">collection</span>(db, <span class="hl-str">'events'</span>),
+    <span class="hl-func">where</span>(<span class="hl-str">'status'</span>, <span class="hl-str">'=='</span>, <span class="hl-str">'published'</span>)
+);
+<span class="hl-keyword">const</span> eventsSnap = <span class="hl-keyword">await</span> <span class="hl-func">getDocs</span>(eventsQuery);
+<span class="hl-keyword">const</span> radarContainer = document.<span class="hl-func">getElementById</span>(<span class="hl-str">'eventos-radar-container'</span>);
+radarContainer.innerHTML = <span class="hl-str">''</span>;
+
+eventsSnap.<span class="hl-func">forEach</span>(docSnap => {
+    <span class="hl-keyword">const</span> event = docSnap.<span class="hl-func">data</span>();
+    radarContainer.<span class="hl-func">appendChild</span>(<span class="hl-func">crearTarjetaEventoFan</span>(docSnap.id, event));
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Arquitectura del Feed:</strong> Consulta exclusivamente eventos en estado <code>published</code> de promotoras con verificación KYB aprobada. Renderiza tarjetas horizontales con cuenta regresiva, ciudad y enlace directo de compra a la boletería oficial del evento.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: FAN BUSCAR -->
+            <section id="dev-screen-fan-buscar" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Explorador Global de Atletas & Ligas (`fan-buscar.html`)</h2>
+                    <p class="dev-desc">Buscador unificado con conmutador de pestañas (Peleadores vs Promotoras) y debounce reactivo de 300ms.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/fan-buscar.html</span>
+                            <span class="dev-status-tag">GLOBAL EXPLORER</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Explorador para Fanáticos (fan-buscar.html)">
+                        <img src="./screenshots/16_fan_buscar.png" alt="Explorador Fan">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> fan-buscar.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/dashboard.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Mecanismo UI</div>
+                        <div class="chip-val"><i class="fas fa-clock"></i> Debounce 300ms + Memory Cache</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Debounce de Búsqueda para Aficionados</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">let</span> searchDebounceTimeout;
+<span class="hl-keyword">const</span> searchInput = document.<span class="hl-func">getElementById</span>(<span class="hl-str">'fan-search-input'</span>);
+searchInput.<span class="hl-func">addEventListener</span>(<span class="hl-str">'input'</span>, (e) => {
+    clearTimeout(searchDebounceTimeout);
+    searchDebounceTimeout = setTimeout(() => {
+        <span class="hl-keyword">const</span> queryTerm = e.target.value.<span class="hl-func">toLowerCase</span>().<span class="hl-func">trim</span>();
+        <span class="hl-func">filtrarResultadosExplorador</span>(queryTerm, disciplinaActiva, divisionActiva);
+    }, <span class="hl-num">300</span>);
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Estrategia de Rendimiento:</strong> El retardo de 300ms evita ejecuciones costosas por cada pulsación de tecla. El filtrado de atletas y promotoras se resuelve sobre una estructura en memoria precargada, ofreciendo una experiencia fluida a 60 FPS sin bloqueos en la interfaz.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: FAN FAVORITOS -->
+            <section id="dev-screen-fan-favs" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Campamento de Favoritos (`fan-favoritos.html`)</h2>
+                    <p class="dev-desc">Persistencia híbrida (localStorage y Cloud Firestore) de atletas y promotoras marcadas con estrella.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/fan-favoritos.html</span>
+                            <span class="dev-status-tag">FAVORITES CAMP</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Colección de Favoritos del Fan (fan-favoritos.html)">
+                        <img src="./screenshots/15_fan_favoritos.png" alt="Favoritos del Fan">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> fan-favoritos.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Persistencia</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> localStorage + users/{uid}.favoriteFighters</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Patrón de Diseño</div>
+                        <div class="chip-val"><i class="fas fa-bolt"></i> Optimistic UI Updates</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Alternancia de Favorito Híbrida</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">async</span> <span class="hl-keyword">function</span> <span class="hl-func">toggleFavorito</span>(fighterId) {
+    <span class="hl-keyword">let</span> favs = JSON.<span class="hl-func">parse</span>(localStorage.<span class="hl-func">getItem</span>(<span class="hl-str">'fc_fan_favorites'</span>) || <span class="hl-str">'[]'</span>);
+    <span class="hl-keyword">const</span> isFav = favs.<span class="hl-func">includes</span>(fighterId);
+    
+    favs = isFav ? favs.<span class="hl-func">filter</span>(id => id !== fighterId) : [...favs, fighterId];
+    localStorage.<span class="hl-func">setItem</span>(<span class="hl-str">'fc_fan_favorites'</span>, JSON.<span class="hl-func">stringify</span>(favs));
+
+    <span class="hl-keyword">const</span> userId = localStorage.<span class="hl-func">getItem</span>(<span class="hl-str">'userId'</span>);
+    <span class="hl-keyword">if</span> (userId) {
+        <span class="hl-keyword">await</span> <span class="hl-func">updateDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'users'</span>, userId), {
+            favoriteFighters: favs
+        });
+    }
+    <span class="hl-func">renderizarCampamentoFavoritos</span>();
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Sincronización Optimista:</strong> Aplica cambios inmediatos en el DOM y en <code>localStorage</code> para una respuesta táctil instantánea, replicando en segundo plano la lista hacia el documento Firestore del usuario aficionado.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: FAN AJUSTES -->
+            <section id="dev-screen-fan-ajustes" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Preferencias y Compresor de Avatar (`fan-ajustes.html`)</h2>
+                    <p class="dev-desc">Configuración de alertas de combate, cambio de contraseña y compresión de imagen WebP en Canvas.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/fan-ajustes.html</span>
+                            <span class="dev-status-tag">FAN CONFIG & WEBP</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Ajustes de Cuenta del Fan (fan-ajustes.html)">
+                        <img src="./screenshots/09_fan_ajustes.png" alt="Ajustes del Fan">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> fan-ajustes.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Servicio Gráfico</div>
+                        <div class="chip-val"><i class="fas fa-compress"></i> js/image-service.js (Canvas &lt;300KB)</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Firestore</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> users/{uid}.fanPreferences</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/image-service.js · Compresión WebP en Cliente</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">export</span> <span class="hl-keyword">async</span> <span class="hl-keyword">function</span> <span class="hl-func">comprimirAvatarCanvas</span>(file, maxDim = <span class="hl-num">400</span>) {
+    <span class="hl-keyword">return</span> <span class="hl-keyword">new</span> Promise((resolve) => {
+        <span class="hl-keyword">const</span> reader = <span class="hl-keyword">new</span> FileReader();
+        reader.onload = (ev) => {
+            <span class="hl-keyword">const</span> img = <span class="hl-keyword">new</span> Image();
+            img.onload = () => {
+                <span class="hl-keyword">const</span> canvas = document.<span class="hl-func">createElement</span>(<span class="hl-str">'canvas'</span>);
+                canvas.width = maxDim;
+                canvas.height = maxDim;
+                <span class="hl-keyword">const</span> ctx = canvas.<span class="hl-func">getContext</span>(<span class="hl-str">'2d'</span>);
+                ctx.<span class="hl-func">drawImage</span>(img, <span class="hl-num">0</span>, <span class="hl-num">0</span>, maxDim, maxDim);
+                resolve(canvas.<span class="hl-func">toDataURL</span>(<span class="hl-str">'image/webp'</span>, <span class="hl-num">0.82</span>));
+            };
+            img.src = ev.target.result;
+        };
+        reader.<span class="hl-func">readAsDataURL</span>(file);
+    });
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Compresión en Memoria:</strong> La imagen seleccionada por el usuario es procesada íntegramente en el cliente mediante la API Canvas, redimensionada a 400×400px y codificada a formato WebP con calidad 0.82. Esto reduce el peso de fotos de 5MB a menos de 45KB antes de almacenarse en Firestore.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 06. ECOSISTEMA SOCIAL, CARTELERAS Y MULTIMEDIA          -->
+            <!-- ======================================================= -->
+
+            <!-- VISTA: FIGHTFEED SOCIAL -->
+            <section id="dev-screen-fightfeed" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-comments"></i> Módulo 06 · Ecosistema Social</div>
+                    <h2 class="dev-title">FightFeed Social & Reacciones Atómicas (`fightfeed.html`)</h2>
+                    <p class="dev-desc">Feed comunitario sincronizado en tiempo real mediante <code>onSnapshot()</code> con contadores atómicos de KO y encuestas Pick'em.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/fightfeed.html</span>
+                            <span class="dev-status-tag">REALTIME SOCIAL FEED</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Muro Social FightFeed (fightfeed.html)">
+                        <img src="./screenshots/02_fightfeed_social.png" alt="FightFeed Social">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> fightfeed.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Firestore</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> fightfeed_posts</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Mecanismo Sync</div>
+                        <div class="chip-val"><i class="fas fa-bolt"></i> onSnapshot Realtime</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Reacción Atómica KO en Firestore</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">async</span> <span class="hl-keyword">function</span> <span class="hl-func">reaccionarKO</span>(postId) {
+    <span class="hl-keyword">const</span> postRef = <span class="hl-func">doc</span>(db, <span class="hl-str">'fightfeed_posts'</span>, postId);
+    <span class="hl-keyword">await</span> <span class="hl-func">updateDoc</span>(postRef, {
+        kos: <span class="hl-func">increment</span>(<span class="hl-num">1</span>)
+    });
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Mutaciones Atómicas Anti-Condición de Carrera:</strong> Utiliza el transformador <code>increment(1)</code> de Cloud Firestore. Esta mutación está autorizada por la cláusula <code>affectedKeys().hasOnly(['kos', ...])</code> en <code>firestore.rules</code>, permitiendo que cualquier usuario autenticado reaccione sin poder alterar el autor, texto o fecha del post.
+                    </p>
+                </div>
+
+                <div class="code-window" style="margin-top: 1.5rem;">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Lógica de Apertura del Podio (Día 10 Mensual)</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">function</span> <span class="hl-func">renderLeaderboard</span>() {
+    <span class="hl-keyword">const</span> today = <span class="hl-keyword">new</span> <span class="hl-func">Date</span>();
+    <span class="hl-comment">// El podio gráfico abre estrictamente los días 10 de cada mes</span>
+    <span class="hl-keyword">const</span> isDay10 = (today.<span class="hl-func">getDate</span>() === <span class="hl-num">10</span>);
+
+    <span class="hl-keyword">if</span> (!isDay10) {
+        <span class="hl-comment">// Días 1-9 y 11-31: Podio cerrado, indicador de días restantes y descripción</span>
+        <span class="hl-comment">// (Los puntos acumulados y rol del usuario se visualizan en el perfil superior izquierdo)</span>
+        <span class="hl-func">renderPodiumClosedView</span>(diasRestantes, nextMonthName);
+        <span class="hl-keyword">return</span>;
+    }
+
+    <span class="hl-comment">// Día 10: Desbloqueo oficial del Top 10 (Pedestales 1-2-3 y tabla puestos 4-10)</span>
+    <span class="hl-keyword">const</span> top10 = <span class="hl-func">calcularTop10FightIQ</span>(usuarios, {
+        predicciones: <span class="hl-num">15</span>, <span class="hl-comment">// Pts por Pick'em</span>
+        votos: <span class="hl-num">15</span>,        <span class="hl-comment">// Pts por encuesta</span>
+        posts: <span class="hl-num">10</span>,        <span class="hl-comment">// Pts por publicación</span>
+        comentarios: <span class="hl-num">5</span>   <span class="hl-comment">// Pts por debate técnico</span>
+    });
+    <span class="hl-func">renderTop10PedestalsAndTable</span>(top10);
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-trophy" style="color: #f59e0b;"></i> Regla de Negocio: Podio Mensual Liga Fight IQ (Día 10)
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 0.8rem;">
+                        <strong>Desbloqueo Periódico Estricto:</strong> La tarima gráfica de 3 pilares (Oro con corona, Plata y Bronce) y el escalafón oficial de las 10 mejores marcas se muestra <strong>únicamente los días 10 de cada mes</strong>.
+                    </p>
+                    <ul style="color: var(--dev-text-muted); font-size: 0.85rem; line-height: 1.7; padding-left: 1.2rem; margin-bottom: 0.8rem;">
+                        <li><strong>Días Ordinarios (1 al 9 y 11 al 31):</strong> La tarima física permanece reservada y cerrada. El widget lateral exhibe el indicador minimalista de días restantes para el próximo día 10 junto a una breve descripción del evento. Los puntos de Fight IQ y el rol del usuario se conservan en la tarjeta de perfil ubicada en la parte superior izquierda.</li>
+                        <li><strong>Criterio de Clasificación Top 10:</strong> Suma acumulativa de aciertos en <strong>predicciones Pick'em (+15 pts)</strong>, <strong>votos en encuestas comunitarias (+15 pts)</strong>, <strong>creación de publicaciones en el feed (+10 pts)</strong> y <strong>aportes técnicos en comentarios (+5 pts)</strong>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- VISTA: CARTELERA LOCAL -->
+            <section id="dev-screen-local" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Cartelera Local & Radar Three.js (`local.html`)</h2>
+                    <p class="dev-desc">Renderizado geográfico de eventos con fondo interactivo en 3D y conexión directa a taquilla oficial.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/local.html</span>
+                            <span class="dev-status-tag">GEOGRAPHIC RADAR</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Cartelera Local (local.html)">
+                        <img src="./screenshots/10_cartelera_local.png" alt="Cartelera Local">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> local.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/local.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Renderizador 3D</div>
+                        <div class="chip-val"><i class="fas fa-cube"></i> Three.js WebGLRenderer</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Colección Consultada</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> events (category == 'local')</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/local.js · Animación Octágono Three.js</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">function</span> <span class="hl-func">animateOctagon</span>() {
+    requestAnimationFrame(animateOctagon);
+    octagonMesh.rotation.x += <span class="hl-num">0.002</span>;
+    octagonMesh.rotation.y += <span class="hl-num">0.004</span>;
+    renderer.<span class="hl-func">render</span>(scene, camera);
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Integración Three.js:</strong> Monta una escena WebGL con una geometría octagonal procedural de combate en el contenedor <code>#bg-canvas</code>. Sincroniza dinámicamente las tarjetas de veladas locales desde Firestore con filtrado por ciudad (Medellín, Bogotá, Cali, etc.).
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: CARTELERA INTERNACIONAL -->
+            <section id="dev-screen-internacional" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Cartelera Mundial & Odds (`internacional.html`)</h2>
+                    <p class="dev-desc">Integración en tiempo real con TheSportsDB API, selector por disciplina (MMA, Boxeo, BJJ, Kickboxing) y cuotas oficiales.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/internacional.html</span>
+                            <span class="dev-status-tag">PPV LIVE EVENTS</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Cartelera Internacional y Cuotas (internacional.html)">
+                        <img src="./screenshots/04_cartelera_internacional.png" alt="Cartelera Internacional">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> internacional.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/internacional.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/styles.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Fuente de Datos</div>
+                        <div class="chip-val"><i class="fas fa-globe"></i> TheSportsDB + ONE Championship API</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/internacional.js · Filtro Estricto de Veladas Vigentes</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> CURRENT_DATE_ISO = <span class="hl-str">'2026-09-06T00:00:00Z'</span>;
+<span class="hl-keyword">const</span> MAX_EVENTS_PER_SPORT = <span class="hl-num">5</span>;
+
+<span class="hl-keyword">function</span> <span class="hl-func">filtrarEventosVigentes</span>(eventsList) {
+    <span class="hl-keyword">return</span> eventsList
+        .<span class="hl-func">filter</span>(ev => ev.dateEvent >= CURRENT_DATE_ISO.<span class="hl-func">substring</span>(<span class="hl-num">0</span>, <span class="hl-num">10</span>))
+        .<span class="hl-func">sort</span>((a, b) => a.dateEvent.<span class="hl-func">localeCompare</span>(b.dateEvent))
+        .<span class="hl-func">slice</span>(<span class="hl-num">0</span>, MAX_EVENTS_PER_SPORT);
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Control de Caducidad:</strong> El controlador descarta categóricamente eventos pasados mediante comparación con la constante ISO. Si un endpoint falla por límite de peticiones (Rate Limit), utiliza una galería curada de 5 pósters cinematográficos verificados (HTTP 200) para garantizar que ninguna tarjeta quede en blanco.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: DETALLE DE EVENTO -->
+            <section id="dev-screen-evento-detalle" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Ficha Técnica de Velada (`evento-detalle.html`)</h2>
+                    <p class="dev-desc">Extracción de parámetros de URL (<code>?id=evt_...</code>) y desglose de combates estelares vs preliminares.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/evento-detalle.html?id=evt_efc15</span>
+                            <span class="dev-status-tag">BOUT CARDS</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Detalle de Velada (evento-detalle.html)">
+                        <img src="./screenshots/05_evento_detalle.png" alt="Detalle del Evento">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> evento-detalle.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/styles.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Documento Firestore</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> events/{id} (getDoc)</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Carga de Velada por URLSearchParams</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> urlParams = <span class="hl-keyword">new</span> URLSearchParams(window.location.search);
+<span class="hl-keyword">const</span> eventId = urlParams.<span class="hl-func">get</span>(<span class="hl-str">'id'</span>);
+
+<span class="hl-keyword">if</span> (!eventId) {
+    window.location.href = <span class="hl-str">'local.html'</span>;
+} <span class="hl-keyword">else</span> {
+    <span class="hl-keyword">const</span> eventDoc = <span class="hl-keyword">await</span> <span class="hl-func">getDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'events'</span>, eventId));
+    <span class="hl-keyword">if</span> (eventDoc.<span class="hl-func">exists</span>()) {
+        <span class="hl-func">renderizarDetalleVelada</span>(eventDoc.id, eventDoc.<span class="hl-func">data</span>());
+    } <span class="hl-keyword">else</span> {
+        document.<span class="hl-func">getElementById</span>(<span class="hl-str">'evento-not-found'</span>).style.display = <span class="hl-str">'block'</span>;
+    }
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Desglose de Combates:</strong> Separa el array <code>fights</code> en pelea estelar (Main Event, 5 rounds) y preliminares (3 rounds). Renderiza las esquinas con indicadores visuales de color rojo y azul, divisiones reglamentarias y el estado de confirmación de cada atleta.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: CENTRAL DE NOTICIAS -->
+            <section id="dev-screen-noticias" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Central de Noticias MMA & RSS Aggregator (`noticias.html`)</h2>
+                    <p class="dev-desc">Agregador multi-fuente en tiempo real de ESPN UFC, MMA Fighting y ONE con caché TTL de 15 minutos.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/noticias.html</span>
+                            <span class="dev-status-tag">RSS LIVE NEWS</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Central de Noticias MMA (noticias.html)">
+                        <img src="./screenshots/06_noticias_mma.png" alt="Noticias MMA">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> noticias.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/noticias.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/styles.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Mecanismo Caché</div>
+                        <div class="chip-val"><i class="fas fa-bolt"></i> localStorage TTL (15 min)</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/noticias.js · Agregador Multi-API con Caché TTL</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">const</span> CACHE_KEY = <span class="hl-str">'fc_live_combat_news_v4'</span>;
+<span class="hl-keyword">const</span> CACHE_TTL_MS = <span class="hl-num">15</span> * <span class="hl-num">60</span> * <span class="hl-num">1000</span>; <span class="hl-comment">// 15 minutos</span>
+
+<span class="hl-keyword">async</span> <span class="hl-keyword">function</span> <span class="hl-func">obtenerNoticiasCombate</span>() {
+    <span class="hl-keyword">const</span> rawCache = localStorage.<span class="hl-func">getItem</span>(CACHE_KEY);
+    <span class="hl-keyword">const</span> lastTime = localStorage.<span class="hl-func">getItem</span>(<span class="hl-str">'fc_news_time'</span>);
+    
+    <span class="hl-keyword">if</span> (rawCache &amp;&amp; lastTime &amp;&amp; (Date.<span class="hl-func">now</span>() - parseInt(lastTime) &lt; CACHE_TTL_MS)) {
+        <span class="hl-keyword">return</span> JSON.<span class="hl-func">parse</span>(rawCache);
+    }
+
+    <span class="hl-keyword">const</span> response = <span class="hl-keyword">await</span> fetch(API_SOURCES.ufc_espn);
+    <span class="hl-keyword">const</span> payload = <span class="hl-keyword">await</span> response.<span class="hl-func">json</span>();
+    <span class="hl-keyword">const</span> normalized = <span class="hl-func">parsearArticulosESPN</span>(payload.articles);
+
+    localStorage.<span class="hl-func">setItem</span>(CACHE_KEY, JSON.<span class="hl-func">stringify</span>(normalized));
+    localStorage.<span class="hl-func">setItem</span>(<span class="hl-str">'fc_news_time'</span>, Date.<span class="hl-func">now</span>().<span class="hl-func">toString</span>());
+    <span class="hl-keyword">return</span> normalized;
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Agregador de Prensa:</strong> Normaliza payloads heterogéneos de ESPN y fuentes RSS2JSON hacia un formato estándar <code>{ title, headline, publishedDate, imageUrl, sourceUrl }</code>. El caché TTL de 15 minutos evita bloqueos por cuota de peticiones en los navegadores de los usuarios.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 07. REGULACIÓN, PRENSA & ASPECTOS LEGALES               -->
+            <!-- ======================================================= -->
+
+            <!-- VISTA: SANCIONES & ETICA -->
+            <section id="dev-screen-sanciones" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-scale-balanced"></i> Módulo 07 · Regulación & Ética</div>
+                    <h2 class="dev-title">Comisión Disciplinaria & WADA (`sanciones.html`)</h2>
+                    <p class="dev-desc">Registro público de inhabilitaciones médicas por contusión / KO y suspensiones por dopaje.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/sanciones.html</span>
+                            <span class="dev-status-tag" style="color: var(--dev-red); border-color: var(--dev-red); background: rgba(230,36,41,0.15);">DISCIPLINARY BOARD</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Comisión Disciplinaria y Sanciones (sanciones.html)">
+                        <img src="./screenshots/18_sanciones_comision.png" alt="Registro de Sanciones">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> sanciones.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/styles.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Estándar Aplicado</div>
+                        <div class="chip-val"><i class="fas fa-shield-virus"></i> Código Antidopaje WADA + KO Med 60d</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/app.js · Auditoría del Libro Disciplinario</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">async</span> <span class="hl-keyword">function</span> <span class="hl-func">cargarLibroSanciones</span>() {
+    <span class="hl-keyword">const</span> tbody = document.<span class="hl-func">querySelector</span>(<span class="hl-str">'.sanciones-table tbody'</span>);
+    <span class="hl-keyword">const</span> now = <span class="hl-keyword">new</span> Date().<span class="hl-func">toISOString</span>();
+
+    <span class="hl-comment">// Consulta de suspensiones vigentes</span>
+    <span class="hl-keyword">const</span> snap = <span class="hl-keyword">await</span> <span class="hl-func">getDocs</span>(<span class="hl-func">query</span>(
+        <span class="hl-func">collection</span>(db, <span class="hl-str">'medical_suspensions'</span>),
+        <span class="hl-func">where</span>(<span class="hl-str">'suspendedUntil'</span>, <span class="hl-str">'>='</span>, now)
+    ));
+
+    <span class="hl-keyword">if</span> (snap.empty) {
+        <span class="hl-comment">// Mantiene el estado transparente al día</span>
+        tbody.innerHTML = `<span class="hl-str">&lt;tr&gt;&lt;td colspan="4" class="status-clean"&gt;REGISTRO DISCIPLINARIO AL DÍA&lt;/td&gt;&lt;/tr&gt;</span>`;
+    }
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Seguridad Médica del Deporte:</strong> Cuando un peleador es finalizado por nocaut (KO) en cualquier evento oficial registrado, se emite una suspensión médica preventiva automática de 60 días para proteger su integridad neurológica, impidiendo que el motor de postulación acepte nuevos contratos durante ese lapso.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: TÉRMINOS LEGALES -->
+            <section id="dev-screen-terminos" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Estatuto Legal y Términos de Servicio (`terminos.html`)</h2>
+                    <p class="dev-desc">Contratos deportivos vinculantes, deslindes de responsabilidad médica y cláusulas de arbitraje.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/terminos.html</span>
+                            <span class="dev-status-tag">LEGAL TERMS</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Estatuto Legal de FightConnect (terminos.html)">
+                        <img src="./screenshots/11_terminos_legales.png" alt="Términos Legales">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> terminos.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/auth.js (Consentimiento)</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/styles.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Registro en Backend</div>
+                        <div class="chip-val"><i class="fas fa-database"></i> users/{uid}.termsAcceptedAt</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/auth.js · Registro de Consentimiento Legal</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">await</span> <span class="hl-func">updateDoc</span>(<span class="hl-func">doc</span>(db, <span class="hl-str">'users'</span>, userId), {
+    legalConsent: {
+        termsVersion: <span class="hl-str">'2026.1'</span>,
+        agreedAt: <span class="hl-func">serverTimestamp</span>(),
+        medicalWaiverSigned: <span class="hl-keyword">true</span>
+    }
+});</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Validez Contractual:</strong> Todo registro de atleta o promotor exige la aceptación explícita de los estatutos. El servidor guarda la versión de los términos y el timestamp oficial del servidor, garantizando trazabilidad ante cualquier disputa de combate.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: PRIVACIDAD DE DATOS -->
+            <section id="dev-screen-privacidad" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Tratamiento de Datos Médicos & Privacidad (`privacidad.html`)</h2>
+                    <p class="dev-desc">Políticas de confidencialidad médica (HIPAA / Habeas Data) y cifrado perimetral AES-256 de serologías.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/privacidad.html</span>
+                            <span class="dev-status-tag">DATA ENCRYPTION</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Tratamiento de Datos y Privacidad (privacidad.html)">
+                        <img src="./screenshots/20_privacidad_datos.png" alt="Privacidad de Datos">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> privacidad.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Seguridad</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/security-utils.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/styles.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Aislamiento de Datos</div>
+                        <div class="chip-val"><i class="fas fa-user-shield"></i> Subcolección Restringida</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-js"></i> js/security-utils.js · Validación de Privacidad Médica</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code><span class="hl-keyword">export</span> <span class="hl-keyword">function</span> <span class="hl-func">validarAccesoMedico</span>(viewerRole, targetRole) {
+    <span class="hl-keyword">if</span> (viewerRole === <span class="hl-str">'promoter'</span> &amp;&amp; targetRole === <span class="hl-str">'fighter'</span>) {
+        <span class="hl-keyword">return</span> <span class="hl-keyword">true</span>; <span class="hl-comment">// Promotora verificada audita aptitud para combate</span>
+    }
+    <span class="hl-keyword">return</span> <span class="hl-keyword">false</span>; <span class="hl-comment">// Bloqueo total para otros roles y público general</span>
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Aislamiento de Privacidad:</strong> Los exámenes serológicos (Hepatitis B, C, VIH) y tomografías cerebrales nunca se almacenan en el documento público del peleador. Se guardan en subcolecciones con reglas perimetrales que deniegan lecturas no autenticadas.
+                    </p>
+                </div>
+            </section>
+
+            <!-- VISTA: MEDIA KIT -->
+            <section id="dev-screen-mediakit" class="dev-section">
+                <div class="dev-section-header">
+                    <h2 class="dev-title">Media Kit Institucional (`media-kit.html`)</h2>
+                    <p class="dev-desc">Directrices de identidad visual, descarga de logotipos SVG y paleta cromática oficial.</p>
+                </div>
+
+                <div class="dev-screen-frame">
+                    <div class="dev-screen-titlebar">
+                        <div class="dev-traffic-lights">
+                            <span class="t-red"></span><span class="t-yellow"></span><span class="t-green"></span>
+                        </div>
+                        <div class="dev-screen-url">
+                            <span class="url-path"><i class="fas fa-lock"></i> https://fightconnect.app/media-kit.html</span>
+                            <span class="dev-status-tag">BRAND ASSETS</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-img-box" data-caption="Media Kit Institucional (media-kit.html)">
+                        <img src="./screenshots/21_media_kit.png" alt="Media Kit">
+                        <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Ampliar Captura</span>
+                    </div>
+                </div>
+
+                <div class="dev-meta-chips-grid">
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Vista HTML</div>
+                        <div class="chip-val"><i class="fas fa-file-code"></i> media-kit.html</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Script Controlador</div>
+                        <div class="chip-val"><i class="fab fa-js"></i> js/app.js</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Hojas de Estilo</div>
+                        <div class="chip-val"><i class="fab fa-css3"></i> css/styles.css</div>
+                    </div>
+                    <div class="dev-meta-chip">
+                        <div class="chip-label">Formatos Soportados</div>
+                        <div class="chip-val"><i class="fas fa-palette"></i> SVG Vector + WebP HD</div>
+                    </div>
+                </div>
+
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <span class="code-file-label"><i class="fab fa-css3"></i> css/styles.css · Design Tokens de Identidad</span>
+                        <button class="btn-copy-code"><i class="fas fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre class="code-pre"><code>:root {
+    --primary-red: <span class="hl-str">#e62429</span>;    <span class="hl-comment">/* Rojo de Combate Octágono */</span>
+    --bg-dark: <span class="hl-str">#121216</span>;        <span class="hl-comment">/* Negro Grafito Underground */</span>
+    --accent-cyan: <span class="hl-str">#00f2fe</span>;    <span class="hl-comment">/* Cyan Neón Digital */</span>
+    --accent-gold: <span class="hl-str">#ffb800</span>;    <span class="hl-comment">/* Dorado Cinturón de Campeonato */</span>
+    --font-heading: <span class="hl-str">'Oswald'</span>, sans-serif;
+}</code></pre>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Pantalla
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Design System:</strong> Define la librería de tokens CSS oficiales utilizados uniformemente en todas las vistas de la aplicación y en ambos manuales web, garantizando consistencia cromática y tipográfica en todo el ecosistema.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================================================= -->
+            <!-- 08. AUDITORÍA MÓVIL Y TESTING                           -->
+            <!-- ======================================================= -->
+
+            <!-- VISTA: AUDITORÍA MÓVIL 390PX -->
+            <section id="dev-screen-mobile" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-mobile-screen"></i> Módulo 08 · Responsividad Móvil</div>
+                    <h2 class="dev-title">Auditoría en Smartphone (Viewport 390×844px)</h2>
+                    <p class="dev-desc">Verificación de cero desbordamiento horizontal y adaptación táctil para pulgares en iPhone y Android.</p>
+                </div>
+
+                <div class="diag-grid" style="grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                    <div class="dev-screen-frame" style="margin: 0;">
+                        <div class="dev-screen-img-box" data-caption="Vista Móvil: Panel de Promotora (390px)">
+                            <img src="./screenshots/12_mobile_promotor.png" alt="Promotora Móvil">
+                            <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Zoom</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-frame" style="margin: 0;">
+                        <div class="dev-screen-img-box" data-caption="Vista Móvil: Dashboard del Peleador (390px)">
+                            <img src="./screenshots/13_mobile_fighter.png" alt="Peleador Móvil">
+                            <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Zoom</span>
+                        </div>
+                    </div>
+                    <div class="dev-screen-frame" style="margin: 0;">
+                        <div class="dev-screen-img-box" data-caption="Vista Móvil: Cartelera Local (390px)">
+                            <img src="./screenshots/14_mobile_cartelera.png" alt="Cartelera Local Móvil">
+                            <span class="dev-zoom-badge"><i class="fas fa-search-plus"></i> Zoom</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dev-card" style="margin-top: 1.5rem;">
+                    <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem;">
+                        <i class="fas fa-microchip" style="color: var(--dev-cyan);"></i> Explicación Técnica de la Responsividad
+                    </h4>
+                    <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                        <strong>Garantía Zero-Overflow:</strong> Aplicación de <code>overflow-x: clip</code> y reglas <code>max-width: 100vw</code> en los contenedores maestros. Los botones de acción rápida poseen un área de toque mínima de 44×44px cumpliendo las pautas de accesibilidad WCAG y Google Core Web Vitals.
+                    </p>
+                </div>
+            </section>
+
+            <!-- TROUBLESHOOTING & FAQ -->
+            <section id="dev-troubleshooting" class="dev-section">
+                <div class="dev-section-header">
+                    <div class="dev-eyebrow"><i class="fas fa-wrench"></i> Diagnóstico & Logs</div>
+                    <h2 class="dev-title">Troubleshooting y Preguntas Frecuentes Técnicas</h2>
+                </div>
+
+                <div class="dev-card">
+                    <div style="margin-bottom: 1.6rem;">
+                        <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.3rem;">
+                            ¿Por qué la verificación de Nivel 2 debe ser validada por Firestore Rules?
+                        </h4>
+                        <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                            Porque cualquier atacante podría inspeccionar el DOM, modificar el objeto <code>userData.isVerified = true</code> y publicar eventos ficticios. Al bloquear la mutación de <code>isVerified</code> en <code>firestore.rules</code> (líneas 41-43), la integridad del ecosistema queda 100% blindada a nivel de base de datos.
+                        </p>
+                    </div>
+                    <div style="margin-bottom: 1.6rem; border-top: 1px solid var(--dev-border); padding-top: 1.4rem;">
+                        <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.3rem;">
+                            ¿Cómo se sirven las capturas de pantalla de los manuales?
+                        </h4>
+                        <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                            Cada manual tiene su propia carpeta física independiente: <code>manual-usuario/screenshots/</code> y <code>manual-programador/screenshots/</code>. Todas las rutas se invocan relativamente mediante <code>./screenshots/[nombre].png</code>, asegurando que carguen tanto en <code>file:///</code> como en servidores de desarrollo o producción.
+                        </p>
+                    </div>
+                    <div style="border-top: 1px solid var(--dev-border); padding-top: 1.4rem;">
+                        <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.3rem;">
+                            ¿Cómo ejecutar una compilación de producción validada?
+                        </h4>
+                        <p style="color: var(--dev-text-muted); font-size: 0.88rem; line-height: 1.6;">
+                            Ejecuta <code>npm run build</code>. Vite escaneará todas las páginas HTML raíz más los dos manuales en sus subdirectorios autónomos, generando los paquetes minificados y optimizados en la carpeta <code>dist/</code>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer style="margin-top: 5rem; padding: 3rem 0; border-top: 1px solid var(--dev-border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; color: var(--dev-text-dim); font-size: 0.82rem;">
+                <div><strong>FIGHT CONNECT ENGINEERING &copy; 2026</strong> · Documentación Técnica Oficial.</div>
+                <div>
+                    <a href="../manual-usuario/index.html" style="color: var(--dev-cyan); text-decoration: none; margin: 0 8px;">Manual de Usuario</a>
+                    <a href="../terminos.html" style="color: var(--dev-text-muted); text-decoration: none; margin: 0 8px;">Términos</a>
+                    <a href="../privacidad.html" style="color: var(--dev-text-muted); text-decoration: none; margin: 0 8px;">Privacidad</a>
+                    <a href="../index.html" style="color: var(--dev-text-muted); text-decoration: none; margin: 0 8px;">Aplicativo</a>
+                </div>
+            </footer>
+
+        </main>
+
+        <!-- Sidebar Derecha: On This Page -->
+        <aside class="dev-toc">
+            <div class="dev-toc-title"><i class="fas fa-list"></i> En esta página</div>
+            <ul class="dev-toc-list">
+                <li><a href="#dev-arch-overview">Arquitectura MPA</a></li>
+                <li><a href="#dev-tree-structure">Estructura Tree</a></li>
+                <li><a href="#dev-auth-guard">Guardián RBAC</a></li>
+                <li><a href="#dev-firestore-rules">Security Rules</a></li>
+                <li><a href="#dev-screen-login">Portal de Acceso</a></li>
+                <li><a href="#dev-screen-promoter-reg">Registro Promotora</a></li>
+                <li><a href="#dev-screen-fighter-reg">Registro Peleador</a></li>
+                <li><a href="#dev-screen-promoter-l0">Promotora Nivel 0</a></li>
+                <li><a href="#dev-screen-promoter-kyb">Ajustes & KYB</a></li>
+                <li><a href="#dev-screen-promoter-l2">Promotora Nivel 2</a></li>
+                <li><a href="#dev-screen-promoter-scout">Motor Scouting</a></li>
+                <li><a href="#dev-screen-fighter-dash">Panel del Atleta</a></li>
+                <li><a href="#dev-screen-fighter-buscar">Buscar Peleas</a></li>
+                <li><a href="#dev-screen-fighter-apps">Postulaciones</a></li>
+                <li><a href="#dev-screen-fighter-historial">Récord e Historial</a></li>
+                <li><a href="#dev-screen-fan-dash">Centro del Fan</a></li>
+                <li><a href="#dev-screen-fan-buscar">Explorador Fan</a></li>
+                <li><a href="#dev-screen-fan-favs">Roster Favoritos</a></li>
+                <li><a href="#dev-screen-fan-ajustes">Ajustes del Fan</a></li>
+                <li><a href="#dev-screen-fightfeed">FightFeed Social</a></li>
+                <li><a href="#dev-screen-local">Cartelera Local</a></li>
+                <li><a href="#dev-screen-internacional">Cartelera Mundial</a></li>
+                <li><a href="#dev-screen-evento-detalle">Detalle de Velada</a></li>
+                <li><a href="#dev-screen-noticias">Central de Noticias</a></li>
+                <li><a href="#dev-screen-sanciones">Sanciones WADA</a></li>
+                <li><a href="#dev-screen-terminos">Estatuto Legal</a></li>
+                <li><a href="#dev-screen-privacidad">Privacidad de Datos</a></li>
+                <li><a href="#dev-screen-mediakit">Media Kit Oficial</a></li>
+                <li><a href="#dev-screen-mobile">Auditoría Móvil 390px</a></li>
+                <li><a href="#dev-troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <!-- Lightbox Modal de Capturas Técnicas -->
+    <div id="dev-lightbox-modal">
+        <div class="dev-lb-content" onclick="event.stopPropagation()">
+            <button class="dev-lb-close" onclick="closeDevLightbox()">&times;</button>
+            <img id="dev-lb-img" src="" alt="Captura técnica">
+            <div class="dev-lb-footer">
+                <span id="dev-lb-caption" style="font-weight: 600; color: #fff;"></span>
+                <span style="font-size: 0.74rem; color: #888;">Navega con flechas ◀ ▶ o presiona ESC</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script del Manual de Programador -->
+    <script type="module" src="./js/developer.js"></script>
+
+</body>
+</html>

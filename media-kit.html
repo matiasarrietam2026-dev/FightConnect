@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsenal de Marca & Kit de Prensa | FIGHT CONNECT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="bg-canvas"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navegación Superior -->
+    <nav class="top-nav">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">FIGHT <span>CONNECT</span></a></div>
+        <ul class="nav-links">
+            <li class="dropdown-container">
+                <a href="#" class="dropdown-trigger">EVENTOS <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                <div class="dropdown-menu">
+                    <a href="local.html">EVENTOS LOCALES</a>
+                    <a href="internacional.html">CARTELERAS INTERNACIONALES</a>
+                </div>
+            </li>
+            <li><a href="noticias.html">NOTICIAS</a></li>
+            <li><a href="fightfeed.html"><i class="fas fa-fire" style="color: var(--accent-red); margin-right: 4px;"></i>FIGHTFEED</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="index.html"><button class="btn-join">INICIAR SESIÓN</button></a>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal del Media Kit -->
+    <main class="page-container" style="max-width: 1100px; margin: 3.5rem auto 5rem; padding: 0 1.75rem; position: relative; z-index: 2;">
+        
+        <!-- Header de Sección Underground -->
+        <header class="section-header" style="text-align: left; align-items: flex-start; margin-bottom: 2rem;">
+            <div class="media-kit-hero-badge">
+                <i class="fas fa-shield-alt"></i> ARSENAL DE IDENTIDAD VISUAL & PRENSA OFICIAL 2026
+            </div>
+            <h1 class="main-title" style="font-size: 2.8rem; line-height: 1.1; margin-bottom: 0.8rem;">
+                ARSENAL DE MARCA Y PRENSA
+            </h1>
+            <div class="title-underline" style="margin: 0; width: 90px; height: 4px; background: var(--accent-red);"></div>
+            <p style="color: #aaa; margin-top: 1.2rem; max-width: 850px; line-height: 1.7; font-size: 1rem;">
+                Forjada en las noches de combate y en el asfalto donde nacen los campeones. Utiliza nuestra armadura gráfica oficial para coberturas periodísticas, diseño de carteleras, transmisiones en directo, afiches promocionales y patrocinios.
+            </p>
+        </header>
+
+        <!-- Ribbon de Especificaciones Técnicas -->
+        <div class="media-kit-stats-ribbon">
+            <div class="media-kit-stat-item">
+                <strong><i class="fas fa-vector-square" style="color: var(--accent-red); margin-right: 6px;"></i> SVG MASTER</strong>
+                <span>Vectores matemáticos infinitamente escalables</span>
+            </div>
+            <div class="media-kit-stat-item">
+                <strong><i class="fas fa-photo-video" style="color: #10b981; margin-right: 6px;"></i> ULTRA-HD 4K</strong>
+                <span>PNGs transparentes de estudio hasta 3840px</span>
+            </div>
+            <div class="media-kit-stat-item">
+                <strong><i class="fas fa-certificate" style="color: #ffc107; margin-right: 6px;"></i> V3.2 OFICIAL</strong>
+                <span>Tokens cromáticos, tipografía y manual de marca</span>
+            </div>
+            <div class="media-kit-stat-item">
+                <strong><i class="fas fa-globe" style="color: #00a8ff; margin-right: 6px;"></i> LIBRE REGALÍAS</strong>
+                <span>Uso editorial y publicitario para la comunidad</span>
+            </div>
+        </div>
+
+        <!-- ====================================================================
+             1. ARMADURA CROMÁTICA (DESIGN SYSTEM)
+             ==================================================================== -->
+        <section style="margin-top: 3.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: gap; margin-bottom: 1.25rem;">
+                <div>
+                    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.6rem; letter-spacing: 1px; margin: 0;">
+                        1. NUESTRA ARMADURA CROMÁTICA
+                    </h3>
+                    <p style="color: #888; font-size: 0.85rem; margin-top: 4px;">
+                        Colores calibrados para máximo contraste, agresividad visual y legibilidad en entornos oscuros.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button type="button" class="btn-asset-download" id="btn-download-palette-css" style="padding: 0.5rem 1rem; font-size: 0.8rem;">
+                        <i class="fab fa-css3-alt" style="color: #00a8ff;"></i> TOKENS CSS
+                    </button>
+                    <button type="button" class="btn-asset-download" id="btn-download-palette-json" style="padding: 0.5rem 1rem; font-size: 0.8rem;">
+                        <i class="fas fa-file-code" style="color: #ffc107;"></i> PALETA JSON
+                    </button>
+                </div>
+            </div>
+
+            <div class="media-kit-grid">
+                <!-- Color 1: Negro Asfalto -->
+                <div class="color-card-epic">
+                    <div class="color-card-swatch" style="background: #050505; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span style="background: rgba(255,255,255,0.1); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 600;">SUPERFICIE BASE</span>
+                    </div>
+                    <div class="color-card-info">
+                        <div class="color-card-title">NEGRO ASFALTO</div>
+                        <div class="color-card-usage">Fondos primarios del octágono, rejilla de combate y atmósfera nocturna.</div>
+                        <div class="color-card-hex-row">
+                            <span class="color-card-hex-code">#050505</span>
+                            <button type="button" class="btn-copy-hex" data-hex="#050505"><i class="fas fa-copy"></i> COPIAR HEX</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color 2: Rojo Neón Octágono -->
+                <div class="color-card-epic" style="border-color: rgba(230,36,41,0.5);">
+                    <div class="color-card-swatch" style="background: linear-gradient(135deg, #e62429 0%, #b31217 100%); box-shadow: inset 0 0 20px rgba(0,0,0,0.4);">
+                        <span style="background: rgba(0,0,0,0.5); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 600;">COLOR INSIGNIA</span>
+                    </div>
+                    <div class="color-card-info">
+                        <div class="color-card-title" style="color: #ff575b;">ROJO NEÓN OCTÁGONO</div>
+                        <div class="color-card-usage">La sangre, el sudor, llamadas a la acción, alertas de nocaut y neón underground.</div>
+                        <div class="color-card-hex-row">
+                            <span class="color-card-hex-code" style="color: #ff575b;">#E62429</span>
+                            <button type="button" class="btn-copy-hex" data-hex="#E62429"><i class="fas fa-copy"></i> COPIAR HEX</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color 3: Blanco Titanio -->
+                <div class="color-card-epic">
+                    <div class="color-card-swatch" style="background: #ffffff;">
+                        <span style="background: rgba(0,0,0,0.85); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 600;">ALTO CONTRASTE</span>
+                    </div>
+                    <div class="color-card-info">
+                        <div class="color-card-title">BLANCO TITANIO</div>
+                        <div class="color-card-usage">Titulares de máximo impacto, marcas de pesaje y números de telemetría.</div>
+                        <div class="color-card-hex-row">
+                            <span class="color-card-hex-code">#FFFFFF</span>
+                            <button type="button" class="btn-copy-hex" data-hex="#FFFFFF"><i class="fas fa-copy"></i> COPIAR HEX</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color 4: Oro Cinturón -->
+                <div class="color-card-epic">
+                    <div class="color-card-swatch" style="background: linear-gradient(135deg, #ffc107 0%, #d39e00 100%);">
+                        <span style="background: rgba(0,0,0,0.7); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 600;">CAMPEONATO</span>
+                    </div>
+                    <div class="color-card-info">
+                        <div class="color-card-title" style="color: #ffc107;">ORO CINTURÓN</div>
+                        <div class="color-card-usage">Carteleras estelares por título, peleadores campeones e insignias de promotor.</div>
+                        <div class="color-card-hex-row">
+                            <span class="color-card-hex-code" style="color: #ffc107;">#FFC107</span>
+                            <button type="button" class="btn-copy-hex" data-hex="#FFC107"><i class="fas fa-copy"></i> COPIAR HEX</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color 5: Esmeralda Octa -->
+                <div class="color-card-epic">
+                    <div class="color-card-swatch" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <span style="background: rgba(0,0,0,0.7); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 600;">VERIFICACIÓN</span>
+                    </div>
+                    <div class="color-card-info">
+                        <div class="color-card-title" style="color: #10b981;">ESMERALDA OCTA</div>
+                        <div class="color-card-usage">Atletas verificados, récord invicto, inscripciones aprobadas y estado en vivo.</div>
+                        <div class="color-card-hex-row">
+                            <span class="color-card-hex-code" style="color: #10b981;">#10B981</span>
+                            <button type="button" class="btn-copy-hex" data-hex="#10B981"><i class="fas fa-copy"></i> COPIAR HEX</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color 6: Carbón Titanio -->
+                <div class="color-card-epic">
+                    <div class="color-card-swatch" style="background: #141419; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <span style="background: rgba(255,255,255,0.1); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 600;">ELEVACIÓN</span>
+                    </div>
+                    <div class="color-card-info">
+                        <div class="color-card-title">CARBÓN TITANIO</div>
+                        <div class="color-card-usage">Tarjetas elevadas, modales tácticos, pasaporte de combate y radar.</div>
+                        <div class="color-card-hex-row">
+                            <span class="color-card-hex-code">#141419</span>
+                            <button type="button" class="btn-copy-hex" data-hex="#141419"><i class="fas fa-copy"></i> COPIAR HEX</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             2. LOGOTIPO PRINCIPAL & EMBLEMA OCTAGONAL (ASSETS MAESTROS)
+             ==================================================================== -->
+        <section style="margin-top: 4.5rem;">
+            <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                2. LOGOTIPO VECTORIAL Y EMBLEMA OFICIAL
+            </h3>
+            <p style="color: #888; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                Inspecciona y descarga el logotipo principal horizontal y el emblema de campeonato en SVG vectorial y PNG HD en 4K.
+            </p>
+
+            <!-- Card 1: Logotipo Maestro Horizontal -->
+            <div class="master-asset-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <span style="font-family: var(--font-heading); color: var(--accent-red); font-size: 0.85rem; letter-spacing: 1.5px; font-weight: 700;">INSIGNIA PRIMARIA</span>
+                        <h4 style="margin: 2px 0 0; color: #fff; font-family: var(--font-heading); font-size: 1.4rem;">LOGOTIPO HORIZONTAL MASTER</h4>
+                    </div>
+                    <div class="stage-theme-switchers">
+                        <button type="button" class="btn-theme-sw active" data-stage="logo" data-theme="dark"><i class="fas fa-moon"></i> FONDO OSCURO</button>
+                        <button type="button" class="btn-theme-sw" data-stage="logo" data-theme="transparent"><i class="fas fa-chess-board"></i> TRANSPARENTE</button>
+                        <button type="button" class="btn-theme-sw" data-stage="logo" data-theme="glow"><i class="fas fa-fire"></i> MODO RESPLANDOR</button>
+                    </div>
+                </div>
+
+                <!-- Stage de previsualización dinámica -->
+                <div class="master-preview-stage bg-stage-dark" id="stage-preview-logo">
+                    <svg viewBox="0 0 850 180" width="100%" style="max-width: 620px; height: auto;" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="fcGradLogo" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ff3b40"/>
+                                <stop offset="100%" stop-color="#b31217"/>
+                            </linearGradient>
+                            <filter id="fcGlowLogo" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="8" result="blur"/>
+                                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                            </filter>
+                        </defs>
+                        <!-- Octágono Isotipo -->
+                        <polygon points="100,25 140,25 170,55 170,95 140,125 100,125 70,95 70,55" fill="none" stroke="url(#fcGradLogo)" stroke-width="8" filter="url(#fcGlowLogo)"/>
+                        <polygon points="103,33 137,33 162,58 162,92 137,117 103,117 78,92 78,58" fill="rgba(230,36,41,0.2)"/>
+                        <circle cx="120" cy="75" r="7" fill="#ffffff"/>
+                        <!-- Tipografía Oficial -->
+                        <text x="200" y="100" font-family="'Oswald', sans-serif" font-size="76" font-weight="700" letter-spacing="4" fill="#FFFFFF">FIGHT</text>
+                        <text x="405" y="100" font-family="'Oswald', sans-serif" font-size="76" font-weight="700" letter-spacing="4" fill="#E62429">CONNECT</text>
+                        <text x="205" y="136" font-family="'Inter', sans-serif" font-size="14" font-weight="700" letter-spacing="8" fill="#888888">EXCELENCIA UNDERGROUND 2026</text>
+                    </svg>
+                </div>
+
+                <div class="asset-actions-row">
+                    <button type="button" class="btn-asset-download" id="btn-download-svg">
+                        <i class="fas fa-vector-square" style="color: var(--accent-red);"></i> DESCARGAR VECTOR (.SVG)
+                    </button>
+                    <button type="button" class="btn-asset-download" id="btn-download-png">
+                        <i class="fas fa-image" style="color: #10b981;"></i> DESCARGAR PNG 4K TRANSPARENTE
+                    </button>
+                    <button type="button" class="btn-asset-download" id="btn-download-svg-dark">
+                        <i class="fas fa-square" style="color: #aaa;"></i> SVG FONDO OSCURO
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2: Emblema Octágono de Jaula (Badge de Combate) -->
+            <div class="master-asset-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <span style="font-family: var(--font-heading); color: #ffc107; font-size: 0.85rem; letter-spacing: 1.5px; font-weight: 700;">ISOTIPO DE CAMPEONATO</span>
+                        <h4 style="margin: 2px 0 0; color: #fff; font-family: var(--font-heading); font-size: 1.4rem;">ESCUDO OCTÁGONO (FC EMBLEM)</h4>
+                    </div>
+                    <div class="stage-theme-switchers">
+                        <button type="button" class="btn-theme-sw active" data-stage="emblem" data-theme="dark"><i class="fas fa-moon"></i> FONDO OSCURO</button>
+                        <button type="button" class="btn-theme-sw" data-stage="emblem" data-theme="transparent"><i class="fas fa-chess-board"></i> TRANSPARENTE</button>
+                    </div>
+                </div>
+
+                <div class="master-preview-stage bg-stage-dark" id="stage-preview-emblem">
+                    <svg viewBox="0 0 320 320" width="100%" style="max-width: 240px; height: auto;" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="fcEmblemGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="rgba(230,36,41,0.3)"/>
+                                <stop offset="100%" stop-color="rgba(5,5,8,0)"/>
+                            </radialGradient>
+                        </defs>
+                        <circle cx="160" cy="160" r="150" fill="url(#fcEmblemGlow)"/>
+                        <polygon points="160,25 255,64 295,160 255,256 160,295 65,256 25,160 65,64" fill="#0c0c10" stroke="#E62429" stroke-width="10"/>
+                        <polygon points="160,45 237,77 270,160 237,243 160,275 83,243 50,160 83,77" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+                        <text x="160" y="145" text-anchor="middle" font-family="'Oswald', Impact, sans-serif" font-size="60" font-weight="700" letter-spacing="3" fill="#FFFFFF">FC</text>
+                        <text x="160" y="195" text-anchor="middle" font-family="'Oswald', Impact, sans-serif" font-size="22" font-weight="700" letter-spacing="6" fill="#E62429">OCTAGON</text>
+                        <circle cx="160" cy="225" r="4" fill="#FFC107"/>
+                    </svg>
+                </div>
+
+                <div class="asset-actions-row">
+                    <button type="button" class="btn-asset-download" id="btn-download-emblem-svg">
+                        <i class="fas fa-shield-alt" style="color: #ffc107;"></i> DESCARGAR EMBLEMA (.SVG)
+                    </button>
+                    <button type="button" class="btn-asset-download" id="btn-download-emblem-png">
+                        <i class="fas fa-image" style="color: #10b981;"></i> DESCARGAR EMBLEMA 4K (.PNG)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             3. AFICHE OFICIAL DE COMBATE / WALLPAPER 4K
+             ==================================================================== -->
+        <section style="margin-top: 4.5rem;">
+            <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                3. AFICHE OFICIAL DE COMBATE & WALLPAPER 4K
+            </h3>
+            <p style="color: #888; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                Material promocional oficial de alta fidelidad para transmisiones, pantallas gigantes de arena, fondos de pantalla e historias.
+            </p>
+
+            <div class="master-asset-card" style="padding: 1.75rem;">
+                <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 280px;">
+                        <canvas id="poster-canvas-preview" width="960" height="540" style="width: 100%; border-radius: 8px; border: 1px solid rgba(230,36,41,0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.8); display: block;"></canvas>
+                    </div>
+                    <div style="flex: 1; min-width: 260px;">
+                        <span style="background: rgba(230,36,41,0.2); color: #ff575b; border: 1px solid var(--accent-red); padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">PROMO ASSET 4K</span>
+                        <h4 style="color: #fff; font-family: var(--font-heading); font-size: 1.6rem; margin: 0.6rem 0 0.8rem;">POSTER OFICIAL "UNDERGROUND FIGHT NIGHT"</h4>
+                        <p style="color: #aaa; font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Generado en ultra alta resolución (1920x1080) con estética de arena subterránea, octágono de combate, textura de asfalto y tipografía oficial. Listo para impresión y difusión digital.
+                        </p>
+                        <button type="button" class="btn-asset-download" id="btn-download-poster" style="background: var(--accent-red); border-color: var(--accent-red);">
+                            <i class="fas fa-download"></i> DESCARGAR AFICHE 4K (.PNG)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             4. TIPOGRAFÍA Y MANUAL DE MARCA
+             ==================================================================== -->
+        <section style="margin-top: 4.5rem;">
+            <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                4. TIPOGRAFÍA Y DIRECTRICES DE COMBATE
+            </h3>
+            <p style="color: #888; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                Las reglas de uso que protegen la integridad de FightConnect.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <!-- Tipografía 1: Oswald -->
+                <div style="background: rgba(14,14,18,0.85); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1.5rem;">
+                    <span style="font-size: 0.72rem; color: var(--accent-red); font-weight: 700; letter-spacing: 1px;">TIPOGRAFÍA DE COMBATE</span>
+                    <h4 style="color: #fff; font-family: 'Oswald', sans-serif; font-size: 2rem; margin: 0.5rem 0 0.2rem; letter-spacing: 2px;">OSWALD BOLD</h4>
+                    <p style="color: #888; font-size: 0.8rem; margin-bottom: 1rem;">Uso obligatorio en titulares principales, nombres de peleadores y pesaje.</p>
+                    <div style="font-family: 'Oswald', sans-serif; font-size: 1.25rem; color: #fff; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.75rem;">
+                        ABCDEFGHIJKLMNÑOPQRSTUVWXYZ<br>
+                        0123456789 - KNOCKOUT OF THE NIGHT
+                    </div>
+                </div>
+
+                <!-- Tipografía 2: Inter -->
+                <div style="background: rgba(14,14,18,0.85); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1.5rem;">
+                    <span style="font-size: 0.72rem; color: #10b981; font-weight: 700; letter-spacing: 1px;">TELEMETRÍA & CUERPO</span>
+                    <h4 style="color: #fff; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.7rem; margin: 0.5rem 0 0.2rem;">INTER REGULAR / BOLD</h4>
+                    <p style="color: #888; font-size: 0.8rem; margin-bottom: 1rem;">Uso en párrafos, datos biométricos, reglas, cartelera técnica y UI.</p>
+                    <div style="font-family: 'Inter', sans-serif; font-size: 0.92rem; color: #ccc; line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.75rem;">
+                        Alcance 182 cm • Guardia Ortodoxa • 70.3 kg (Peso Ligero)<br>
+                        Estatura, récords oficiales y telemetría de combate sin distorsión.
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; text-align: right;">
+                <button type="button" class="btn-asset-download" id="btn-download-guidelines-txt" style="font-size: 0.82rem;">
+                    <i class="fas fa-file-alt" style="color: #ffc107;"></i> DESCARGAR MANUAL DE MARCA (.TXT)
+                </button>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             5. DESCARGA MAESTRA: ARSENAL COMPLETO (ALL-IN-ONE ZIP)
+             ==================================================================== -->
+        <section class="master-zip-box">
+            <span style="background: #e62429; color: #fff; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; padding: 4px 14px; border-radius: 20px; display: inline-block;">
+                <i class="fas fa-box-open"></i> PAQUETE MAESTRO OFICIAL
+            </span>
+            <h2 style="color: #fff; font-family: var(--font-heading); font-size: 2.4rem; letter-spacing: 1.5px; margin: 1rem 0 0.6rem;">
+                DESCARGAR ARSENAL COMPLETO (ZIP)
+            </h2>
+            <p style="color: #bbb; max-width: 650px; margin: 0 auto 1.5rem; font-size: 0.95rem; line-height: 1.6;">
+                Incluye todos los archivos vectoriales SVG master, imágenes HD en resolución 4K transparente, escudo de campeonato, afiche de combate, paleta cromática (CSS / JSON) y el manual de identidad visual.
+            </p>
+            <button type="button" class="download-btn-giant" id="btn-download-all-zip">
+                <i class="fas fa-file-archive" style="font-size: 1.5rem;"></i> DESCARGAR ARSENAL COMPLETO (.ZIP)
+            </button>
+            <p id="download-status-msg" style="color: #10b981; font-family: var(--font-heading); font-size: 1rem; margin-top: 1.5rem; display: none; letter-spacing: 1px;"></p>
+        </section>
+
+    </main>
+
+    <!-- Footer Oficial -->
+    <footer class="main-footer">
+        <div class="logo">FIGHT <span>CONNECT</span></div>
+        <ul class="footer-links">
+            <li><a href="privacidad.html">POLÍTICA DE PRIVACIDAD</a></li>
+            <li><a href="terminos.html">TÉRMINOS DE COMBATE</a></li>
+            <li><a href="sanciones.html">SANCIONES</a></li>
+            <li><a href="media-kit.html" style="color: var(--accent-red); font-weight: 700;">MEDIA KIT</a></li>
+            <li><a href="manual-usuario.html">MANUAL DE USUARIO</a></li>
+        </ul>
+        <div class="copyright">&copy; 2026 FIGHT CONNECT. EXCELENCIA UNDERGROUND.</div>
+    </footer>
+
+    <!-- Scripts de la Aplicación y Generador Gráfico de Assets -->
+    <script type="module" src="/js/app.js"></script>
+    <script type="module">
+        // ====================================================================
+        // GENERADOR Y DESCARGADOR DE ASSETS OFICIALES DE FIGHTCONNECT
+        // ====================================================================
+        
+        function showCombatToast(message, icon = 'fa-check-circle') {
+            const existing = document.querySelector('.fc-combat-toast');
+            if (existing) existing.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'fc-combat-toast';
+            toast.innerHTML = `<i class="fas ${icon}" style="color: var(--accent-red); font-size: 1.25rem;"></i> <span>${message}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.4s ease';
+                setTimeout(() => toast.remove(), 400);
+            }, 3500);
+        }
+
+        function triggerDownload(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 2500);
+
+            showCombatToast(`Descargado con éxito: ${filename}`, 'fa-download');
+
+            const msg = document.getElementById('download-status-msg');
+            if (msg) {
+                msg.textContent = `✓ Archivo descargado con éxito: ${filename}`;
+                msg.style.display = 'block';
+                setTimeout(() => { msg.style.display = 'none'; }, 4500);
+            }
+        }
+
+        // SVG Logo Master Generator
+        const getSvgLogoContent = (isDark = true) => `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" width="1000" height="240">
+    <defs>
+        <linearGradient id="fcRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff3b40"/>
+            <stop offset="100%" stop-color="#b31217"/>
+        </linearGradient>
+    </defs>
+    <rect width="1000" height="240" fill="${isDark ? '#050505' : 'transparent'}" rx="16"/>
+    <!-- Octágono Insignia del Octágono -->
+    <polygon points="120,40 160,40 190,70 190,110 160,140 120,140 90,110 90,70" fill="none" stroke="url(#fcRedGrad)" stroke-width="8"/>
+    <polygon points="125,50 155,50 178,73 178,107 155,130 125,130 102,107 102,73" fill="rgba(230,36,41,0.2)"/>
+    <circle cx="140" cy="90" r="7" fill="#ffffff"/>
+    <!-- Tipografía Oficial -->
+    <text x="225" y="115" font-family="'Oswald', Impact, sans-serif" font-size="82" font-weight="700" letter-spacing="4" fill="#FFFFFF">FIGHT</text>
+    <text x="445" y="115" font-family="'Oswald', Impact, sans-serif" font-size="82" font-weight="700" letter-spacing="4" fill="#E62429">CONNECT</text>
+    <text x="230" y="155" font-family="'Inter', sans-serif" font-size="16" font-weight="700" letter-spacing="8" fill="#888888">EXCELENCIA UNDERGROUND 2026</text>
+</svg>`;
+
+        // SVG Emblem Official Championship Shield
+        const getSvgEmblemContent = () => `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+    <defs>
+        <linearGradient id="fcEmblemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff3b40"/>
+            <stop offset="100%" stop-color="#990b10"/>
+        </linearGradient>
+    </defs>
+    <rect width="400" height="400" fill="#050505" rx="30"/>
+    <polygon points="200,35 315,82 365,200 315,318 200,365 85,318 35,200 85,82" fill="#0d0d12" stroke="url(#fcEmblemGrad)" stroke-width="12"/>
+    <polygon points="200,60 295,99 335,200 295,301 200,340 105,301 65,200 105,99" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
+    <text x="200" y="180" text-anchor="middle" font-family="'Oswald', Impact, sans-serif" font-size="70" font-weight="700" letter-spacing="3" fill="#FFFFFF">FC</text>
+    <text x="200" y="240" text-anchor="middle" font-family="'Oswald', Impact, sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="#E62429">OCTAGON</text>
+    <circle cx="200" cy="275" r="5" fill="#FFC107"/>
+</svg>`;
+
+        // Tokens y Guía JSON
+        const paletteJson = JSON.stringify({
+            brand: "FIGHT CONNECT",
+            edition: "2026 Underground Official",
+            colors: {
+                asfalto: { hex: "#050505", rgb: "rgb(5, 5, 5)", usage: "Fondos Principales, Superficies de Jaula" },
+                neonRed: { hex: "#E62429", rgb: "rgb(230, 36, 41)", usage: "Acentos Primarios, Alertas, Sangre y Neón" },
+                pureWhite: { hex: "#FFFFFF", rgb: "rgb(255, 255, 255)", usage: "Titulares y Contraste de Peso Pesado" },
+                goldWarning: { hex: "#FFC107", rgb: "rgb(255, 193, 7)", usage: "Peleas de Título y Estatus de Campeón" },
+                octaEmerald: { hex: "#10B981", rgb: "rgb(16, 185, 129)", usage: "Atletas Verificados y Récords Invictos" },
+                carbonTitanium: { hex: "#141419", rgb: "rgb(20, 20, 25)", usage: "Tarjetas y Muros Elevados" }
+            },
+            typography: {
+                headings: "'Oswald', Impact, sans-serif",
+                body: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
+            }
+        }, null, 2);
+
+        const paletteCss = `/* ==========================================================================
+   FIGHT CONNECT - DESIGN TOKENS OFICIALES 2026
+   ========================================================================== */
+:root {
+  --fc-color-asfalto: #050505;
+  --fc-color-neon-red: #e62429;
+  --fc-color-white: #ffffff;
+  --fc-color-gold: #ffc107;
+  --fc-color-emerald: #10b981;
+  --fc-color-carbon: #141419;
+  --fc-font-heading: 'Oswald', Impact, sans-serif;
+  --fc-font-body: 'Inter', sans-serif;
+  --fc-glow-red: 0 0 20px rgba(230, 36, 41, 0.6);
+  --fc-border-octagon: 1px solid rgba(230, 36, 41, 0.5);
+}`;
+
+        const brandGuidelinesTxt = `================================================================================
+   FIGHT CONNECT - MANUAL OFICIAL DE MARCA Y PRENSA (2026 UNDERGROUND)
+================================================================================
+
+1. MANIFIESTO DE MARCA:
+FightConnect es el epicentro del combate subterráneo, conectando promotores,
+peleadores y aficionados. El rojo representa la sangre, la adrenalina y el neón
+de las noches de combate; el negro asfalto representa las raíces y el terreno donde
+se forjan los verdaderos atletas.
+
+2. PALETA CROMÁTICA OFICIAL:
+- Negro Asfalto: #050505 (Fondo de Jaula & Superficies Base)
+- Rojo Neón: #E62429 (Acentos, Alertas, Neón e Isotipo)
+- Blanco Titanio: #FFFFFF (Titulares de Alto Impacto)
+- Oro Cinturón: #FFC107 (Peleas de Campeonato & Estatus Estelar)
+- Esmeralda Octa: #10B981 (Atletas Verificados & Pesaje Aprobado)
+- Carbón Titanio: #141419 (Paneles de Control & Tarjetas)
+
+3. LEYES DEL OCTÁGONO (DIRECTRICES DE USO):
+- NUNCA estirar, aplastar o deformar la proporción del isotipo en octágono.
+- Mantener siempre la palabra "FIGHT" en Blanco (#FFFFFF) y "CONNECT" en Rojo (#E62429).
+- En fondos oscuros utilizar siempre los assets oficiales aquí provistos.
+- No aplicar degradados pasteles ni tipografías decorativas no autorizadas.
+
+4. TIPOGRAFÍA OFICIAL:
+- Titulares: Oswald (Pesos 500, 600, 700)
+- Lectura & UI: Inter (Pesos 400, 600, 700)
+
+© 2026 FIGHT CONNECT. TODOS LOS DERECHOS RESERVADOS. EXCELENCIA UNDERGROUND.
+================================================================================`;
+
+        // Generar Poster Oficial en Canvas (1920x1080)
+        function renderOfficialPosterCanvas(canvas, isFull4K = false) {
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+
+            // Fondo negro asfalto con degradado radial
+            const grad = ctx.createRadialGradient(w/2, h/2, 50, w/2, h/2, w*0.7);
+            grad.addColorStop(0, '#1c0709');
+            grad.addColorStop(0.5, '#0c0507');
+            grad.addColorStop(1, '#050505');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, w, h);
+
+            // Malla de Jaula (Gridlines sutiles)
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+            ctx.lineWidth = 1;
+            const step = w / 32;
+            for (let x = 0; x < w; x += step) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, h);
+                ctx.stroke();
+            }
+            for (let y = 0; y < h; y += step) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+            }
+
+            // Resplandor del Octágono
+            ctx.save();
+            ctx.translate(w/2, h/2 - 20);
+            ctx.strokeStyle = '#e62429';
+            ctx.lineWidth = isFull4K ? 14 : 7;
+            ctx.shadowColor = '#e62429';
+            ctx.shadowBlur = isFull4K ? 40 : 20;
+
+            const r = h * 0.38;
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * Math.PI / 4) - (Math.PI / 8);
+                const px = r * Math.cos(angle);
+                const py = r * Math.sin(angle);
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.stroke();
+
+            // Octágono Interior
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.lineWidth = 2;
+            ctx.shadowBlur = 0;
+            ctx.beginPath();
+            const r2 = r * 0.85;
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * Math.PI / 4) - (Math.PI / 8);
+                const px = r2 * Math.cos(angle);
+                const py = r2 * Math.sin(angle);
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.stroke();
+            ctx.restore();
+
+            // Tipografía del Evento
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#ffc107';
+            ctx.font = `bold ${isFull4K ? 28 : 14}px "Oswald", sans-serif`;
+            ctx.letterSpacing = '8px';
+            ctx.fillText('CAMPEONATO MUNDIAL DE ARTES MARCIALES', w/2, h * 0.25);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = `900 ${isFull4K ? 96 : 48}px "Oswald", sans-serif`;
+            ctx.shadowColor = 'rgba(0,0,0,0.9)';
+            ctx.shadowBlur = 15;
+            ctx.fillText('FIGHT CONNECT', w/2, h * 0.48);
+
+            ctx.fillStyle = '#e62429';
+            ctx.font = `900 ${isFull4K ? 64 : 32}px "Oswald", sans-serif`;
+            ctx.shadowColor = '#e62429';
+            ctx.shadowBlur = isFull4K ? 25 : 12;
+            ctx.fillText('UNDERGROUND FIGHT NIGHT', w/2, h * 0.62);
+
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#AAAAAA';
+            ctx.font = `600 ${isFull4K ? 24 : 12}px "Inter", sans-serif`;
+            ctx.fillText('TRANSMISIÓN OFICIAL EN VIVO • OCTÁGONO CLANDESTINO • TEMPORADA 2026', w/2, h * 0.78);
+        }
+
+        // Renderizar Preview del Poster
+        const posterCanvasPreview = document.getElementById('poster-canvas-preview');
+        if (posterCanvasPreview) {
+            renderOfficialPosterCanvas(posterCanvasPreview, false);
+        }
+
+        // Switchers de Fondos en Stages
+        document.querySelectorAll('.btn-theme-sw').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const stageId = btn.dataset.stage;
+                const theme = btn.dataset.theme;
+                const parent = btn.parentElement;
+                parent.querySelectorAll('.btn-theme-sw').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const targetStage = document.getElementById(`stage-preview-${stageId}`);
+                if (targetStage) {
+                    targetStage.className = `master-preview-stage bg-stage-${theme}`;
+                }
+            });
+        });
+
+        // Copiar Códigos HEX al portapapeles
+        document.querySelectorAll('.btn-copy-hex').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const hex = btn.dataset.hex;
+                navigator.clipboard.writeText(hex).then(() => {
+                    showCombatToast(`Color copiado al portapapeles: ${hex}`, 'fa-check');
+                    if (window.FightAudioFX && typeof window.FightAudioFX.playGloveTap === 'function') {
+                        window.FightAudioFX.playGloveTap();
+                    }
+                });
+            });
+        });
+
+        // 1. Descargar Paleta CSS
+        document.getElementById('btn-download-palette-css')?.addEventListener('click', () => {
+            const blob = new Blob([paletteCss], { type: 'text/css' });
+            triggerDownload(blob, 'fightconnect-tokens.css');
+        });
+
+        // 2. Descargar Paleta JSON
+        document.getElementById('btn-download-palette-json')?.addEventListener('click', () => {
+            const blob = new Blob([paletteJson], { type: 'application/json' });
+            triggerDownload(blob, 'fightconnect-paleta.json');
+        });
+
+        // 3. Descargar Logo SVG Transparente
+        document.getElementById('btn-download-svg')?.addEventListener('click', () => {
+            const blob = new Blob([getSvgLogoContent(false)], { type: 'image/svg+xml' });
+            triggerDownload(blob, 'fightconnect-logo-vectorial.svg');
+        });
+
+        // 4. Descargar Logo SVG Fondo Oscuro
+        document.getElementById('btn-download-svg-dark')?.addEventListener('click', () => {
+            const blob = new Blob([getSvgLogoContent(true)], { type: 'image/svg+xml' });
+            triggerDownload(blob, 'fightconnect-logo-fondo-oscuro.svg');
+        });
+
+        // 5. Descargar Emblema SVG
+        document.getElementById('btn-download-emblem-svg')?.addEventListener('click', () => {
+            const blob = new Blob([getSvgEmblemContent()], { type: 'image/svg+xml' });
+            triggerDownload(blob, 'fightconnect-emblema-octagon.svg');
+        });
+
+        // 6. Descargar Logo PNG 4K Transparente mediante Canvas
+        document.getElementById('btn-download-png')?.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 3200;
+            canvas.height = 800;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Isotipo
+            ctx.save();
+            ctx.strokeStyle = '#E62429';
+            ctx.lineWidth = 24;
+            ctx.shadowColor = 'rgba(230, 36, 41, 0.7)';
+            ctx.shadowBlur = 30;
+            ctx.beginPath();
+            const cx = 350, cy = 400, r = 200;
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * Math.PI / 4) - (Math.PI / 8);
+                const x = cx + r * Math.cos(angle);
+                const y = cy + r * Math.sin(angle);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(230, 36, 41, 0.2)';
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+
+            // Texto FIGHT
+            ctx.font = 'bold 220px "Oswald", Impact, sans-serif';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillText('FIGHT ', 680, 370);
+            const wFight = ctx.measureText('FIGHT ').width;
+
+            // Texto CONNECT
+            ctx.fillStyle = '#E62429';
+            ctx.fillText('CONNECT', 680 + wFight, 370);
+
+            // Tagline
+            ctx.font = '700 48px "Inter", sans-serif';
+            ctx.fillStyle = '#888888';
+            ctx.letterSpacing = '12px';
+            ctx.fillText('EXCELENCIA UNDERGROUND 2026', 690, 520);
+
+            canvas.toBlob((blob) => {
+                if (blob) triggerDownload(blob, 'fightconnect-logo-4k-transparente.png');
+            }, 'image/png');
+        });
+
+        // 7. Descargar Emblema PNG 4K Transparente
+        document.getElementById('btn-download-emblem-png')?.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1600;
+            canvas.height = 1600;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const cx = 800, cy = 800, r = 650;
+            ctx.save();
+            ctx.strokeStyle = '#E62429';
+            ctx.lineWidth = 44;
+            ctx.shadowColor = 'rgba(230, 36, 41, 0.8)';
+            ctx.shadowBlur = 40;
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * Math.PI / 4) - (Math.PI / 8);
+                const x = cx + r * Math.cos(angle);
+                const y = cy + r * Math.sin(angle);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.font = 'bold 260px "Oswald", Impact, sans-serif';
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillText('FC', cx, cy - 80);
+
+            ctx.font = 'bold 110px "Oswald", Impact, sans-serif';
+            ctx.fillStyle = '#E62429';
+            ctx.letterSpacing = '12px';
+            ctx.fillText('OCTAGON', cx, cy + 150);
+
+            canvas.toBlob((blob) => {
+                if (blob) triggerDownload(blob, 'fightconnect-emblema-4k.png');
+            }, 'image/png');
+        });
+
+        // 8. Descargar Poster 4K
+        document.getElementById('btn-download-poster')?.addEventListener('click', () => {
+            const canvas4k = document.createElement('canvas');
+            canvas4k.width = 1920;
+            canvas4k.height = 1080;
+            renderOfficialPosterCanvas(canvas4k, true);
+            canvas4k.toBlob((blob) => {
+                if (blob) triggerDownload(blob, 'fightconnect-poster-underground-4k.png');
+            }, 'image/png');
+        });
+
+        // 9. Descargar Manual de Marca TXT
+        document.getElementById('btn-download-guidelines-txt')?.addEventListener('click', () => {
+            const blob = new Blob([brandGuidelinesTxt], { type: 'text/plain;charset=utf-8' });
+            triggerDownload(blob, 'MANUAL_DE_IDENTIDAD_FIGHTCONNECT.txt');
+        });
+
+        // 10. Descargar Arsenal Completo (ZIP en memoria con todos los assets)
+        document.getElementById('btn-download-all-zip')?.addEventListener('click', () => {
+            const files = [
+                { name: 'fightconnect-logo-vectorial-transparente.svg', content: getSvgLogoContent(false) },
+                { name: 'fightconnect-logo-fondo-oscuro.svg', content: getSvgLogoContent(true) },
+                { name: 'fightconnect-emblema-octagon.svg', content: getSvgEmblemContent() },
+                { name: 'fightconnect-tokens.css', content: paletteCss },
+                { name: 'fightconnect-paleta.json', content: paletteJson },
+                { name: 'MANUAL_DE_IDENTIDAD_FIGHTCONNECT_2026.txt', content: brandGuidelinesTxt }
+            ];
+
+            const zipBlob = buildSimpleZip(files);
+            triggerDownload(zipBlob, 'ARSENAL_COMPLETO_FIGHTCONNECT_2026.zip');
+        });
+
+        // Generador de ZIP client-side sin librerías externas
+        function buildSimpleZip(files) {
+            const textEncoder = new TextEncoder();
+            const fileEntries = [];
+            let offset = 0;
+
+            for (const file of files) {
+                const nameBytes = textEncoder.encode(file.name);
+                const dataBytes = textEncoder.encode(file.content);
+                const crc = computeCrc32(dataBytes);
+
+                const header = new Uint8Array(30 + nameBytes.length);
+                const view = new DataView(header.buffer);
+                view.setUint32(0, 0x04034b50, true);
+                view.setUint16(4, 20, true);
+                view.setUint16(6, 0, true);
+                view.setUint16(8, 0, true);
+                view.setUint16(10, 0, true);
+                view.setUint16(12, 0, true);
+                view.setUint32(14, crc, true);
+                view.setUint32(18, dataBytes.length, true);
+                view.setUint32(22, dataBytes.length, true);
+                view.setUint16(26, nameBytes.length, true);
+                view.setUint16(28, 0, true);
+                header.set(nameBytes, 30);
+
+                fileEntries.push({
+                    header,
+                    data: dataBytes,
+                    nameBytes,
+                    offset,
+                    crc,
+                    size: dataBytes.length
+                });
+
+                offset += header.length + dataBytes.length;
+            }
+
+            const centralEntries = [];
+            let centralDirSize = 0;
+
+            for (const entry of fileEntries) {
+                const cHeader = new Uint8Array(46 + entry.nameBytes.length);
+                const cView = new DataView(cHeader.buffer);
+                cView.setUint32(0, 0x02014b50, true);
+                cView.setUint16(4, 20, true);
+                cView.setUint16(6, 20, true);
+                cView.setUint16(8, 0, true);
+                cView.setUint16(10, 0, true);
+                cView.setUint16(12, 0, true);
+                cView.setUint16(14, 0, true);
+                cView.setUint32(16, entry.crc, true);
+                cView.setUint32(20, entry.size, true);
+                cView.setUint32(24, entry.size, true);
+                cView.setUint16(28, entry.nameBytes.length, true);
+                cView.setUint16(30, 0, true);
+                cView.setUint16(32, 0, true);
+                cView.setUint16(34, 0, true);
+                cView.setUint16(36, 0, true);
+                cView.setUint32(38, 0, true);
+                cView.setUint32(42, entry.offset, true);
+                cHeader.set(entry.nameBytes, 46);
+
+                centralEntries.push(cHeader);
+                centralDirSize += cHeader.length;
+            }
+
+            const eocd = new Uint8Array(22);
+            const eocdView = new DataView(eocd.buffer);
+            eocdView.setUint32(0, 0x06054b50, true);
+            eocdView.setUint16(4, 0, true);
+            eocdView.setUint16(6, 0, true);
+            eocdView.setUint16(8, fileEntries.length, true);
+            eocdView.setUint16(10, fileEntries.length, true);
+            eocdView.setUint32(12, centralDirSize, true);
+            eocdView.setUint32(16, offset, true);
+            eocdView.setUint16(20, 0, true);
+
+            const blobParts = [];
+            for (const entry of fileEntries) {
+                blobParts.push(entry.header);
+                blobParts.push(entry.data);
+            }
+            for (const cEntry of centralEntries) {
+                blobParts.push(cEntry);
+            }
+            blobParts.push(eocd);
+
+            return new Blob(blobParts, { type: 'application/zip' });
+        }
+
+        function computeCrc32(bytes) {
+            let crc = ~0;
+            for (let i = 0; i < bytes.length; i++) {
+                crc ^= bytes[i];
+                for (let j = 0; j < 8; j++) {
+                    crc = (crc >>> 1) ^ (crc & 1 ? 0xedb88320 : 0);
+                }
+            }
+            return ~crc >>> 0;
+        }
+    </script>
+</body>
+</html>
